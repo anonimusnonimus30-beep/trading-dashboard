@@ -83,9 +83,20 @@ class PerformanceAnalyzer:
             sells = [f for f in order_fills if f.get("side") == "sell"]
 
             if buys and sells:
-                avg_buy_price = sum(f.get("filled_avg_price", 0) * f.get("filled_qty", 0) for f in buys) / sum(f.get("filled_qty", 0) for f in buys)
-                avg_sell_price = sum(f.get("filled_avg_price", 0) * f.get("filled_qty", 0) for f in sells) / sum(f.get("filled_qty", 0) for f in sells)
-                qty = sum(f.get("filled_qty", 0) for f in buys)
+                buy_qty_total = sum(float(f.get("filled_qty", 0)) for f in buys)
+                sell_qty_total = sum(float(f.get("filled_qty", 0)) for f in sells)
+
+                if buy_qty_total > 0:
+                    avg_buy_price = sum(float(f.get("filled_avg_price", 0)) * float(f.get("filled_qty", 0)) for f in buys) / buy_qty_total
+                else:
+                    avg_buy_price = 0
+
+                if sell_qty_total > 0:
+                    avg_sell_price = sum(float(f.get("filled_avg_price", 0)) * float(f.get("filled_qty", 0)) for f in sells) / sell_qty_total
+                else:
+                    avg_sell_price = 0
+
+                qty = buy_qty_total
 
                 pnl = (avg_sell_price - avg_buy_price) * qty
                 realized_pnl += pnl
