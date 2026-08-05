@@ -1,0 +1,67 @@
+name: Update Trading Dashboard
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 21 * * 1-5"
+
+permissions:
+  contents: write
+  pages: write
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      # Cuenta 1: QQQ, QQQM, TQQQ
+      APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+      APCA_BASE_URL: ${{ secrets.APCA_BASE_URL }}
+
+      # Cuenta 2: SPY
+      SPY_APCA_API_KEY: ${{ secrets.SPY_APCA_API_KEY }}
+      SPY_APCA_API_SECRET: ${{ secrets.SPY_APCA_API_SECRET }}
+      SPY_APCA_API_BASE_URL: ${{ secrets.SPY_APCA_API_BASE_URL }}
+
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Analyze performance
+        run: python3 performance_analyzer.py
+
+      - name: Calculate capital allocation
+        run: python3 capital_allocator.py
+
+      - name: Generate dashboard
+        run: python3 dashboard_generator.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "Trading Dashboard Bot"
+          git config user.email "bot@trading-dashboard.local"
+          git add -A
+          git commit -m "Update dashboard: $(date -u +'%Y-%m-%d %H:%M:%S') UTC" || echo "No changes to commit"
+          git push
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          include_dot_files: false
