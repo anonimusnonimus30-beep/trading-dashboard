@@ -1,0 +1,50 @@
+{
+  "QQQ": {
+    "symbol": "QQQ",
+    "realized_pnl": 34.55,
+    "total_trades": 1,
+    "winning_trades": 1,
+    "losing_trades": 0,
+    "win_rate": 100.0,
+    "avg_pnl_per_trade": 34.55,
+    "trades": [
+      {
+        "order_id": "unknown",
+        "buy_price": 679.2,
+        "sell_price": 679.31,
+        "qty": 299.2727,
+        "pnl": 34.55
+      }
+    ]
+  },
+  "QQQM": {
+    "symbol": "QQQM",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  },
+  "TQQQ": {
+    "symbol": "TQQQ",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  },
+  "SPY": {
+    "symbol": "SPY",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  }
+}
