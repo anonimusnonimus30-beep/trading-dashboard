@@ -287,38 +287,14 @@ class DashboardGenerator:
             if not perf:
                 continue
 
-            html += f"""
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #00ff88; margin-bottom: 15px;">{symbol}</h3>
-                <table>
-                    <tr>
-                        <th>Orden ID</th>
-                        <th>Precio Compra</th>
-                        <th>Precio Venta</th>
-                        <th>Cantidad</th>
-                        <th>P&L</th>
-                    </tr>
-"""
-
-            for trade in perf.get("trades", []):
-                pnl = trade.get("pnl", 0)
-                pnl_class = "positive" if pnl > 0 else ("negative" if pnl < 0 else "")
-                html += f"""
-                    <tr>
-                        <td>{trade.get('order_id', 'N/A')[:8]}...</td>
-                        <td>${trade.get('buy_price', 0):.2f}</td>
-                        <td>${trade.get('sell_price', 0):.2f}</td>
-                        <td>{trade.get('qty', 0):.4f}</td>
-                        <td class="{pnl_class}">${pnl:,.2f}</td>
-                    </tr>
-"""
-
-            html += """
-                </table>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
-"""
+            trades = perf.get("trades", [])
+            total_trades = len(trades)
 
             html += f"""
+            <div style="margin-bottom: 40px;">
+                <h3 style="color: #00ff88; margin-bottom: 15px;">{symbol} - {total_trades} Operaciones Históricas</h3>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div class="metric-card">
                         <div class="metric-label">P&L Realizado</div>
                         <div class="metric-value {('negative' if perf.get('realized_pnl', 0) < 0 else '')}">
@@ -330,9 +306,48 @@ class DashboardGenerator:
                         <div class="metric-value">{perf.get('win_rate', 0):.1f}%</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">Total Operaciones</div>
-                        <div class="metric-value">{perf.get('total_trades', 0)}</div>
+                        <div class="metric-label">P&L Promedio</div>
+                        <div class="metric-value">
+                            ${perf.get('avg_pnl_per_trade', 0):,.2f}
+                        </div>
                     </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Operaciones Ganadoras</div>
+                        <div class="metric-value positive">{perf.get('winning_trades', 0)}</div>
+                    </div>
+                </div>
+
+                <div style="overflow-x: auto; background: rgba(255, 255, 255, 0.02); border-radius: 10px; padding: 10px;">
+                    <table style="width: 100%;">
+                        <tr>
+                            <th>ID Orden</th>
+                            <th>Precio Compra</th>
+                            <th>Precio Venta</th>
+                            <th>Cantidad</th>
+                            <th>P&L</th>
+                            <th>Ganancia %</th>
+                        </tr>
+"""
+
+            for trade in trades:
+                pnl = trade.get("pnl", 0)
+                buy_price = trade.get("buy_price", 0)
+                pnl_pct = ((trade.get("sell_price", 0) - buy_price) / buy_price * 100) if buy_price > 0 else 0
+                pnl_class = "positive" if pnl > 0 else ("negative" if pnl < 0 else "")
+
+                html += f"""
+                        <tr>
+                            <td>{trade.get('order_id', 'N/A')}</td>
+                            <td>${buy_price:.2f}</td>
+                            <td>${trade.get('sell_price', 0):.2f}</td>
+                            <td>{trade.get('qty', 0):.4f}</td>
+                            <td class="{pnl_class}">${pnl:,.2f}</td>
+                            <td class="{pnl_class}">{pnl_pct:+.2f}%</td>
+                        </tr>
+"""
+
+            html += """
+                    </table>
                 </div>
             </div>
 """

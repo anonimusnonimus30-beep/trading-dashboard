@@ -38,19 +38,41 @@ class PerformanceAnalyzer:
         }
 
     def _get_fills(self, key, secret, base_url):
-        """Obtiene fills cerrados"""
+        """Obtiene ALL fills cerrados con paginación"""
         headers = self._get_headers(key, secret)
         url = f"{base_url}/v2/orders"
+        all_fills = []
+        after = None
 
         try:
-            response = requests.get(
-                url,
-                headers=headers,
-                params={"status": "closed", "limit": 500},
-                timeout=20,
-            )
-            response.raise_for_status()
-            return response.json() if response.ok else []
+            while True:
+                params = {"status": "closed", "limit": 500}
+                if after:
+                    params["after"] = after
+
+                response = requests.get(
+                    url,
+                    headers=headers,
+                    params=params,
+                    timeout=20,
+                )
+                response.raise_for_status()
+                fills = response.json() if response.ok else []
+
+                if not fills:
+                    break
+
+                all_fills.extend(fills)
+
+                # Alpaca pagination: use last order's created_at for next page
+                if len(fills) < 500:
+                    break
+
+                after = fills[-1].get("created_at")
+                print(f"  📄 Paginando... ({len(all_fills)} fills obtenidos hasta ahora)")
+
+            print(f"  ✅ Total de fills históricos: {len(all_fills)}")
+            return all_fills
         except Exception as e:
             print(f"⚠️ Error obteniendo fills: {e}")
             return []
