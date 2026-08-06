@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trading Dashboard - Local</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2e 0%, #2d2d44 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container { max-width: 1000px; margin: 0 auto; }
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        h1 {
+            color: #00ff88;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        .status {
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .status h2 { color: #00ff88; font-size: 1.2em; margin-bottom: 10px; }
+        .status p { margin: 5px 0; }
+        .good { color: #00ff88; }
+        .bad { color: #ff4444; }
+        button {
+            background: #00ff88;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin: 10px 5px;
+        }
+        button:hover { background: #00cc6a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 Trading Dashboard - Local</h1>
+            <div class="status">
+                <h2>✅ Estado del Sistema</h2>
+                <p><span class="good">✓</span> Dashboard funcionando localmente</p>
+                <p><span class="good">✓</span> Archivos HTML generados</p>
+                <p id="data-status"><span class="bad">⚠</span> Esperando datos de Alpaca...</p>
+                <p style="margin-top: 15px; font-size: 0.9em; color: #aaa;">
+                    Ruta: /home/juanitotrader/trading-dashboard
+                </p>
+            </div>
+        </header>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <h2 style="color: #00ff88; margin-bottom: 20px;">🚀 Próximos Pasos</h2>
+            
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="color: #00ff88; margin-bottom: 15px;">1️⃣ Guardar Credenciales (UNA SOLA VEZ)</h3>
+                <p style="margin-bottom: 10px;">En terminal:</p>
+                <code style="background: #1a1a1a; padding: 10px; border-radius: 5px; display: block; margin-bottom: 10px;">
+                    bash /home/juanitotrader/trading-dashboard/setup_once.sh
+                </code>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+                <h3 style="color: #00ff88; margin-bottom: 15px;">2️⃣ Actualizar Datos</h3>
+                <p style="margin-bottom: 10px;">En terminal:</p>
+                <code style="background: #1a1a1a; padding: 10px; border-radius: 5px; display: block; margin-bottom: 10px;">
+                    bash /home/juanitotrader/trading-dashboard/update.sh
+                </code>
+            </div>
+
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border-radius: 10px;">
+                <h3 style="color: #00ff88; margin-bottom: 15px;">3️⃣ Ver Dashboard</h3>
+                <p style="margin-bottom: 10px;">Recarga esta página después de ejecutar update.sh</p>
+                <p style="margin-bottom: 10px;">O abre:</p>
+                <code style="background: #1a1a1a; padding: 10px; border-radius: 5px; display: block;">
+                    /home/juanitotrader/trading-dashboard/index.html
+                </code>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <p style="color: #888; font-size: 0.9em;">
+                Dashboard local • Sin dependencia de GitHub Pages • Datos en tiempo real
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Verificar si hay datos
+        fetch('/performance.json')
+            .then(r => r.json())
+            .then(data => {
+                const totalTrades = Object.values(data).reduce((sum, s) => sum + s.total_trades, 0);
+                if (totalTrades > 0) {
+                    document.getElementById('data-status').innerHTML = '<span class="good">✓</span> ' + totalTrades + ' operaciones encontradas';
+                } else {
+                    document.getElementById('data-status').innerHTML = '<span class="bad">⚠</span> Sin operaciones cerradas en Alpaca (ejecuta operaciones y ciérralas primero)';
+                }
+            })
+            .catch(() => {
+                document.getElementById('data-status').innerHTML = '<span class="bad">✗</span> No se puede acceder a performance.json';
+            });
+    </script>
+</body>
+</html>
