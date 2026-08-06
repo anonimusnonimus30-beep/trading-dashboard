@@ -320,6 +320,7 @@ class DashboardGenerator:
                 <div style="overflow-x: auto; background: rgba(255, 255, 255, 0.02); border-radius: 10px; padding: 10px;">
                     <table style="width: 100%;">
                         <tr>
+                            <th>Fecha</th>
                             <th>ID Orden</th>
                             <th>Precio Compra</th>
                             <th>Precio Venta</th>
@@ -337,6 +338,7 @@ class DashboardGenerator:
 
                 html += f"""
                         <tr>
+                            <td>{trade.get('date', 'N/A')}</td>
                             <td>{trade.get('order_id', 'N/A')}</td>
                             <td>${buy_price:.2f}</td>
                             <td>${trade.get('sell_price', 0):.2f}</td>

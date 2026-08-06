@@ -1,22 +1,24 @@
 #!/usr/bin/env python3
 """
-Analyzer de rendimiento simplificado que evita errores de tipo.
+Analyzer de rendimiento: descarga fills reales de Alpaca (actividades
+FILL, no orders) y calcula P&L realizado por símbolo usando FIFO.
 """
 
 import os
 import json
+from collections import deque
 from pathlib import Path
 import requests
 
 
-def safe_float(value):
+def safe_float(value, default=0.0):
     """Convierte valor a float de forma segura"""
     try:
-        if isinstance(value, str):
-            return float(value.strip())
+        if value in (None, ""):
+            return default
         return float(value)
     except (ValueError, TypeError):
-        return 0.0
+        return default
 
 
 class PerformanceAnalyzer:
@@ -37,18 +39,27 @@ class PerformanceAnalyzer:
             "APCA-API-SECRET-KEY": secret,
         }
 
-    def _get_fills(self, key, secret, base_url):
-        """Obtiene ALL fills cerrados con paginación"""
+    def _get_fill_activities(self, key, secret, base_url):
+        """Obtiene TODAS las actividades de tipo FILL (fills reales, no orders).
+
+        Nota: /v2/orders NO sirve para esto porque cada order representa un
+        solo lado (buy o sell) y su identificador es "id", no "order_id".
+        Las actividades FILL sí traen qty/price/side reales de cada ejecución.
+        """
         headers = self._get_headers(key, secret)
-        url = f"{base_url}/v2/orders"
+        url = f"{base_url}/v2/account/activities"
         all_fills = []
-        after = None
+        page_token = None
 
         try:
             while True:
-                params = {"status": "closed", "limit": 500}
-                if after:
-                    params["after"] = after
+                params = {
+                    "activity_types": "FILL",
+                    "direction": "asc",
+                    "page_size": 100,
+                }
+                if page_token:
+                    params["page_token"] = page_token
 
                 response = requests.get(
                     url,
@@ -57,18 +68,21 @@ class PerformanceAnalyzer:
                     timeout=20,
                 )
                 response.raise_for_status()
-                fills = response.json() if response.ok else []
+                page = response.json() if response.ok else []
 
-                if not fills:
+                if not page:
                     break
 
-                all_fills.extend(fills)
+                all_fills.extend(page)
 
-                # Alpaca pagination: use last order's created_at for next page
-                if len(fills) < 500:
+                if len(page) < 100:
                     break
 
-                after = fills[-1].get("created_at")
+                new_token = page[-1].get("id")
+                if not new_token or new_token == page_token:
+                    break
+                page_token = new_token
+
                 print(f"  📄 Paginando... ({len(all_fills)} fills obtenidos hasta ahora)")
 
             print(f"  ✅ Total de fills históricos: {len(all_fills)}")
@@ -78,60 +92,75 @@ class PerformanceAnalyzer:
             return []
 
     def analyze_symbol(self, fills, symbol):
-        """Analiza un símbolo específico"""
+        """Calcula P&L realizado por símbolo emparejando compras/ventas por FIFO"""
         symbol_fills = [f for f in fills if f.get("symbol") == symbol]
 
         if not symbol_fills:
             return None
 
+        symbol_fills.sort(key=lambda f: f.get("transaction_time", ""))
+
+        lots = deque()  # lotes de compra abiertos: [qty, price]
         realized_pnl = 0.0
         winning_trades = 0
         losing_trades = 0
         trades = []
 
-        # Agrupar por order_id
-        operations = {}
         for fill in symbol_fills:
-            order_id = fill.get("order_id", "unknown")
-            if order_id not in operations:
-                operations[order_id] = []
-            operations[order_id].append(fill)
+            side = str(fill.get("side", "")).lower()
+            qty = safe_float(fill.get("qty"))
+            price = safe_float(fill.get("price"))
 
-        # Analizar cada operación
-        for order_id, order_fills in operations.items():
-            buys = [f for f in order_fills if f.get("side") == "buy"]
-            sells = [f for f in order_fills if f.get("side") == "sell"]
+            if qty <= 0:
+                continue
 
-            if buys and sells:
-                # Calcular precios promedio
-                buy_qty = sum(safe_float(f.get("filled_qty", 0)) for f in buys)
-                sell_qty = sum(safe_float(f.get("filled_qty", 0)) for f in sells)
+            if side == "buy":
+                lots.append([qty, price])
+                continue
 
-                if buy_qty > 0:
-                    avg_buy = sum(safe_float(f.get("filled_avg_price", 0)) * safe_float(f.get("filled_qty", 0)) for f in buys) / buy_qty
+            if side != "sell":
+                continue
+
+            remaining = qty
+            cost_basis = 0.0
+            matched_qty = 0.0
+
+            while remaining > 0 and lots:
+                lot_qty, lot_price = lots[0]
+                matched = min(remaining, lot_qty)
+
+                cost_basis += matched * lot_price
+                remaining -= matched
+                matched_qty += matched
+                lot_qty -= matched
+
+                if lot_qty <= 1e-9:
+                    lots.popleft()
                 else:
-                    avg_buy = 0.0
+                    lots[0][0] = lot_qty
 
-                if sell_qty > 0:
-                    avg_sell = sum(safe_float(f.get("filled_avg_price", 0)) * safe_float(f.get("filled_qty", 0)) for f in sells) / sell_qty
-                else:
-                    avg_sell = 0.0
+            if matched_qty <= 0:
+                # Venta sin lote de compra previo (posición heredada/transferida)
+                continue
 
-                pnl = (avg_sell - avg_buy) * buy_qty
-                realized_pnl += pnl
+            proceeds = matched_qty * price
+            pnl = proceeds - cost_basis
+            avg_buy = cost_basis / matched_qty
+            realized_pnl += pnl
 
-                if pnl > 0:
-                    winning_trades += 1
-                elif pnl < 0:
-                    losing_trades += 1
+            if pnl > 0:
+                winning_trades += 1
+            elif pnl < 0:
+                losing_trades += 1
 
-                trades.append({
-                    "order_id": order_id[:8],
-                    "buy_price": round(avg_buy, 2),
-                    "sell_price": round(avg_sell, 2),
-                    "qty": round(buy_qty, 4),
-                    "pnl": round(pnl, 2),
-                })
+            trades.append({
+                "order_id": str(fill.get("order_id") or fill.get("id") or "unknown")[:8],
+                "date": str(fill.get("transaction_time", ""))[:10],
+                "buy_price": round(avg_buy, 2),
+                "sell_price": round(price, 2),
+                "qty": round(matched_qty, 4),
+                "pnl": round(pnl, 2),
+            })
 
         total_trades = winning_trades + losing_trades
         win_rate = (winning_trades / total_trades * 100) if total_trades > 0 else 0
@@ -144,26 +173,26 @@ class PerformanceAnalyzer:
             "losing_trades": losing_trades,
             "win_rate": round(win_rate, 2),
             "avg_pnl_per_trade": round(realized_pnl / total_trades, 2) if total_trades > 0 else 0,
-            "trades": trades,
+            "trades": list(reversed(trades)),  # más recientes primero
         }
 
     def run(self):
         """Ejecuta análisis"""
         print("📊 Analizando rendimiento...")
 
-        fills1 = self._get_fills(self.account1_key, self.account1_secret, self.account1_url)
+        fills1 = self._get_fill_activities(self.account1_key, self.account1_secret, self.account1_url)
         for symbol in ["QQQ", "QQQM", "TQQQ"]:
             result = self.analyze_symbol(fills1, symbol)
             if result:
                 self.results[symbol] = result
-                print(f"  ✅ {symbol}: ${result['realized_pnl']} | Win rate: {result['win_rate']}%")
+                print(f"  ✅ {symbol}: ${result['realized_pnl']} | {result['total_trades']} trades | Win rate: {result['win_rate']}%")
 
-        fills2 = self._get_fills(self.account2_key, self.account2_secret, self.account2_url)
+        fills2 = self._get_fill_activities(self.account2_key, self.account2_secret, self.account2_url)
         for symbol in ["SPY"]:
             result = self.analyze_symbol(fills2, symbol)
             if result:
                 self.results[symbol] = result
-                print(f"  ✅ {symbol}: ${result['realized_pnl']} | Win rate: {result['win_rate']}%")
+                print(f"  ✅ {symbol}: ${result['realized_pnl']} | {result['total_trades']} trades | Win rate: {result['win_rate']}%")
 
         return self.results
 
