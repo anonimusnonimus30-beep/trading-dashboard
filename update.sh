@@ -25,6 +25,10 @@ python3 performance_analyzer.py
 
 if [ $? -eq 0 ]; then
   echo ""
+  echo "📍 Consultando posición actual y próxima señal..."
+  BOTS_READ_TOKEN="$(gh auth token 2>/dev/null)" python3 positions_analyzer.py
+
+  echo ""
   echo "💰 Calculando capital..."
   python3 capital_allocator.py
 

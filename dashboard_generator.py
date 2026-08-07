@@ -8,11 +8,18 @@ from pathlib import Path
 
 
 class DashboardGenerator:
-    def __init__(self, performance_file="performance.json", allocation_file="capital_allocation.json"):
+    def __init__(
+        self,
+        performance_file="performance.json",
+        allocation_file="capital_allocation.json",
+        positions_file="positions.json",
+    ):
         self.performance_file = performance_file
         self.allocation_file = allocation_file
+        self.positions_file = positions_file
         self.performance_data = self._load_json(performance_file)
         self.allocation_data = self._load_json(allocation_file)
+        self.positions_data = self._load_json(positions_file)
 
     def _load_json(self, filepath):
         if not Path(filepath).exists():
@@ -198,6 +205,58 @@ class DashboardGenerator:
             color: #ff4444;
         }}
 
+        .position-grid {{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }}
+
+        .position-card {{
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }}
+
+        .position-row {{
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.9em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }}
+
+        .position-row span:first-child {{
+            color: #aaa;
+        }}
+
+        .badge {{
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }}
+
+        .badge-pending {{
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.4);
+        }}
+
+        .badge-ok {{
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }}
+
+        .badge-none {{
+            background: rgba(255, 255, 255, 0.05);
+            color: #888;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }}
+
         footer {{
             text-align: center;
             margin-top: 40px;
@@ -271,6 +330,64 @@ class DashboardGenerator:
                             Rango: ${trade_range.get('min', 0):,.2f} - ${trade_range.get('max', 0):,.2f}
                         </div>
                     </div>
+                </div>
+"""
+
+        html += """
+            </div>
+        </div>
+
+        <div class="position-section">
+            <h2 class="section-title">📍 Posición Actual y Próxima Señal</h2>
+            <div class="position-grid">
+"""
+
+        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY"]:
+            entry = self.positions_data.get(symbol, {})
+            pos = entry.get("position", {})
+            sig = entry.get("signal", {})
+
+            has_position = pos.get("has_position", False)
+            unrealized_pl = pos.get("unrealized_pl", 0)
+            unrealized_class = "negative" if unrealized_pl < 0 else "positive"
+
+            target_pct = sig.get("target_exposure_pct")
+            executed_pct = sig.get("last_executed_target_pct")
+            pending = sig.get("pending_rebalance", False)
+
+            if target_pct is None:
+                badge_html = '<span class="badge badge-none">Sin datos de señal</span>'
+            elif pending:
+                badge_html = (
+                    f'<span class="badge badge-pending">⏳ Pendiente: '
+                    f'{executed_pct:.0f}% → {target_pct:.0f}%</span>'
+                )
+            else:
+                badge_html = f'<span class="badge badge-ok">✅ Al día en {target_pct:.0f}%</span>'
+
+            html += f"""
+                <div class="position-card">
+                    <div class="symbol">{symbol}</div>
+                    <div style="margin-bottom: 12px;">{badge_html}</div>
+"""
+
+            if has_position:
+                html += f"""
+                    <div class="position-row"><span>Cantidad</span><span>{pos.get('qty', 0):.4f}</span></div>
+                    <div class="position-row"><span>Precio promedio</span><span>${pos.get('avg_entry_price', 0):,.2f}</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>${pos.get('current_price', 0):,.2f}</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>${pos.get('market_value', 0):,.2f}</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="{unrealized_class}">${unrealized_pl:,.2f} ({pos.get('unrealized_plpc', 0):+.2f}%)</span></div>
+"""
+            else:
+                html += """
+                    <div class="position-row"><span>Posición</span><span>Sin posición abierta</span></div>
+"""
+
+            html += f"""
+                    <div class="position-row"><span>Última señal</span><span>{sig.get('signal_date', 'N/A')}</span></div>
+                    <div class="position-row"><span>Último target ejecutado</span><span>{f"{executed_pct:.0f}%" if executed_pct is not None else 'N/A'}</span></div>
+                    <div class="position-row"><span>Última acción</span><span>{sig.get('last_action', 'N/A')}</span></div>
                 </div>
 """
 

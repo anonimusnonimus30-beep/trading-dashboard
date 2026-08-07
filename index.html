@@ -166,6 +166,58 @@
             color: #ff4444;
         }
 
+        .position-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .position-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .position-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            font-size: 0.9em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .position-row span:first-child {
+            color: #aaa;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            font-weight: 600;
+        }
+
+        .badge-pending {
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+            border: 1px solid rgba(255, 193, 7, 0.4);
+        }
+
+        .badge-ok {
+            background: rgba(0, 255, 136, 0.1);
+            color: #00ff88;
+            border: 1px solid rgba(0, 255, 136, 0.3);
+        }
+
+        .badge-none {
+            background: rgba(255, 255, 255, 0.05);
+            color: #888;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
         footer {
             text-align: center;
             margin-top: 40px;
@@ -192,27 +244,27 @@
     <div class="container">
         <header>
             <h1>📊 Trading Dashboard</h1>
-            <p class="last-update">Última actualización: 2026-08-06T17:30:59.281964Z</p>
+            <p class="last-update">Última actualización: 2026-08-07T15:51:16.502541Z</p>
             <p style="margin-top: 10px; color: #00ff88; font-size: 1.2em;">
-                Capital Total: <strong>$200,178.67</strong>
+                Capital Total: <strong>$200,303.67</strong>
             </p>
         </header>
 
         <div class="metrics-grid">
             <div class="metric-card">
                 <div class="metric-label">Operaciones Totales</div>
-                <div class="metric-value">12</div>
+                <div class="metric-value">21</div>
             </div>
             <div class="metric-card">
                 <div class="metric-label">P&L Realizado</div>
                 <div class="metric-value ">
-                    $75.09
+                    $82.47
                 </div>
             </div>
             <div class="metric-card">
                 <div class="metric-label">Win Rate Promedio</div>
                 <div class="metric-value">
-                    25.0%
+                    75.0%
                 </div>
             </div>
         </div>
@@ -224,12 +276,12 @@
                 <div class="allocation-card">
                     <div class="symbol">QQQ</div>
                     <div class="allocation-bar">
-                        <div class="allocation-fill" style="width: 47.5%;">47.5%</div>
+                        <div class="allocation-fill" style="width: 30.8%;">30.8%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $95,084.87</div>
+                        <div>Capital: $61,693.53</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $950.85 - $2,852.55
+                            Rango: $616.94 - $1,850.81
                         </div>
                     </div>
                 </div>
@@ -237,12 +289,12 @@
                 <div class="allocation-card">
                     <div class="symbol">QQQM</div>
                     <div class="allocation-bar">
-                        <div class="allocation-fill" style="width: 17.5%;">17.5%</div>
+                        <div class="allocation-fill" style="width: 30.8%;">30.8%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $35,031.27</div>
+                        <div>Capital: $61,693.53</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $350.31 - $1,050.94
+                            Rango: $616.94 - $1,850.81
                         </div>
                     </div>
                 </div>
@@ -250,12 +302,12 @@
                 <div class="allocation-card">
                     <div class="symbol">TQQQ</div>
                     <div class="allocation-bar">
-                        <div class="allocation-fill" style="width: 17.5%;">17.5%</div>
+                        <div class="allocation-fill" style="width: 30.8%;">30.8%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $35,031.27</div>
+                        <div>Capital: $61,693.53</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $350.31 - $1,050.94
+                            Rango: $616.94 - $1,850.81
                         </div>
                     </div>
                 </div>
@@ -263,14 +315,81 @@
                 <div class="allocation-card">
                     <div class="symbol">SPY</div>
                     <div class="allocation-bar">
-                        <div class="allocation-fill" style="width: 17.5%;">17.5%</div>
+                        <div class="allocation-fill" style="width: 7.5%;">7.5%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $35,031.27</div>
+                        <div>Capital: $15,022.78</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $350.31 - $1,050.94
+                            Rango: $150.23 - $450.68
                         </div>
                     </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="position-section">
+            <h2 class="section-title">📍 Posición Actual y Próxima Señal</h2>
+            <div class="position-grid">
+
+                <div class="position-card">
+                    <div class="symbol">QQQ</div>
+                    <div style="margin-bottom: 12px;"><span class="badge badge-ok">✅ Al día en 100%</span></div>
+
+                    <div class="position-row"><span>Cantidad</span><span>4.1593</span></div>
+                    <div class="position-row"><span>Precio promedio</span><span>$689.19</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$723.06</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$3,007.44</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="positive">$140.89 (+4.92%)</span></div>
+
+                    <div class="position-row"><span>Última señal</span><span>2026-08-07</span></div>
+                    <div class="position-row"><span>Último target ejecutado</span><span>100%</span></div>
+                    <div class="position-row"><span>Última acción</span><span>order_sent</span></div>
+                </div>
+
+                <div class="position-card">
+                    <div class="symbol">QQQM</div>
+                    <div style="margin-bottom: 12px;"><span class="badge badge-ok">✅ Al día en 75%</span></div>
+
+                    <div class="position-row"><span>Cantidad</span><span>7.5828</span></div>
+                    <div class="position-row"><span>Precio promedio</span><span>$296.87</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$297.75</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$2,257.77</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="positive">$6.68 (+0.30%)</span></div>
+
+                    <div class="position-row"><span>Última señal</span><span>2026-08-07</span></div>
+                    <div class="position-row"><span>Último target ejecutado</span><span>75%</span></div>
+                    <div class="position-row"><span>Última acción</span><span>no_trade_small_difference</span></div>
+                </div>
+
+                <div class="position-card">
+                    <div class="symbol">TQQQ</div>
+                    <div style="margin-bottom: 12px;"><span class="badge badge-ok">✅ Al día en 0%</span></div>
+
+                    <div class="position-row"><span>Cantidad</span><span>0.0000</span></div>
+                    <div class="position-row"><span>Precio promedio</span><span>$73.69</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$74.51</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$0.00</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="positive">$0.00 (+0.00%)</span></div>
+
+                    <div class="position-row"><span>Última señal</span><span>2026-08-07</span></div>
+                    <div class="position-row"><span>Último target ejecutado</span><span>0%</span></div>
+                    <div class="position-row"><span>Última acción</span><span>no_trade_small_difference</span></div>
+                </div>
+
+                <div class="position-card">
+                    <div class="symbol">SPY</div>
+                    <div style="margin-bottom: 12px;"><span class="badge badge-none">Sin datos de señal</span></div>
+
+                    <div class="position-row"><span>Cantidad</span><span>3.9616</span></div>
+                    <div class="position-row"><span>Precio promedio</span><span>$756.30</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$773.54</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$3,064.48</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="positive">$68.32 (+2.28%)</span></div>
+
+                    <div class="position-row"><span>Última señal</span><span>None</span></div>
+                    <div class="position-row"><span>Último target ejecutado</span><span>N/A</span></div>
+                    <div class="position-row"><span>Última acción</span><span>None</span></div>
                 </div>
 
             </div>
@@ -280,13 +399,13 @@
             <h2 class="section-title">📈 Rendimiento por Símbolo</h2>
 
             <div style="margin-bottom: 40px;">
-                <h3 style="color: #00ff88; margin-bottom: 15px;">QQQ - 12 Operaciones Históricas</h3>
+                <h3 style="color: #00ff88; margin-bottom: 15px;">QQQ - 13 Operaciones Históricas</h3>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div class="metric-card">
                         <div class="metric-label">P&L Realizado</div>
                         <div class="metric-value ">
-                            $75.09
+                            $76.12
                         </div>
                     </div>
                     <div class="metric-card">
@@ -296,12 +415,12 @@
                     <div class="metric-card">
                         <div class="metric-label">P&L Promedio</div>
                         <div class="metric-value">
-                            $6.26
+                            $5.86
                         </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Operaciones Ganadoras</div>
-                        <div class="metric-value positive">12</div>
+                        <div class="metric-value positive">13</div>
                     </div>
                 </div>
 
@@ -315,6 +434,16 @@
                             <th>Cantidad</th>
                             <th>P&L</th>
                             <th>Ganancia %</th>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>fc75cc41</td>
+                            <td>$688.94</td>
+                            <td>$721.27</td>
+                            <td>0.0318</td>
+                            <td class="positive">$1.03</td>
+                            <td class="positive">+4.69%</td>
                         </tr>
 
                         <tr>
@@ -442,28 +571,28 @@
             </div>
 
             <div style="margin-bottom: 40px;">
-                <h3 style="color: #00ff88; margin-bottom: 15px;">QQQM - 0 Operaciones Históricas</h3>
+                <h3 style="color: #00ff88; margin-bottom: 15px;">QQQM - 4 Operaciones Históricas</h3>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div class="metric-card">
                         <div class="metric-label">P&L Realizado</div>
                         <div class="metric-value ">
-                            $0.00
+                            $1.42
                         </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Win Rate</div>
-                        <div class="metric-value">0.0%</div>
+                        <div class="metric-value">100.0%</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">P&L Promedio</div>
                         <div class="metric-value">
-                            $0.00
+                            $0.35
                         </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Operaciones Ganadoras</div>
-                        <div class="metric-value positive">0</div>
+                        <div class="metric-value positive">4</div>
                     </div>
                 </div>
 
@@ -479,33 +608,73 @@
                             <th>Ganancia %</th>
                         </tr>
 
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>ba7f6cc0</td>
+                            <td>$296.89</td>
+                            <td>$297.38</td>
+                            <td>0.5115</td>
+                            <td class="positive">$0.25</td>
+                            <td class="positive">+0.17%</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>ba7f6cc0</td>
+                            <td>$296.89</td>
+                            <td>$297.38</td>
+                            <td>1.0000</td>
+                            <td class="positive">$0.49</td>
+                            <td class="positive">+0.17%</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>cbe6f5b2</td>
+                            <td>$296.89</td>
+                            <td>$297.56</td>
+                            <td>0.0112</td>
+                            <td class="positive">$0.01</td>
+                            <td class="positive">+0.23%</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>cbe6f5b2</td>
+                            <td>$296.89</td>
+                            <td>$297.56</td>
+                            <td>1.0000</td>
+                            <td class="positive">$0.67</td>
+                            <td class="positive">+0.23%</td>
+                        </tr>
+
                     </table>
                 </div>
             </div>
 
             <div style="margin-bottom: 40px;">
-                <h3 style="color: #00ff88; margin-bottom: 15px;">TQQQ - 0 Operaciones Históricas</h3>
+                <h3 style="color: #00ff88; margin-bottom: 15px;">TQQQ - 4 Operaciones Históricas</h3>
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div class="metric-card">
                         <div class="metric-label">P&L Realizado</div>
                         <div class="metric-value ">
-                            $0.00
+                            $4.93
                         </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Win Rate</div>
-                        <div class="metric-value">0.0%</div>
+                        <div class="metric-value">100.0%</div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">P&L Promedio</div>
                         <div class="metric-value">
-                            $0.00
+                            $1.23
                         </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">Operaciones Ganadoras</div>
-                        <div class="metric-value positive">0</div>
+                        <div class="metric-value positive">4</div>
                     </div>
                 </div>
 
@@ -519,6 +688,46 @@
                             <th>Cantidad</th>
                             <th>P&L</th>
                             <th>Ganancia %</th>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>87a20af4</td>
+                            <td>$73.68</td>
+                            <td>$74.17</td>
+                            <td>0.1984</td>
+                            <td class="positive">$0.10</td>
+                            <td class="positive">+0.67%</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>87a20af4</td>
+                            <td>$73.68</td>
+                            <td>$74.17</td>
+                            <td>1.0000</td>
+                            <td class="positive">$0.49</td>
+                            <td class="positive">+0.67%</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>87a20af4</td>
+                            <td>$73.68</td>
+                            <td>$74.17</td>
+                            <td>1.0000</td>
+                            <td class="positive">$0.49</td>
+                            <td class="positive">+0.67%</td>
+                        </tr>
+
+                        <tr>
+                            <td>2026-08-07</td>
+                            <td>87a20af4</td>
+                            <td>$73.69</td>
+                            <td>$74.17</td>
+                            <td>8.0000</td>
+                            <td class="positive">$3.85</td>
+                            <td class="positive">+0.65%</td>
                         </tr>
 
                     </table>

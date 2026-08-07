@@ -25,6 +25,9 @@ jobs:
       SPY_APCA_API_SECRET: ${{ secrets.SPY_APCA_API_SECRET }}
       SPY_APCA_API_BASE_URL: ${{ secrets.SPY_APCA_API_BASE_URL }}
 
+      # Lectura de estado de los repos privados de cada bot (posición/próxima señal)
+      BOTS_READ_TOKEN: ${{ secrets.BOTS_READ_TOKEN }}
+
       PYTHONUNBUFFERED: "1"
 
     steps:
@@ -44,6 +47,9 @@ jobs:
 
       - name: Analyze performance
         run: python3 performance_analyzer.py
+
+      - name: Fetch positions and pending signals
+        run: python3 positions_analyzer.py
 
       - name: Calculate capital allocation
         run: python3 capital_allocator.py
