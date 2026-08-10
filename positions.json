@@ -4,11 +4,11 @@
       "has_position": true,
       "qty": 4.159329756,
       "avg_entry_price": 689.187709,
-      "current_price": 721.4,
-      "market_value": 3000.540486,
+      "current_price": 721.725,
+      "market_value": 3001.892268,
       "cost_basis": 2866.558946,
-      "unrealized_pl": 133.98154,
-      "unrealized_plpc": 4.6739999999999995
+      "unrealized_pl": 135.333322,
+      "unrealized_plpc": 4.721
     },
     "signal": {
       "signal_date": "2026-08-10",
@@ -22,21 +22,21 @@
   "QQQM": {
     "position": {
       "has_position": true,
-      "qty": 10.057436204,
+      "qty": 5.049330204,
       "avg_entry_price": 297.218572,
-      "current_price": 297.03,
-      "market_value": 2987.360276,
-      "cost_basis": 2989.256827,
-      "unrealized_pl": -1.896551,
-      "unrealized_plpc": -0.063
+      "current_price": 297.15,
+      "market_value": 1500.40847,
+      "cost_basis": 1500.754713,
+      "unrealized_pl": -0.346243,
+      "unrealized_plpc": -0.023
     },
     "signal": {
       "signal_date": "2026-08-10",
       "target_exposure_pct": 100,
-      "last_executed_target_pct": 100,
+      "last_executed_target_pct": 50.0,
       "last_action": "order_sent",
-      "last_checked_at": "2026-08-10T14:38:01.494815",
-      "pending_rebalance": false
+      "last_checked_at": "2026-08-10T16:24:30.668905",
+      "pending_rebalance": true
     }
   },
   "TQQQ": {
@@ -44,11 +44,11 @@
       "has_position": true,
       "qty": 10.142221646,
       "avg_entry_price": 74.11,
-      "current_price": 73.9599,
-      "market_value": 750.117699,
+      "current_price": 74.06,
+      "market_value": 751.132935,
       "cost_basis": 751.640046,
-      "unrealized_pl": -1.522347,
-      "unrealized_plpc": -0.203
+      "unrealized_pl": -0.507111,
+      "unrealized_plpc": -0.067
     },
     "signal": {
       "signal_date": "2026-08-10",
@@ -64,11 +64,11 @@
       "has_position": true,
       "qty": 3.873349235,
       "avg_entry_price": 773.514036,
-      "current_price": 773.615,
-      "market_value": 2996.481068,
+      "current_price": 772.71,
+      "market_value": 2992.975687,
       "cost_basis": 2996.09,
-      "unrealized_pl": 0.391068,
-      "unrealized_plpc": 0.013
+      "unrealized_pl": -3.114313,
+      "unrealized_plpc": -0.104
     },
     "signal": {
       "signal_date": "2026-08-07",
