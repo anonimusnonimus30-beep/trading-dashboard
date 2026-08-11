@@ -116,13 +116,29 @@
   },
   "QQQM": {
     "symbol": "QQQM",
-    "realized_pnl": 2.14,
-    "total_trades": 10,
+    "realized_pnl": -5.37,
+    "total_trades": 12,
     "winning_trades": 7,
-    "losing_trades": 3,
-    "win_rate": 70.0,
-    "avg_pnl_per_trade": 0.21,
+    "losing_trades": 5,
+    "win_rate": 58.33,
+    "avg_pnl_per_trade": -0.45,
     "trades": [
+      {
+        "order_id": "60ba5550",
+        "date": "2026-08-11",
+        "buy_price": 298.29,
+        "sell_price": 295.27,
+        "qty": 0.5383,
+        "pnl": -1.63
+      },
+      {
+        "order_id": "60ba5550",
+        "date": "2026-08-11",
+        "buy_price": 298.21,
+        "sell_price": 295.27,
+        "qty": 2.0,
+        "pnl": -5.89
+      },
       {
         "order_id": "d0c193d8",
         "date": "2026-08-11",
