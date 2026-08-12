@@ -223,13 +223,29 @@
   },
   "TQQQ": {
     "symbol": "TQQQ",
-    "realized_pnl": 2.36,
-    "total_trades": 8,
+    "realized_pnl": 1.19,
+    "total_trades": 10,
     "winning_trades": 4,
-    "losing_trades": 4,
-    "win_rate": 50.0,
-    "avg_pnl_per_trade": 0.3,
+    "losing_trades": 6,
+    "win_rate": 40.0,
+    "avg_pnl_per_trade": 0.12,
     "trades": [
+      {
+        "order_id": "dd37becc",
+        "date": "2026-08-12",
+        "buy_price": 75.07,
+        "sell_price": 74.48,
+        "qty": 0.9837,
+        "pnl": -0.58
+      },
+      {
+        "order_id": "dd37becc",
+        "date": "2026-08-12",
+        "buy_price": 75.07,
+        "sell_price": 74.48,
+        "qty": 1.0,
+        "pnl": -0.59
+      },
       {
         "order_id": "821abb5f",
         "date": "2026-08-11",
