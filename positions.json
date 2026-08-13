@@ -4,11 +4,11 @@
       "has_position": true,
       "qty": 4.159329756,
       "avg_entry_price": 689.187709,
-      "current_price": 732.43,
-      "market_value": 3046.417893,
+      "current_price": 731.66,
+      "market_value": 3043.215209,
       "cost_basis": 2866.558946,
-      "unrealized_pl": 179.858947,
-      "unrealized_plpc": 6.274
+      "unrealized_pl": 176.656263,
+      "unrealized_plpc": 6.162999999999999
     },
     "signal": {
       "signal_date": "2026-08-12",
@@ -24,11 +24,11 @@
       "has_position": true,
       "qty": 10.048344604,
       "avg_entry_price": 297.179119,
-      "current_price": 301.559,
-      "market_value": 3030.16875,
+      "current_price": 301.35,
+      "market_value": 3028.068646,
       "cost_basis": 2986.158197,
-      "unrealized_pl": 44.010553,
-      "unrealized_plpc": 1.474
+      "unrealized_pl": 41.910449,
+      "unrealized_plpc": 1.403
     },
     "signal": {
       "signal_date": "2026-08-12",
@@ -44,11 +44,11 @@
       "has_position": true,
       "qty": 10.091350062,
       "avg_entry_price": 75.004366,
-      "current_price": 77.285,
-      "market_value": 779.90999,
+      "current_price": 77.0801,
+      "market_value": 777.842272,
       "cost_basis": 756.895313,
-      "unrealized_pl": 23.014677,
-      "unrealized_plpc": 3.041
+      "unrealized_pl": 20.946959,
+      "unrealized_plpc": 2.767
     },
     "signal": {
       "signal_date": "2026-08-12",
@@ -62,13 +62,13 @@
   "SPY": {
     "position": {
       "has_position": true,
-      "qty": 1.942124873,
-      "avg_entry_price": 772.563882,
-      "current_price": 779.04,
-      "market_value": 1512.992961,
-      "cost_basis": 1500.415531,
-      "unrealized_pl": 12.57743,
-      "unrealized_plpc": 0.8380000000000001
+      "qty": 3.85097002,
+      "avg_entry_price": 775.767018,
+      "current_price": 776.19,
+      "market_value": 2989.08442,
+      "cost_basis": 2987.455529,
+      "unrealized_pl": 1.628891,
+      "unrealized_plpc": 0.055
     },
     "signal": {
       "signal_date": "2026-08-07",
