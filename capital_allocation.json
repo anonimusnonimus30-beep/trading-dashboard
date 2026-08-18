@@ -1,6 +1,6 @@
 {
-  "timestamp": "2026-08-18T21:02:29.876088Z",
-  "total_capital": 200154.08,
+  "timestamp": "2026-08-18T21:11:56.487930Z",
+  "total_capital": 200154.67,
   "allocation_pct": {
     "QQQ": 56.0,
     "SPY": 24.0,
@@ -9,16 +9,16 @@
     "QQQM": 0.0
   },
   "allocation_usd": {
-    "QQQ": 112086.28,
-    "SPY": 48036.98,
-    "TQQQ": 16812.94,
-    "ARKK": 23217.87,
+    "QQQ": 112086.62,
+    "SPY": 48037.12,
+    "TQQQ": 16812.99,
+    "ARKK": 23217.94,
     "QQQM": 0.0
   },
   "trade_size_range": {
     "QQQ": {
-      "min": 1120.86,
-      "max": 3362.59
+      "min": 1120.87,
+      "max": 3362.6
     },
     "SPY": {
       "min": 480.37,
