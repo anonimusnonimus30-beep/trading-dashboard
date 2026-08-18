@@ -174,10 +174,12 @@
         }
 
         .position-card {
+            position: relative;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 20px;
+            overflow: hidden;
         }
 
         .position-row {
@@ -218,14 +220,27 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .badge-suspended {
-            background: rgba(255, 87, 87, 0.1);
-            color: #ff5757;
-            border: 1px solid rgba(255, 87, 87, 0.35);
+        .position-card.suspended {
+            opacity: 0.75;
         }
 
-        .position-card.suspended {
-            opacity: 0.6;
+        .stamp-suspended {
+            position: absolute;
+            top: 18px;
+            right: -34px;
+            width: 150px;
+            transform: rotate(28deg);
+            text-align: center;
+            padding: 5px 0;
+            font-size: 0.72em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ff5757;
+            background: rgba(255, 87, 87, 0.12);
+            border-top: 2px solid #ff5757;
+            border-bottom: 2px solid #ff5757;
+            pointer-events: none;
         }
 
         footer {
@@ -254,9 +269,9 @@
     <div class="container">
         <header>
             <h1>📊 Trading Dashboard</h1>
-            <p class="last-update">Última actualización: 2026-08-18T20:36:58.783465Z</p>
+            <p class="last-update">Última actualización: 2026-08-18T20:46:50.427508Z</p>
             <p style="margin-top: 10px; color: #00ff88; font-size: 1.2em;">
-                Capital Total: <strong>$200,161.46</strong>
+                Capital Total: <strong>$200,158.06</strong>
             </p>
         </header>
 
@@ -289,9 +304,9 @@
                         <div class="allocation-fill" style="width: 56.0%;">56.0%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $112,090.42</div>
+                        <div>Capital: $112,088.51</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $1,120.90 - $3,362.71
+                            Rango: $1,120.89 - $3,362.66
                         </div>
                     </div>
                 </div>
@@ -315,9 +330,9 @@
                         <div class="allocation-fill" style="width: 8.4%;">8.4%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $16,813.56</div>
+                        <div>Capital: $16,813.28</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $168.14 - $504.41
+                            Rango: $168.13 - $504.40
                         </div>
                     </div>
                 </div>
@@ -328,9 +343,9 @@
                         <div class="allocation-fill" style="width: 24.0%;">24.0%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $48,038.75</div>
+                        <div>Capital: $48,037.93</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $480.39 - $1,441.16
+                            Rango: $480.38 - $1,441.14
                         </div>
                     </div>
                 </div>
@@ -341,9 +356,9 @@
                         <div class="allocation-fill" style="width: 11.6%;">11.6%</div>
                     </div>
                     <div class="allocation-info">
-                        <div>Capital: $23,218.73</div>
+                        <div>Capital: $23,218.33</div>
                         <div style="margin-top: 8px; font-size: 0.8em; color: #666;">
-                            Rango: $232.19 - $696.56
+                            Rango: $232.18 - $696.55
                         </div>
                     </div>
                 </div>
@@ -356,44 +371,47 @@
             <div class="position-grid">
 
                 <div class="position-card">
+                    
                     <div class="symbol">QQQ</div>
                     <div style="margin-bottom: 12px;"><span class="badge badge-ok">✅ Al día en 100%</span></div>
 
                     <div class="position-row"><span>Cantidad</span><span>4.1593</span></div>
                     <div class="position-row"><span>Precio promedio</span><span>$689.19</span></div>
-                    <div class="position-row"><span>Precio actual</span><span>$717.55</span></div>
-                    <div class="position-row"><span>Valor de mercado</span><span>$2,984.53</span></div>
-                    <div class="position-row"><span>P&L no realizado</span><span class="positive">$117.97 (+4.12%)</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$717.30</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$2,983.49</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="positive">$116.93 (+4.08%)</span></div>
 
                     <div class="position-row"><span>Última señal</span><span>2026-08-18</span></div>
                     <div class="position-row"><span>Último target ejecutado</span><span>100%</span></div>
                     <div class="position-row"><span>Última acción</span><span>order_sent</span></div>
                 </div>
 
-                <div class="position-card">
+                <div class="position-card suspended">
+                    <div class="stamp-suspended">Suspendido</div>
                     <div class="symbol">QQQM</div>
                     <div style="margin-bottom: 12px;"><span class="badge badge-ok">✅ Al día en 75%</span></div>
 
                     <div class="position-row"><span>Cantidad</span><span>7.6088</span></div>
                     <div class="position-row"><span>Precio promedio</span><span>$297.18</span></div>
-                    <div class="position-row"><span>Precio actual</span><span>$295.44</span></div>
-                    <div class="position-row"><span>Valor de mercado</span><span>$2,247.95</span></div>
-                    <div class="position-row"><span>P&L no realizado</span><span class="negative">$-13.23 (-0.58%)</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$295.41</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$2,247.72</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="negative">$-13.46 (-0.60%)</span></div>
 
                     <div class="position-row"><span>Última señal</span><span>2026-08-18</span></div>
                     <div class="position-row"><span>Último target ejecutado</span><span>75%</span></div>
                     <div class="position-row"><span>Última acción</span><span>order_sent</span></div>
                 </div>
 
-                <div class="position-card">
+                <div class="position-card suspended">
+                    <div class="stamp-suspended">Suspendido</div>
                     <div class="symbol">TQQQ</div>
                     <div style="margin-bottom: 12px;"><span class="badge badge-ok">✅ Al día en 25%</span></div>
 
                     <div class="position-row"><span>Cantidad</span><span>9.7159</span></div>
                     <div class="position-row"><span>Precio promedio</span><span>$76.35</span></div>
-                    <div class="position-row"><span>Precio actual</span><span>$72.49</span></div>
-                    <div class="position-row"><span>Valor de mercado</span><span>$704.34</span></div>
-                    <div class="position-row"><span>P&L no realizado</span><span class="negative">$-37.43 (-5.05%)</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$72.42</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$703.63</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="negative">$-38.15 (-5.14%)</span></div>
 
                     <div class="position-row"><span>Última señal</span><span>2026-08-18</span></div>
                     <div class="position-row"><span>Último target ejecutado</span><span>25%</span></div>
@@ -401,21 +419,23 @@
                 </div>
 
                 <div class="position-card">
+                    
                     <div class="symbol">SPY</div>
                     <div style="margin-bottom: 12px;"><span class="badge badge-pending">⏳ Pendiente: 60% → 75%</span></div>
 
                     <div class="position-row"><span>Cantidad</span><span>2.3448</span></div>
                     <div class="position-row"><span>Precio promedio</span><span>$775.77</span></div>
-                    <div class="position-row"><span>Precio actual</span><span>$767.48</span></div>
-                    <div class="position-row"><span>Valor de mercado</span><span>$1,799.62</span></div>
-                    <div class="position-row"><span>P&L no realizado</span><span class="negative">$-19.44 (-1.07%)</span></div>
+                    <div class="position-row"><span>Precio actual</span><span>$767.34</span></div>
+                    <div class="position-row"><span>Valor de mercado</span><span>$1,799.30</span></div>
+                    <div class="position-row"><span>P&L no realizado</span><span class="negative">$-19.77 (-1.09%)</span></div>
 
                     <div class="position-row"><span>Última señal</span><span>2026-08-18</span></div>
                     <div class="position-row"><span>Último target ejecutado</span><span>60%</span></div>
                     <div class="position-row"><span>Última acción</span><span>order_sent</span></div>
                 </div>
 
-                <div class="position-card">
+                <div class="position-card suspended">
+                    <div class="stamp-suspended">Suspendido</div>
                     <div class="symbol">ARKK</div>
                     <div style="margin-bottom: 12px;"><span class="badge badge-pending">⏳ Pendiente: 0% → 75%</span></div>
 
