@@ -57,6 +57,9 @@ jobs:
       - name: Generate dashboard
         run: python3 dashboard_generator.py
 
+      - name: Update SQL database
+        run: python3 database.py
+
       - name: Commit and push changes
         run: |
           git config user.name "Trading Dashboard Bot"

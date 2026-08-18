@@ -13,12 +13,32 @@ Dashboard centralizado para análisis de rendimiento y asignación de capital de
 
 ```
 ├── performance_analyzer.py      # Analiza fills de Alpaca
+├── positions_analyzer.py        # Posición actual + próxima señal + estado del workflow de cada bot
 ├── capital_allocator.py         # Calcula asignación óptima
 ├── dashboard_generator.py       # Genera HTML del dashboard
+├── database.py                  # Actualiza sentinels.db (ver abajo)
 ├── requirements.txt
 ├── index.html                   # Dashboard (generado)
+├── sentinels.db                 # Base SQLite con histórico de los 5 bots (generada)
 └── .github/workflows/update-dashboard.yml
 ```
+
+## 🗄️ Base de datos (sentinels.db)
+
+SQLite con el histórico y estado de los 5 bots, para análisis propio
+fuera del dashboard (no la lee el HTML generado). Se actualiza en cada
+corrida del workflow. Consultarla con `sqlite3 sentinels.db` o desde
+Python/pandas (`pd.read_sql("SELECT * FROM trades", sqlite3.connect("sentinels.db"))`).
+
+Tablas:
+
+- **`trades`** — cada operación cerrada (compra+venta emparejada por FIFO) de los 5 bots, histórico completo desde que arrancó cada uno.
+- **`signal_history`** — score/exposición objetivo por día de cada bot, histórico completo (viene de `*_signal_log.csv` de cada repo). QQQ usa columnas distintas (`v5_active`, `bear_confirmed`) por tener otro modelo, no de score 0-100.
+- **`positions_snapshot`** / **`performance_snapshot`** / **`capital_allocation_snapshot`** — una fila nueva por símbolo en CADA corrida (con `snapshot_at`). A diferencia de las dos tablas anteriores, esto **no es retroactivo**: el histórico de estas tres tablas arranca desde que existe esta base, no desde que arrancó cada bot (antes de esto el dashboard solo guardaba el último estado y lo sobreescribía).
+
+`trades` y `signal_history` se reimportan completas en cada corrida pero no duplican (clave única + `INSERT OR IGNORE`).
+
+⚠️ El historial de `signal_history` de SPY anterior al 2026-08-18 se calculó con precio de QQQM, no de SPY (bug de copy-paste ya corregido ese día) — es historial real de lo que el bot vio en ese momento, no un error de esta base.
 
 ## 🔐 Secrets Requeridos
 

@@ -257,6 +257,16 @@ class DashboardGenerator:
             border: 1px solid rgba(255, 255, 255, 0.1);
         }}
 
+        .badge-suspended {{
+            background: rgba(255, 87, 87, 0.1);
+            color: #ff5757;
+            border: 1px solid rgba(255, 87, 87, 0.35);
+        }}
+
+        .position-card.suspended {{
+            opacity: 0.6;
+        }}
+
         footer {{
             text-align: center;
             margin-top: 40px;
@@ -354,8 +364,11 @@ class DashboardGenerator:
             target_pct = sig.get("target_exposure_pct")
             executed_pct = sig.get("last_executed_target_pct")
             pending = sig.get("pending_rebalance", False)
+            suspended = entry.get("suspended", False)
 
-            if target_pct is None:
+            if suspended:
+                badge_html = '<span class="badge badge-suspended">⏸️ Suspendido temporalmente</span>'
+            elif target_pct is None:
                 badge_html = '<span class="badge badge-none">Sin datos de señal</span>'
             elif pending:
                 badge_html = (
@@ -365,8 +378,9 @@ class DashboardGenerator:
             else:
                 badge_html = f'<span class="badge badge-ok">✅ Al día en {target_pct:.0f}%</span>'
 
+            card_class = "position-card suspended" if suspended else "position-card"
             html += f"""
-                <div class="position-card">
+                <div class="{card_class}">
                     <div class="symbol">{symbol}</div>
                     <div style="margin-bottom: 12px;">{badge_html}</div>
 """
