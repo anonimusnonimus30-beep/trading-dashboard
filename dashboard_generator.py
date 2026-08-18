@@ -13,13 +13,16 @@ class DashboardGenerator:
         performance_file="performance.json",
         allocation_file="capital_allocation.json",
         positions_file="positions.json",
+        analysis_progress_file="analysis_progress.json",
     ):
         self.performance_file = performance_file
         self.allocation_file = allocation_file
         self.positions_file = positions_file
+        self.analysis_progress_file = analysis_progress_file
         self.performance_data = self._load_json(performance_file)
         self.allocation_data = self._load_json(allocation_file)
         self.positions_data = self._load_json(positions_file)
+        self.analysis_progress_data = self._load_json(analysis_progress_file)
 
     def _load_json(self, filepath):
         if not Path(filepath).exists():
@@ -263,6 +266,23 @@ class DashboardGenerator:
             opacity: 0.75;
         }}
 
+        .learning-bar {{
+            background: rgba(255, 255, 255, 0.06);
+            height: 8px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 4px 0 2px;
+        }}
+
+        .learning-fill {{
+            background: linear-gradient(90deg, #7dd3fc, #38bdf8);
+            height: 100%;
+        }}
+
+        .learning-fill.due {{
+            background: linear-gradient(90deg, #ffc107, #ff9800);
+        }}
+
         .stamp-suspended {{
             position: absolute;
             top: 18px;
@@ -417,6 +437,22 @@ class DashboardGenerator:
                     <div class="position-row"><span>Última señal</span><span>{sig.get('signal_date', 'N/A')}</span></div>
                     <div class="position-row"><span>Último target ejecutado</span><span>{f"{executed_pct:.0f}%" if executed_pct is not None else 'N/A'}</span></div>
                     <div class="position-row"><span>Última acción</span><span>{sig.get('last_action', 'N/A')}</span></div>
+"""
+
+            learning = self.analysis_progress_data.get(symbol)
+            if learning:
+                since = learning.get("trades_since_analysis", 0)
+                target = learning.get("trades_target", 50)
+                due = learning.get("analysis_due", False)
+                fill_pct = min(100, round(since / target * 100)) if target else 0
+                fill_class = "learning-fill due" if due else "learning-fill"
+                due_label = " 🔔 toca análisis" if due else ""
+                html += f"""
+                    <div class="position-row"><span>Auto-aprendizaje</span><span>{since}/{target} operaciones{due_label}</span></div>
+                    <div class="learning-bar"><div class="{fill_class}" style="width: {fill_pct}%;"></div></div>
+"""
+
+            html += """
                 </div>
 """
 

@@ -54,11 +54,11 @@ jobs:
       - name: Calculate capital allocation
         run: python3 capital_allocator.py
 
-      - name: Generate dashboard
-        run: python3 dashboard_generator.py
-
       - name: Update SQL database
         run: python3 database.py
+
+      - name: Generate dashboard
+        run: python3 dashboard_generator.py
 
       - name: Commit and push changes
         run: |

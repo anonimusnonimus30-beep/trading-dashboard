@@ -136,6 +136,19 @@ CREATE TABLE IF NOT EXISTS capital_allocation_snapshot (
     total_capital REAL
 );
 
+-- Cada 50 operaciones cerradas de un bot toca hacer el análisis de
+-- estrategia (backtest + re-tuning si corresponde), igual al que se
+-- hizo el 2026-08-18 para QQQM/TQQQ/SPY/QQQ. baseline_trade_count es
+-- el total_trades que tenía el símbolo la última vez que se hizo ese
+-- análisis; trades_since = total_trades actual - baseline. Cuando se
+-- hace el análisis hay que llamar a mark_analysis_done(symbol) para
+-- resetear el contador.
+CREATE TABLE IF NOT EXISTS analysis_checkpoints (
+    symbol TEXT PRIMARY KEY,
+    baseline_trade_count INTEGER NOT NULL,
+    last_analysis_at TEXT
+);
+
 CREATE INDEX IF NOT EXISTS idx_trades_symbol ON trades(symbol);
 CREATE INDEX IF NOT EXISTS idx_signal_history_symbol ON signal_history(symbol, signal_date);
 CREATE INDEX IF NOT EXISTS idx_positions_snapshot_symbol ON positions_snapshot(symbol, snapshot_at);
@@ -335,6 +348,83 @@ def load_json(filepath):
     return json.loads(path.read_text())
 
 
+ANALYSIS_EVERY_N_TRADES = 50
+
+
+def mark_analysis_done(symbol, db_file=DB_FILE):
+    """Llamar después de terminar el análisis de estrategia de un
+    símbolo (backtest + re-tuning si corresponde) para resetear su
+    contador de 'operaciones desde el último análisis' a cero."""
+    conn = sqlite3.connect(db_file)
+    cur = conn.cursor()
+    cur.execute("SELECT COUNT(*) FROM trades WHERE symbol = ?", (symbol,))
+    current_count = cur.fetchone()[0]
+    now = datetime.now(timezone.utc).isoformat()
+    cur.execute(
+        """
+        INSERT INTO analysis_checkpoints (symbol, baseline_trade_count, last_analysis_at)
+        VALUES (?, ?, ?)
+        ON CONFLICT(symbol) DO UPDATE SET
+            baseline_trade_count = excluded.baseline_trade_count,
+            last_analysis_at = excluded.last_analysis_at
+        """,
+        (symbol, current_count, now),
+    )
+    conn.commit()
+    conn.close()
+    print(f"✅ Checkpoint de análisis reseteado para {symbol} en {current_count} operaciones")
+
+
+def update_analysis_progress(conn):
+    """Por símbolo: operaciones desde el último análisis de estrategia,
+    y si ya tocó (>= ANALYSIS_EVERY_N_TRADES). Si un símbolo no tiene
+    checkpoint todavía, arranca a contar desde su total actual (no
+    desde cero absoluto) — no se le pide retroactivamente el análisis
+    de operaciones que ya pasaron antes de que existiera este contador."""
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT symbol FROM trades")
+    symbols = [row[0] for row in cur.fetchall()]
+
+    progress = {}
+    for symbol in symbols:
+        cur.execute("SELECT COUNT(*) FROM trades WHERE symbol = ?", (symbol,))
+        current_count = cur.fetchone()[0]
+
+        cur.execute(
+            "SELECT baseline_trade_count, last_analysis_at FROM analysis_checkpoints WHERE symbol = ?",
+            (symbol,),
+        )
+        row = cur.fetchone()
+
+        if row is None:
+            baseline, last_analysis_at = current_count, None
+            cur.execute(
+                "INSERT INTO analysis_checkpoints (symbol, baseline_trade_count, last_analysis_at) VALUES (?, ?, ?)",
+                (symbol, baseline, None),
+            )
+        else:
+            baseline, last_analysis_at = row
+
+        trades_since = max(0, current_count - baseline)
+        progress[symbol] = {
+            "trades_since_analysis": trades_since,
+            "trades_target": ANALYSIS_EVERY_N_TRADES,
+            "analysis_due": trades_since >= ANALYSIS_EVERY_N_TRADES,
+            "last_analysis_at": last_analysis_at,
+        }
+
+    conn.commit()
+
+    with open("analysis_progress.json", "w") as f:
+        json.dump(progress, f, indent=2)
+
+    for symbol, p in progress.items():
+        flag = " 🔔 TOCA ANÁLISIS" if p["analysis_due"] else ""
+        print(f"  {symbol}: {p['trades_since_analysis']}/{p['trades_target']} operaciones{flag}")
+
+    print("✅ analysis_progress.json guardado")
+
+
 def main():
     conn = sqlite3.connect(DB_FILE)
     init_db(conn)
@@ -346,6 +436,7 @@ def main():
     import_trades(conn, performance_data)
     import_signal_history(conn)
     import_snapshots(conn, positions_data, performance_data, allocation_data)
+    update_analysis_progress(conn)
 
     conn.close()
     print(f"✅ Base de datos actualizada: {DB_FILE}")

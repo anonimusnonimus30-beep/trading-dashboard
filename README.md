@@ -25,8 +25,10 @@ Dashboard centralizado para análisis de rendimiento y asignación de capital de
 
 ## 🗄️ Base de datos (sentinels.db)
 
-SQLite con el histórico y estado de los 5 bots, para análisis propio
-fuera del dashboard (no la lee el HTML generado). Se actualiza en cada
+SQLite con el histórico y estado de los 5 bots, para análisis propio.
+El HTML generado no lee `sentinels.db` directamente, pero sí lee
+`analysis_progress.json`, que `database.py` calcula a partir de ella
+(ver "Checkpoint de análisis" abajo). Se actualiza en cada
 corrida del workflow. Consultarla con `sqlite3 sentinels.db` o desde
 Python/pandas (`pd.read_sql("SELECT * FROM trades", sqlite3.connect("sentinels.db"))`).
 
@@ -35,10 +37,29 @@ Tablas:
 - **`trades`** — cada operación cerrada (compra+venta emparejada por FIFO) de los 5 bots, histórico completo desde que arrancó cada uno.
 - **`signal_history`** — score/exposición objetivo por día de cada bot, histórico completo (viene de `*_signal_log.csv` de cada repo). QQQ usa columnas distintas (`v5_active`, `bear_confirmed`) por tener otro modelo, no de score 0-100.
 - **`positions_snapshot`** / **`performance_snapshot`** / **`capital_allocation_snapshot`** — una fila nueva por símbolo en CADA corrida (con `snapshot_at`). A diferencia de las dos tablas anteriores, esto **no es retroactivo**: el histórico de estas tres tablas arranca desde que existe esta base, no desde que arrancó cada bot (antes de esto el dashboard solo guardaba el último estado y lo sobreescribía).
+- **`analysis_checkpoints`** — cuántas operaciones tenía cada símbolo la última vez que se le hizo el análisis de estrategia (ver abajo).
 
 `trades` y `signal_history` se reimportan completas en cada corrida pero no duplican (clave única + `INSERT OR IGNORE`).
 
 ⚠️ El historial de `signal_history` de SPY anterior al 2026-08-18 se calculó con precio de QQQM, no de SPY (bug de copy-paste ya corregido ese día) — es historial real de lo que el bot vio en ese momento, no un error de esta base.
+
+### 🔔 Checkpoint de análisis (cada 50 operaciones, por bot)
+
+Cada símbolo debe pasar por un análisis de estrategia (backtest +
+re-tuning si corresponde, igual al que se hizo el 2026-08-18 para
+QQQ/QQQM/TQQQ/SPY) cada 50 operaciones cerradas — el conteo es
+independiente por símbolo, no combinado.
+
+`database.py` calcula esto en cada corrida (`update_analysis_progress`)
+y lo guarda en `analysis_progress.json`; el dashboard muestra una
+barra "Auto-aprendizaje: X/50 operaciones" por símbolo, con 🔔 cuando
+toca. Al terminar el análisis de un símbolo hay que resetear su
+contador:
+
+```python
+from database import mark_analysis_done
+mark_analysis_done("QQQM")
+```
 
 ## 🔐 Secrets Requeridos
 
