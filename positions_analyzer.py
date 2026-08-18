@@ -40,6 +40,12 @@ BOTS = {
         "execution_file": "spy_execution_state.json",
         "account": "account2",
     },
+    "ARKK": {
+        "repo": "splg_sentinel",
+        "state_file": "arkk_sentinel_state.json",
+        "execution_file": "arkk_execution_state.json",
+        "account": "account2",
+    },
 }
 
 

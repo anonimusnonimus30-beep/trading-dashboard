@@ -64,10 +64,11 @@ class CapitalAllocator:
         if not self.performance_data:
             # Default allocation si no hay datos
             return {
-                "QQQ": 25,
-                "QQQM": 25,
-                "TQQQ": 25,
-                "SPY": 25,
+                "QQQ": 20,
+                "QQQM": 20,
+                "TQQQ": 20,
+                "SPY": 20,
+                "ARKK": 20,
             }
 
         total_capital = self.get_total_capital()
@@ -86,17 +87,19 @@ class CapitalAllocator:
         total_score = sum(scores.values())
         allocation = {}
 
-        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY"]:
+        symbols = ["QQQ", "QQQM", "TQQQ", "SPY", "ARKK"]
+
+        for symbol in symbols:
             if total_score > 0:
                 pct = (scores.get(symbol, 0) / total_score * 100)
             else:
-                pct = 25
+                pct = 100 / len(symbols)
             allocation[symbol] = round(max(10, min(40, pct)), 1)  # Min 10%, Max 40%
 
         # Ajustar para que sume 100%
         total = sum(allocation.values())
         if total != 100:
-            adjustment = (100 - total) / 4
+            adjustment = (100 - total) / len(allocation)
             for symbol in allocation:
                 allocation[symbol] = round(allocation[symbol] + adjustment, 1)
 

@@ -313,8 +313,8 @@ class DashboardGenerator:
             <div class="allocation-grid">
 """
 
-        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY"]:
-            pct = allocation.get(symbol, 25)
+        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY", "ARKK"]:
+            pct = allocation.get(symbol, 20)
             usd = self.allocation_data.get("allocation_usd", {}).get(symbol, 0)
             trade_range = self.allocation_data.get("trade_size_range", {}).get(symbol, {})
 
@@ -342,7 +342,7 @@ class DashboardGenerator:
             <div class="position-grid">
 """
 
-        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY"]:
+        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY", "ARKK"]:
             entry = self.positions_data.get(symbol, {})
             pos = entry.get("position", {})
             sig = entry.get("signal", {})
@@ -399,7 +399,7 @@ class DashboardGenerator:
             <h2 class="section-title">📈 Rendimiento por Símbolo</h2>
 """
 
-        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY"]:
+        for symbol in ["QQQ", "QQQM", "TQQQ", "SPY", "ARKK"]:
             perf = self.performance_data.get(symbol, {})
             if not perf:
                 continue

@@ -188,7 +188,7 @@ class PerformanceAnalyzer:
                 print(f"  ✅ {symbol}: ${result['realized_pnl']} | {result['total_trades']} trades | Win rate: {result['win_rate']}%")
 
         fills2 = self._get_fill_activities(self.account2_key, self.account2_secret, self.account2_url)
-        for symbol in ["SPY"]:
+        for symbol in ["SPY", "ARKK"]:
             result = self.analyze_symbol(fills2, symbol)
             if result:
                 self.results[symbol] = result

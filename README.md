@@ -4,7 +4,7 @@ Dashboard centralizado para análisis de rendimiento y asignación de capital de
 
 ## ✨ Características
 
-- **Análisis de Rendimiento:** Calcula ROI, win rate, y P&L de cada bot (QQQ, QQQM, TQQQ, SPY)
+- **Análisis de Rendimiento:** Calcula ROI, win rate, y P&L de cada bot (QQQ, QQQM, TQQQ, SPY, ARKK)
 - **Asignación Dinámica de Capital:** Recalcula diariamente según rendimiento histórico
 - **Dashboard HTML:** Visualización interactiva de operaciones y métricas
 - **GitHub Pages:** Publicación automática en línea
