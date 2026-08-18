@@ -213,10 +213,12 @@ class DashboardGenerator:
         }}
 
         .position-card {{
+            position: relative;
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             padding: 20px;
+            overflow: hidden;
         }}
 
         .position-row {{
@@ -257,14 +259,27 @@ class DashboardGenerator:
             border: 1px solid rgba(255, 255, 255, 0.1);
         }}
 
-        .badge-suspended {{
-            background: rgba(255, 87, 87, 0.1);
-            color: #ff5757;
-            border: 1px solid rgba(255, 87, 87, 0.35);
+        .position-card.suspended {{
+            opacity: 0.75;
         }}
 
-        .position-card.suspended {{
-            opacity: 0.6;
+        .stamp-suspended {{
+            position: absolute;
+            top: 18px;
+            right: -34px;
+            width: 150px;
+            transform: rotate(28deg);
+            text-align: center;
+            padding: 5px 0;
+            font-size: 0.72em;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #ff5757;
+            background: rgba(255, 87, 87, 0.12);
+            border-top: 2px solid #ff5757;
+            border-bottom: 2px solid #ff5757;
+            pointer-events: none;
         }}
 
         footer {{
@@ -366,9 +381,7 @@ class DashboardGenerator:
             pending = sig.get("pending_rebalance", False)
             suspended = entry.get("suspended", False)
 
-            if suspended:
-                badge_html = '<span class="badge badge-suspended">⏸️ Suspendido temporalmente</span>'
-            elif target_pct is None:
+            if target_pct is None:
                 badge_html = '<span class="badge badge-none">Sin datos de señal</span>'
             elif pending:
                 badge_html = (
@@ -379,8 +392,10 @@ class DashboardGenerator:
                 badge_html = f'<span class="badge badge-ok">✅ Al día en {target_pct:.0f}%</span>'
 
             card_class = "position-card suspended" if suspended else "position-card"
+            stamp_html = '<div class="stamp-suspended">Suspendido</div>' if suspended else ""
             html += f"""
                 <div class="{card_class}">
+                    {stamp_html}
                     <div class="symbol">{symbol}</div>
                     <div style="margin-bottom: 12px;">{badge_html}</div>
 """

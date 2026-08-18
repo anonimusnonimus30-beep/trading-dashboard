@@ -15,41 +15,44 @@ GITHUB_OWNER = "anonimusnonimus30-beep"
 GITHUB_API = "https://api.github.com"
 GITHUB_TOKEN = os.getenv("BOTS_READ_TOKEN", "")
 
+# BOTS_READ_TOKEN no tiene permiso de "Actions" (solo "Contents"), así
+# que el estado real del workflow de cada bot no se puede consultar
+# vía API con este token. Mientras tanto, la lista de suspendidos se
+# mantiene a mano acá — actualízala cuando reactives/pauses un bot.
+# Suspendidos desde 2026-08-18 para la prueba con solo QQQ+SPY hasta
+# el viernes (generate-and-execute.yml deshabilitado en cada repo).
+SUSPENDED_SYMBOLS = {"QQQM", "TQQQ", "ARKK"}
+
 BOTS = {
     "QQQ": {
         "repo": "qqq-sentinel",
         "state_file": "qqq_sentinel_state.json",
         "execution_file": "qqq_execution_state.json",
         "account": "account1",
-        "workflow_file": "sentinel-hourly.yml",
     },
     "QQQM": {
         "repo": "qqqm_sentinel",
         "state_file": "qqqm_sentinel_state.json",
         "execution_file": "qqqm_execution_state.json",
         "account": "account1",
-        "workflow_file": "generate-and-execute.yml",
     },
     "TQQQ": {
         "repo": "tqqq_sentinel",
         "state_file": "tqqq_sentinel_state.json",
         "execution_file": "tqqq_execution_state.json",
         "account": "account1",
-        "workflow_file": "generate-and-execute.yml",
     },
     "SPY": {
         "repo": "spy_sentinel",
         "state_file": "spy_sentinel_state.json",
         "execution_file": "spy_execution_state.json",
         "account": "account2",
-        "workflow_file": "generate-and-execute.yml",
     },
     "ARKK": {
         "repo": "splg_sentinel",
         "state_file": "arkk_sentinel_state.json",
         "execution_file": "arkk_execution_state.json",
         "account": "account2",
-        "workflow_file": "generate-and-execute.yml",
     },
 }
 
@@ -91,32 +94,6 @@ def fetch_raw_json(repo, filename):
         return None
     except Exception as e:
         print(f"⚠️ Error leyendo {repo}/{filename}: {e}")
-        return None
-
-
-def fetch_workflow_active(repo, workflow_file):
-    """True si el workflow principal del bot está activo (corriendo por
-    su schedule); False si está pausado (gh workflow disable) o si no
-    se pudo consultar (falla en el lado seguro: no se marca activo)."""
-    if not GITHUB_TOKEN:
-        return None
-
-    url = f"{GITHUB_API}/repos/{GITHUB_OWNER}/{repo}/actions/workflows/{workflow_file}"
-    headers = {
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "Accept": "application/vnd.github+json",
-    }
-    try:
-        response = requests.get(url, headers=headers, timeout=15)
-        if response.status_code != 200:
-            print(
-                f"⚠️ Error leyendo estado del workflow {repo}/{workflow_file}: "
-                f"HTTP {response.status_code} {response.text[:200]}"
-            )
-            return None
-        return response.json().get("state") == "active"
-    except Exception as e:
-        print(f"⚠️ Error leyendo estado del workflow {repo}/{workflow_file}: {e}")
         return None
 
 
@@ -194,8 +171,7 @@ class PositionsAnalyzer:
                 and safe_float(signal_target) != safe_float(executed_target)
             )
 
-            workflow_active = fetch_workflow_active(cfg["repo"], cfg["workflow_file"])
-            suspended = workflow_active is False
+            suspended = symbol in SUSPENDED_SYMBOLS
 
             results[symbol] = {
                 "position": position_info,
