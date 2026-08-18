@@ -4,11 +4,11 @@
       "has_position": true,
       "qty": 4.159329756,
       "avg_entry_price": 689.187709,
-      "current_price": 717.75,
-      "market_value": 2985.358932,
+      "current_price": 717.22,
+      "market_value": 2983.154488,
       "cost_basis": 2866.558946,
-      "unrealized_pl": 118.799986,
-      "unrealized_plpc": 4.144
+      "unrealized_pl": 116.595542,
+      "unrealized_plpc": 4.067
     },
     "signal": {
       "signal_date": "2026-08-18",
@@ -24,11 +24,11 @@
       "has_position": true,
       "qty": 7.608813604,
       "avg_entry_price": 297.179119,
-      "current_price": 295.525,
-      "market_value": 2248.59464,
+      "current_price": 295.31,
+      "market_value": 2246.958745,
       "cost_basis": 2261.180523,
-      "unrealized_pl": -12.585883,
-      "unrealized_plpc": -0.557
+      "unrealized_pl": -14.221778,
+      "unrealized_plpc": -0.629
     },
     "signal": {
       "signal_date": "2026-08-18",
@@ -44,11 +44,11 @@
       "has_position": true,
       "qty": 9.715902015,
       "avg_entry_price": 76.346419,
-      "current_price": 72.585,
-      "market_value": 705.228748,
+      "current_price": 72.44,
+      "market_value": 703.819942,
       "cost_basis": 741.774326,
-      "unrealized_pl": -36.545578,
-      "unrealized_plpc": -4.9270000000000005
+      "unrealized_pl": -37.954384,
+      "unrealized_plpc": -5.117
     },
     "signal": {
       "signal_date": "2026-08-18",
@@ -62,21 +62,21 @@
   "SPY": {
     "position": {
       "has_position": true,
-      "qty": 3.868914179,
+      "qty": 2.344848179,
       "avg_entry_price": 775.769477,
-      "current_price": 768.1,
-      "market_value": 2971.712981,
-      "cost_basis": 3001.385529,
-      "unrealized_pl": -29.672548,
-      "unrealized_plpc": -0.989
+      "current_price": 767.78,
+      "market_value": 1800.327535,
+      "cost_basis": 1819.061645,
+      "unrealized_pl": -18.73411,
+      "unrealized_plpc": -1.03
     },
     "signal": {
       "signal_date": "2026-08-18",
       "target_exposure_pct": 75,
-      "last_executed_target_pct": 75.0,
+      "last_executed_target_pct": 60.0,
       "last_action": "order_sent",
-      "last_checked_at": "2026-08-07T16:10:00.710895",
-      "pending_rebalance": false
+      "last_checked_at": "2026-08-18T19:00:47.727263",
+      "pending_rebalance": true
     }
   },
   "ARKK": {
