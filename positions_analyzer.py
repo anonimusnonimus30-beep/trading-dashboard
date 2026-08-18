@@ -61,6 +61,7 @@ def safe_float(value, default=0.0):
 def fetch_raw_json(repo, filename):
     """Lee un archivo de estado del repo del bot vía la API de GitHub (los 4 repos son privados)."""
     if not GITHUB_TOKEN:
+        print(f"⚠️ BOTS_READ_TOKEN no configurado, omitiendo {repo}/{filename}")
         return None
 
     url = f"{GITHUB_API}/repos/{GITHUB_OWNER}/{repo}/contents/{filename}"
@@ -71,6 +72,10 @@ def fetch_raw_json(repo, filename):
     try:
         response = requests.get(url, headers=headers, timeout=15)
         if response.status_code != 200:
+            print(
+                f"⚠️ Error leyendo {repo}/{filename}: "
+                f"HTTP {response.status_code} {response.text[:200]}"
+            )
             return None
 
         data = response.json()
