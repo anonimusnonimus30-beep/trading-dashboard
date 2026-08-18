@@ -31,6 +31,12 @@ Automática: **Diariamente 21:00 UTC** (después del cierre de mercado)
 
 ## 📊 Asignación de Capital
 
-- Fórmula: `Score = (Win_Rate × 0.6) + (ROI × 0.4)`
-- Rango por símbolo: 10% - 40%
+Reparto por niveles, no libre entre los 5 símbolos (ver capital_allocator.py):
+
+- **Core (80% del capital): QQQ, SPY** — índices amplios, sin apalancamiento.
+- **Satellite (20% del capital): TQQQ, ARKK** — apalancado / cartera concentrada, mayor riesgo.
+- **Paused (0% del capital): QQQM** — mismo índice que QQQ, no diversifica; sigue corriendo (señal, estado, auto-aprendizaje) pero sin capital asignado.
+
+Dentro de cada nivel, el score `(Win_Rate × 0.6) + (ROI × 0.4)` reparte el presupuesto de ESE nivel entre sus miembros (piso 30% / techo 70% por símbolo dentro del nivel). El rendimiento nunca mueve capital entre niveles.
+
 - Operaciones: 1% - 3% del capital asignado

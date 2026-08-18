@@ -2,12 +2,55 @@
 """
 Asignador de capital dinámico basado en rendimiento.
 Calcula qué porcentaje del capital total debe destinarse a cada sentinela.
+
+ESTRUCTURA POR NIVELES (2026-08-18)
+------------------------------------
+Antes, los 5 símbolos competían libres entre 10% y 40% solo por
+win_rate/ROI. Eso trataba a QQQM como si diversificara frente a QQQ
+cuando en realidad sigue el mismo índice (Nasdaq-100) con otro modelo
+de scoring — no reduce riesgo, solo duplica exposición. Y dejaba a
+TQQQ (3x apalancado) y ARKK (cartera activa concentrada) competir por
+el mismo presupuesto que QQQ/SPY pese a tener drawdowns 2-3x mayores.
+
+Ahora el presupuesto se reparte primero por NIVEL, con un peso fijo, y
+recién dentro de cada nivel el score de rendimiento (win_rate/ROI)
+decide cómo se reparte ESE presupuesto entre sus miembros. Los cambios
+de asignación por rendimiento nunca sacan a un símbolo de su nivel ni
+le quitan presupuesto a otro nivel.
+
+  - core (80%): QQQ, SPY — índices amplios, sin apalancamiento.
+  - satellite (20%): TQQQ, ARKK — apalancado / cartera concentrada,
+    mayor riesgo, se limita a una porción chica a propósito.
+  - paused (0%): QQQM — mismo índice que QQQ sin aportar
+    diversificación real. Sigue corriendo (señal, estado, log,
+    reporte semanal de auto-aprendizaje) para no perder historial,
+    solo no recibe capital hasta que haya una razón concreta para
+    reactivarlo.
 """
 
 import json
 import os
 from pathlib import Path
 import requests
+
+TIER_OF = {
+    "QQQ": "core",
+    "SPY": "core",
+    "TQQQ": "satellite",
+    "ARKK": "satellite",
+    "QQQM": "paused",
+}
+
+TIER_BUDGET_PCT = {
+    "core": 80.0,
+    "satellite": 20.0,
+    "paused": 0.0,
+}
+
+# Dentro de un nivel de 2 miembros, el de peor score no puede quedar
+# por debajo de este piso del presupuesto del nivel (evita que un mal
+# tramo corto deje a un símbolo del núcleo en casi cero).
+MIN_SHARE_WITHIN_TIER = 0.30
 
 
 class CapitalAllocator:
@@ -55,53 +98,63 @@ class CapitalAllocator:
         equity2, _ = self._get_account_value(self.account2_key, self.account2_secret, self.account2_url)
         return equity1 + equity2
 
+    def _score(self, symbol, total_capital):
+        """Score de rendimiento (60% win_rate + 40% ROI) de un símbolo.
+        Sin datos todavía, score neutro (no penaliza ni favorece)."""
+        data = self.performance_data.get(symbol)
+        if not data:
+            return 50.0
+
+        win_rate = data.get("win_rate", 50)
+        pnl = data.get("realized_pnl", 0)
+        roi = (pnl / total_capital * 100) if total_capital > 0 else 0
+        score = (win_rate * 0.6) + (max(-50, min(roi, 50)) * 0.4)
+        return max(0.0, score)
+
     def calculate_allocation(self):
         """
-        Calcula asignación de capital basada en:
-        1. Win rate (60%)
-        2. ROI realizado (40%)
+        Reparte el capital en dos pasos:
+        1. Por NIVEL, con presupuesto fijo (TIER_BUDGET_PCT) — esta es
+           la lógica base y no la mueve el rendimiento.
+        2. Dentro de cada nivel, por score de rendimiento (60% win
+           rate + 40% ROI), entre sus miembros — acá es donde
+           win_rate/ROI sí deciden, pero solo redistribuyen el
+           presupuesto YA asignado a ese nivel.
         """
-        if not self.performance_data:
-            # Default allocation si no hay datos
-            return {
-                "QQQ": 20,
-                "QQQM": 20,
-                "TQQQ": 20,
-                "SPY": 20,
-                "ARKK": 20,
-            }
-
         total_capital = self.get_total_capital()
-        scores = {}
 
-        for symbol, data in self.performance_data.items():
-            win_rate = data.get("win_rate", 50)
-            pnl = data.get("realized_pnl", 0)
-            roi = (pnl / total_capital * 100) if total_capital > 0 else 0
+        tiers = {}
+        for symbol, tier in TIER_OF.items():
+            tiers.setdefault(tier, []).append(symbol)
 
-            # Score ponderado: 60% win_rate + 40% ROI
-            score = (win_rate * 0.6) + (max(-50, min(roi, 50)) * 0.4)
-            scores[symbol] = max(0, score)
-
-        # Normalizar a porcentajes
-        total_score = sum(scores.values())
         allocation = {}
 
-        symbols = ["QQQ", "QQQM", "TQQQ", "SPY", "ARKK"]
+        for tier, symbols in tiers.items():
+            budget = TIER_BUDGET_PCT[tier]
 
-        for symbol in symbols:
-            if total_score > 0:
-                pct = (scores.get(symbol, 0) / total_score * 100)
-            else:
-                pct = 100 / len(symbols)
-            allocation[symbol] = round(max(10, min(40, pct)), 1)  # Min 10%, Max 40%
+            if budget <= 0:
+                for symbol in symbols:
+                    allocation[symbol] = 0.0
+                continue
 
-        # Ajustar para que sume 100%
-        total = sum(allocation.values())
-        if total != 100:
-            adjustment = (100 - total) / len(allocation)
-            for symbol in allocation:
-                allocation[symbol] = round(allocation[symbol] + adjustment, 1)
+            scores = {s: self._score(s, total_capital) for s in symbols}
+            total_score = sum(scores.values())
+
+            for symbol in symbols:
+                if total_score > 0:
+                    share = scores[symbol] / total_score
+                else:
+                    share = 1.0 / len(symbols)
+
+                if len(symbols) > 1:
+                    share = max(MIN_SHARE_WITHIN_TIER, min(1 - MIN_SHARE_WITHIN_TIER, share))
+
+                allocation[symbol] = share
+
+            # Renormalizar el nivel a 1.0 por si el piso/techo movió la suma
+            tier_total = sum(allocation[s] for s in symbols)
+            for symbol in symbols:
+                allocation[symbol] = round(allocation[symbol] / tier_total * budget, 1)
 
         return allocation
 
