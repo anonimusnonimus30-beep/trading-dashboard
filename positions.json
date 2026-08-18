@@ -4,11 +4,11 @@
       "has_position": true,
       "qty": 4.159329756,
       "avg_entry_price": 689.187709,
-      "current_price": 729.7301,
-      "market_value": 3035.188119,
+      "current_price": 719.74,
+      "market_value": 2993.635999,
       "cost_basis": 2866.558946,
-      "unrealized_pl": 168.629173,
-      "unrealized_plpc": 5.883
+      "unrealized_pl": 127.077053,
+      "unrealized_plpc": 4.433
     },
     "signal": {
       "signal_date": "2026-08-17",
@@ -24,11 +24,11 @@
       "has_position": true,
       "qty": 10.048344604,
       "avg_entry_price": 297.179119,
-      "current_price": 300.2792,
-      "market_value": 3017.308879,
+      "current_price": 296.34,
+      "market_value": 2977.72644,
       "cost_basis": 2986.158197,
-      "unrealized_pl": 31.150682,
-      "unrealized_plpc": 1.043
+      "unrealized_pl": -8.431757,
+      "unrealized_plpc": -0.28200000000000003
     },
     "signal": {
       "signal_date": "2026-08-17",
@@ -43,12 +43,12 @@
     "position": {
       "has_position": true,
       "qty": 9.715902015,
-      "avg_entry_price": 76.168256,
-      "current_price": 76.35,
-      "market_value": 741.809119,
-      "cost_basis": 740.043312,
-      "unrealized_pl": 1.765807,
-      "unrealized_plpc": 0.23900000000000002
+      "avg_entry_price": 76.346419,
+      "current_price": 73.26,
+      "market_value": 711.786982,
+      "cost_basis": 741.774326,
+      "unrealized_pl": -29.987344,
+      "unrealized_plpc": -4.043
     },
     "signal": {
       "signal_date": "2026-08-17",
@@ -64,11 +64,11 @@
       "has_position": true,
       "qty": 3.868914179,
       "avg_entry_price": 775.769477,
-      "current_price": 772.6346,
-      "market_value": 2989.256959,
+      "current_price": 769.018,
+      "market_value": 2975.264644,
       "cost_basis": 3001.385529,
-      "unrealized_pl": -12.12857,
-      "unrealized_plpc": -0.404
+      "unrealized_pl": -26.120885,
+      "unrealized_plpc": -0.8699999999999999
     },
     "signal": {
       "signal_date": "2026-08-07",
