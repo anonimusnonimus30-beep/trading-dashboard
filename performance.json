@@ -1,13 +1,21 @@
 {
   "QQQ": {
     "symbol": "QQQ",
-    "realized_pnl": 76.12,
-    "total_trades": 13,
-    "winning_trades": 13,
+    "realized_pnl": 96.68,
+    "total_trades": 14,
+    "winning_trades": 14,
     "losing_trades": 0,
     "win_rate": 100.0,
-    "avg_pnl_per_trade": 5.86,
+    "avg_pnl_per_trade": 6.91,
     "trades": [
+      {
+        "order_id": "bcd98aa6",
+        "date": "2026-08-19",
+        "buy_price": 688.94,
+        "sell_price": 714.73,
+        "qty": 0.7974,
+        "pnl": 20.56
+      },
       {
         "order_id": "fc75cc41",
         "date": "2026-08-07",
