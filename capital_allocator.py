@@ -112,9 +112,12 @@ class CapitalAllocator:
 
     def _score(self, symbol, total_capital):
         """Score de rendimiento (60% win_rate + 40% ROI) de un símbolo.
-        Sin datos todavía, score neutro (no penaliza ni favorece)."""
+        Sin datos todavía, score neutro (no penaliza ni favorece). Un
+        símbolo con 0 operaciones (recién migrado de cuenta, o recién
+        integrado) cuenta como "sin datos" — si no, win_rate=0% de una
+        muestra vacía se leería como el peor desempeño posible."""
         data = self.performance_data.get(symbol)
-        if not data:
+        if not data or data.get("total_trades", 0) == 0:
             return 50.0
 
         win_rate = data.get("win_rate", 50)
