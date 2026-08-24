@@ -465,16 +465,31 @@ class DashboardGenerator:
 """
 
         for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
-            perf = self.performance_data.get(symbol, {})
-            if not perf:
-                continue
+            # Antes se saltaba el símbolo entero si no tenía NINGÚN fill
+            # (perf vacío) -- eso lo hacía desaparecer del dashboard, no
+            # solo mostrar "0 operaciones". Ahora siempre se muestra.
+            perf = self.performance_data.get(symbol) or {}
 
             trades = perf.get("trades", [])
             total_trades = len(trades)
 
+            open_position_note = ""
+            if total_trades == 0:
+                pos = self.positions_data.get(symbol, {}).get("position", {})
+                if pos.get("has_position"):
+                    unrealized = pos.get("unrealized_pl", 0)
+                    unrealized_pct = pos.get("unrealized_plpc", 0)
+                    unrealized_class = "positive" if unrealized > 0 else ("negative" if unrealized < 0 else "")
+                    open_position_note = f"""
+                <p style="color: #999; margin: -10px 0 15px 0; font-size: 0.9em;">
+                    Sin operaciones CERRADAS todavía — tiene una posición abierta:
+                    ${pos.get('market_value', 0):,.2f}
+                    (<span class="{unrealized_class}">{unrealized_pct:+.2f}% / ${unrealized:,.2f} no realizado</span>)
+                </p>"""
+
             html += f"""
             <div style="margin-bottom: 40px;">
-                <h3 style="color: #00ff88; margin-bottom: 15px;">{symbol} - {total_trades} Operaciones Históricas</h3>
+                <h3 style="color: #00ff88; margin-bottom: 15px;">{symbol} - {total_trades} Operaciones Históricas</h3>{open_position_note}
 
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
                     <div class="metric-card">
