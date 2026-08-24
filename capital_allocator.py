@@ -3,29 +3,35 @@
 Asignador de capital dinámico basado en rendimiento.
 Calcula qué porcentaje del capital total debe destinarse a cada sentinela.
 
-ESTRUCTURA POR NIVELES (2026-08-18)
-------------------------------------
-Antes, los 5 símbolos competían libres entre 10% y 40% solo por
-win_rate/ROI. Eso trataba a QQQM como si diversificara frente a QQQ
-cuando en realidad sigue el mismo índice (Nasdaq-100) con otro modelo
-de scoring — no reduce riesgo, solo duplica exposición. Y dejaba a
-TQQQ (3x apalancado) y ARKK (cartera activa concentrada) competir por
-el mismo presupuesto que QQQ/SPY pese a tener drawdowns 2-3x mayores.
+ESTRUCTURA POR NIVELES (actualizado 2026-08-24)
+------------------------------------------------
+El presupuesto se reparte primero por NIVEL, con un peso fijo, y recién
+dentro de cada nivel el score de rendimiento (win_rate/ROI) decide cómo
+se reparte ESE presupuesto entre sus miembros. Los cambios de
+asignación por rendimiento nunca sacan a un símbolo de su nivel ni le
+quitan presupuesto a otro nivel.
 
-Ahora el presupuesto se reparte primero por NIVEL, con un peso fijo, y
-recién dentro de cada nivel el score de rendimiento (win_rate/ROI)
-decide cómo se reparte ESE presupuesto entre sus miembros. Los cambios
-de asignación por rendimiento nunca sacan a un símbolo de su nivel ni
-le quitan presupuesto a otro nivel.
+Desde 2026-08-24, QQQ y SPY quedaron solos en su propia cuenta de
+Alpaca (antes QQQ compartía cuenta con QQQM/TQQQ). Todo lo demás —
+QQQM, TQQQ, ARKK y los recién integrados DIA/IWM/USMV — se movió a la
+otra cuenta, que ahora no tiene ni QQQ ni SPY. Los porcentajes de acá
+reflejan el mismo reparto que MAX_POSITION_PCT en cada repo (45%/45%
+de su cuenta para QQQ/SPY; 12%/12% para QQQM/TQQQ; 6% cada uno para
+ARKK/DIA/IWM/USMV de la suya), expresado como % del capital COMBINADO
+de ambas cuentas — por eso los números de acá son la mitad de esos.
 
-  - core (80%): QQQ, SPY — índices amplios, sin apalancamiento.
-  - satellite (20%): TQQQ, ARKK — apalancado / cartera concentrada,
-    mayor riesgo, se limita a una porción chica a propósito.
-  - paused (0%): QQQM — mismo índice que QQQ sin aportar
-    diversificación real. Sigue corriendo (señal, estado, log,
-    reporte semanal de auto-aprendizaje) para no perder historial,
-    solo no recibe capital hasta que haya una razón concreta para
-    reactivarlo.
+  - core (45%): QQQ, SPY — únicos en su cuenta, índices amplios sin
+    apalancamiento.
+  - satellite_proven (12%): QQQM, TQQQ — historial real ya acumulado
+    en paper trading antes de esta migración.
+  - satellite_new (12%): ARKK, DIA, IWM, USMV — arrancan desde cero en
+    esta cuenta (DIA/IWM/USMV nunca operaron en vivo), presupuesto
+    chico a propósito hasta que acumulen historial propio.
+
+Con 4 niveles sumando 69% queda ~31% del capital combinado sin asignar
+a propósito, como colchón — coincide con el margen que cada bot deja
+dentro de su propia cuenta (MAX_POSITION_PCT no suma 100% en ninguna
+de las dos).
 """
 
 import json
@@ -36,21 +42,27 @@ import requests
 TIER_OF = {
     "QQQ": "core",
     "SPY": "core",
-    "TQQQ": "satellite",
-    "ARKK": "satellite",
-    "QQQM": "paused",
+    "QQQM": "satellite_proven",
+    "TQQQ": "satellite_proven",
+    "ARKK": "satellite_new",
+    "DIA": "satellite_new",
+    "IWM": "satellite_new",
+    "USMV": "satellite_new",
 }
 
 TIER_BUDGET_PCT = {
-    "core": 80.0,
-    "satellite": 20.0,
-    "paused": 0.0,
+    "core": 45.0,
+    "satellite_proven": 12.0,
+    "satellite_new": 12.0,
 }
 
-# Dentro de un nivel de 2 miembros, el de peor score no puede quedar
-# por debajo de este piso del presupuesto del nivel (evita que un mal
-# tramo corto deje a un símbolo del núcleo en casi cero).
-MIN_SHARE_WITHIN_TIER = 0.30
+# Dentro de un nivel, el de peor score no puede quedar por debajo de
+# esta fracción del reparto parejo (evita que un mal tramo corto deje
+# a un símbolo en casi cero). Se expresa como fracción del reparto
+# parejo (1/N miembros) en vez de un piso fijo, para que siga siendo
+# coherente en niveles de 2 miembros (core, satellite_proven) y de 4
+# (satellite_new) por igual.
+MIN_SHARE_OF_EVEN_SPLIT = 0.5
 
 
 class CapitalAllocator:
@@ -147,7 +159,10 @@ class CapitalAllocator:
                     share = 1.0 / len(symbols)
 
                 if len(symbols) > 1:
-                    share = max(MIN_SHARE_WITHIN_TIER, min(1 - MIN_SHARE_WITHIN_TIER, share))
+                    even_split = 1.0 / len(symbols)
+                    floor = even_split * MIN_SHARE_OF_EVEN_SPLIT
+                    cap = 1.0 - floor * (len(symbols) - 1)
+                    share = max(floor, min(cap, share))
 
                 allocation[symbol] = share
 

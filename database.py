@@ -46,10 +46,13 @@ DB_FILE = "sentinels.db"
 #                  volatility,volume,quality,rsi,adx,atr_pct,roc20,roc60,drawdown,regime)
 SIGNAL_LOGS = {
     "QQQ": {"repo": "qqq-sentinel", "file": "qqq_sentinel_log.csv", "format": "v5"},
+    "SPY": {"repo": "spy_sentinel", "file": "spy_signal_log.csv", "format": "score"},
     "QQQM": {"repo": "qqqm_sentinel", "file": "qqqm_signal_log.csv", "format": "score"},
     "TQQQ": {"repo": "tqqq_sentinel", "file": "tqqq_signal_log.csv", "format": "score"},
-    "SPY": {"repo": "spy_sentinel", "file": "spy_signal_log.csv", "format": "score"},
     "ARKK": {"repo": "splg_sentinel", "file": "arkk_signal_log.csv", "format": "score"},
+    "DIA": {"repo": "dia_sentinel", "file": "dia_signal_log.csv", "format": "score"},
+    "IWM": {"repo": "iwm_sentinel", "file": "iwm_signal_log.csv", "format": "score"},
+    "USMV": {"repo": "usmv_sentinel", "file": "usmv_signal_log.csv", "format": "score"},
 }
 
 # Mismo criterio que capital_allocator.py — se repite acá (en vez de
@@ -57,9 +60,12 @@ SIGNAL_LOGS = {
 TIER_OF = {
     "QQQ": "core",
     "SPY": "core",
-    "TQQQ": "satellite",
-    "ARKK": "satellite",
-    "QQQM": "paused",
+    "QQQM": "satellite_proven",
+    "TQQQ": "satellite_proven",
+    "ARKK": "satellite_new",
+    "DIA": "satellite_new",
+    "IWM": "satellite_new",
+    "USMV": "satellite_new",
 }
 
 SCHEMA = """

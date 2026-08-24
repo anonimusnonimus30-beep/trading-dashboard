@@ -19,16 +19,24 @@ GITHUB_TOKEN = os.getenv("BOTS_READ_TOKEN", "")
 # que el estado real del workflow de cada bot no se puede consultar
 # vía API con este token. Mientras tanto, la lista de suspendidos se
 # mantiene a mano acá — actualízala cuando reactives/pauses un bot.
-# Suspendidos desde 2026-08-18 para la prueba con solo QQQ+SPY hasta
-# el viernes (generate-and-execute.yml deshabilitado en cada repo).
-SUSPENDED_SYMBOLS = {"QQQM", "TQQQ", "ARKK"}
+# Reestructurado 2026-08-24: QQQ y SPY quedaron solos en la cuenta
+# account2 (antes la de SPY); QQQM, TQQQ, ARKK, DIA, IWM y USMV pasaron
+# todos a account1 (antes la de QQQ/QQQM/TQQQ). Ninguno queda
+# suspendido: los seis se reactivaron con la migración.
+SUSPENDED_SYMBOLS = set()
 
 BOTS = {
     "QQQ": {
         "repo": "qqq-sentinel",
         "state_file": "qqq_sentinel_state.json",
         "execution_file": "qqq_execution_state.json",
-        "account": "account1",
+        "account": "account2",
+    },
+    "SPY": {
+        "repo": "spy_sentinel",
+        "state_file": "spy_sentinel_state.json",
+        "execution_file": "spy_execution_state.json",
+        "account": "account2",
     },
     "QQQM": {
         "repo": "qqqm_sentinel",
@@ -42,17 +50,29 @@ BOTS = {
         "execution_file": "tqqq_execution_state.json",
         "account": "account1",
     },
-    "SPY": {
-        "repo": "spy_sentinel",
-        "state_file": "spy_sentinel_state.json",
-        "execution_file": "spy_execution_state.json",
-        "account": "account2",
-    },
     "ARKK": {
         "repo": "splg_sentinel",
         "state_file": "arkk_sentinel_state.json",
         "execution_file": "arkk_execution_state.json",
-        "account": "account2",
+        "account": "account1",
+    },
+    "DIA": {
+        "repo": "dia_sentinel",
+        "state_file": "dia_sentinel_state.json",
+        "execution_file": "dia_execution_state.json",
+        "account": "account1",
+    },
+    "IWM": {
+        "repo": "iwm_sentinel",
+        "state_file": "iwm_sentinel_state.json",
+        "execution_file": "iwm_execution_state.json",
+        "account": "account1",
+    },
+    "USMV": {
+        "repo": "usmv_sentinel",
+        "state_file": "usmv_sentinel_state.json",
+        "execution_file": "usmv_execution_state.json",
+        "account": "account1",
     },
 }
 
