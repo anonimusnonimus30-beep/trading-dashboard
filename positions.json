@@ -1,14 +1,14 @@
 {
   "QQQ": {
     "position": {
-      "has_position": true,
-      "qty": 4.213677351,
-      "avg_entry_price": 693.84408,
-      "current_price": 706.46,
-      "market_value": 2976.794501,
-      "cost_basis": 2923.635085,
-      "unrealized_pl": 53.159416,
-      "unrealized_plpc": 1.818
+      "has_position": false,
+      "qty": 0.0,
+      "avg_entry_price": 0.0,
+      "current_price": 0.0,
+      "market_value": 0.0,
+      "cost_basis": 0.0,
+      "unrealized_pl": 0.0,
+      "unrealized_plpc": 0.0
     },
     "signal": {
       "signal_date": "2026-08-24",
@@ -25,11 +25,11 @@
       "has_position": true,
       "qty": 7.608813604,
       "avg_entry_price": 297.320159,
-      "current_price": 290.87,
-      "market_value": 2213.175613,
+      "current_price": 291.65,
+      "market_value": 2219.110488,
       "cost_basis": 2262.253671,
-      "unrealized_pl": -49.078058,
-      "unrealized_plpc": -2.169
+      "unrealized_pl": -43.143183,
+      "unrealized_plpc": -1.907
     },
     "signal": {
       "signal_date": "2026-08-18",
@@ -46,11 +46,11 @@
       "has_position": true,
       "qty": 9.715902015,
       "avg_entry_price": 76.346419,
-      "current_price": 69.06,
-      "market_value": 670.980193,
+      "current_price": 69.6205,
+      "market_value": 676.425956,
       "cost_basis": 741.774326,
-      "unrealized_pl": -70.794133,
-      "unrealized_plpc": -9.544
+      "unrealized_pl": -65.34837,
+      "unrealized_plpc": -8.81
     },
     "signal": {
       "signal_date": "2026-08-18",
@@ -67,14 +67,14 @@
       "has_position": true,
       "qty": 2.939379636,
       "avg_entry_price": 765.178998,
-      "current_price": 763.9,
-      "market_value": 2245.392104,
+      "current_price": 764.4001,
+      "market_value": 2246.862088,
       "cost_basis": 2249.151565,
-      "unrealized_pl": -3.759461,
-      "unrealized_plpc": -0.167
+      "unrealized_pl": -2.289477,
+      "unrealized_plpc": -0.10200000000000001
     },
     "signal": {
-      "signal_date": "2026-08-21",
+      "signal_date": "2026-08-24",
       "target_exposure_pct": 75,
       "last_executed_target_pct": 75.0,
       "last_action": "order_sent",

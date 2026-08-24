@@ -1,13 +1,45 @@
 {
   "QQQ": {
     "symbol": "QQQ",
-    "realized_pnl": 96.68,
-    "total_trades": 14,
-    "winning_trades": 14,
-    "losing_trades": 0,
-    "win_rate": 100.0,
-    "avg_pnl_per_trade": 6.91,
+    "realized_pnl": 152.59,
+    "total_trades": 18,
+    "winning_trades": 17,
+    "losing_trades": 1,
+    "win_rate": 94.44,
+    "avg_pnl_per_trade": 8.48,
     "trades": [
+      {
+        "order_id": "715176c4",
+        "date": "2026-08-24",
+        "buy_price": 711.96,
+        "sell_price": 707.1,
+        "qty": 0.2137,
+        "pnl": -1.04
+      },
+      {
+        "order_id": "715176c4",
+        "date": "2026-08-24",
+        "buy_price": 704.77,
+        "sell_price": 707.1,
+        "qty": 1.0,
+        "pnl": 2.33
+      },
+      {
+        "order_id": "715176c4",
+        "date": "2026-08-24",
+        "buy_price": 688.9,
+        "sell_price": 707.11,
+        "qty": 2.0,
+        "pnl": 36.42
+      },
+      {
+        "order_id": "715176c4",
+        "date": "2026-08-24",
+        "buy_price": 688.91,
+        "sell_price": 707.11,
+        "qty": 1.0,
+        "pnl": 18.2
+      },
       {
         "order_id": "bcd98aa6",
         "date": "2026-08-19",
