@@ -180,16 +180,18 @@ class PerformanceAnalyzer:
         """Ejecuta análisis"""
         print("📊 Analizando rendimiento...")
 
+        # Se juntan los fills de las DOS cuentas para cada símbolo, no
+        # solo la que tiene asignada hoy: QQQ y ARKK ya cambiaron de
+        # cuenta una vez (2026-08-24) y sus operaciones cerradas de
+        # ANTES de esa migración viven en la cuenta vieja -- si se
+        # mirara solo la cuenta actual, esa historia real desaparecería
+        # del dashboard sin que el símbolo haya dejado de operar.
         fills1 = self._get_fill_activities(self.account1_key, self.account1_secret, self.account1_url)
-        for symbol in ["QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
-            result = self.analyze_symbol(fills1, symbol)
-            if result:
-                self.results[symbol] = result
-                print(f"  ✅ {symbol}: ${result['realized_pnl']} | {result['total_trades']} trades | Win rate: {result['win_rate']}%")
-
         fills2 = self._get_fill_activities(self.account2_key, self.account2_secret, self.account2_url)
-        for symbol in ["QQQ", "SPY"]:
-            result = self.analyze_symbol(fills2, symbol)
+        all_fills = fills1 + fills2
+
+        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
+            result = self.analyze_symbol(all_fills, symbol)
             if result:
                 self.results[symbol] = result
                 print(f"  ✅ {symbol}: ${result['realized_pnl']} | {result['total_trades']} trades | Win rate: {result['win_rate']}%")
