@@ -28,6 +28,9 @@ jobs:
       # Lectura de estado de los repos privados de cada bot (posición/próxima señal)
       BOTS_READ_TOKEN: ${{ secrets.BOTS_READ_TOKEN }}
 
+      # Telemetría detallada en Neon (Postgres) -- complementa sentinels.db
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
       PYTHONUNBUFFERED: "1"
 
     steps:
@@ -59,6 +62,9 @@ jobs:
 
       - name: Update SQL database
         run: python3 database.py
+
+      - name: Push telemetry to Neon
+        run: python3 neon_telemetry.py
 
       - name: Generate dashboard
         run: python3 dashboard_generator.py
