@@ -358,7 +358,7 @@ class DashboardGenerator:
             <div class="allocation-grid">
 """
 
-        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
+        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV", "NVDA", "AVGO", "MU"]:
             pct = allocation.get(symbol, 20)
             usd = self.allocation_data.get("allocation_usd", {}).get(symbol, 0)
             trade_range = self.allocation_data.get("trade_size_range", {}).get(symbol, {})
@@ -387,7 +387,7 @@ class DashboardGenerator:
             <div class="position-grid">
 """
 
-        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
+        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV", "NVDA", "AVGO", "MU"]:
             entry = self.positions_data.get(symbol, {})
             pos = entry.get("position", {})
             sig = entry.get("signal", {})
@@ -464,7 +464,7 @@ class DashboardGenerator:
             <h2 class="section-title">📈 Rendimiento por Símbolo</h2>
 """
 
-        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
+        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV", "NVDA", "AVGO", "MU"]:
             # Antes se saltaba el símbolo entero si no tenía NINGÚN fill
             # (perf vacío) -- eso lo hacía desaparecer del dashboard, no
             # solo mostrar "0 operaciones". Ahora siempre se muestra.

@@ -53,6 +53,9 @@ SIGNAL_LOGS = {
     "DIA": {"repo": "dia_sentinel", "file": "dia_signal_log.csv", "format": "score"},
     "IWM": {"repo": "iwm_sentinel", "file": "iwm_signal_log.csv", "format": "score"},
     "USMV": {"repo": "usmv_sentinel", "file": "usmv_signal_log.csv", "format": "score"},
+    "NVDA": {"repo": "nvda_sentinel", "file": "nvda_signal_log.csv", "format": "score"},
+    "AVGO": {"repo": "avgo_sentinel", "file": "avgo_signal_log.csv", "format": "score"},
+    "MU": {"repo": "mu_sentinel", "file": "mu_signal_log.csv", "format": "score"},
 }
 
 # Mismo criterio que capital_allocator.py — se repite acá (en vez de
@@ -66,6 +69,9 @@ TIER_OF = {
     "DIA": "satellite_new",
     "IWM": "satellite_new",
     "USMV": "satellite_new",
+    "NVDA": "satellite_stocks",
+    "AVGO": "satellite_stocks",
+    "MU": "satellite_stocks",
 }
 
 SCHEMA = """

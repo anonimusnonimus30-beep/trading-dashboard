@@ -74,6 +74,24 @@ BOTS = {
         "execution_file": "usmv_execution_state.json",
         "account": "account1",
     },
+    "NVDA": {
+        "repo": "nvda_sentinel",
+        "state_file": "nvda_sentinel_state.json",
+        "execution_file": "nvda_execution_state.json",
+        "account": "account1",
+    },
+    "AVGO": {
+        "repo": "avgo_sentinel",
+        "state_file": "avgo_sentinel_state.json",
+        "execution_file": "avgo_execution_state.json",
+        "account": "account1",
+    },
+    "MU": {
+        "repo": "mu_sentinel",
+        "state_file": "mu_sentinel_state.json",
+        "execution_file": "mu_execution_state.json",
+        "account": "account1",
+    },
 }
 
 

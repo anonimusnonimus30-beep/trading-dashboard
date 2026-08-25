@@ -190,7 +190,7 @@ class PerformanceAnalyzer:
         fills2 = self._get_fill_activities(self.account2_key, self.account2_secret, self.account2_url)
         all_fills = fills1 + fills2
 
-        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV"]:
+        for symbol in ["QQQ", "SPY", "QQQM", "TQQQ", "ARKK", "DIA", "IWM", "USMV", "NVDA", "AVGO", "MU"]:
             result = self.analyze_symbol(all_fills, symbol)
             if result:
                 self.results[symbol] = result

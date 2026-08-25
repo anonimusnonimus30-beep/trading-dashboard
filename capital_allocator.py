@@ -12,26 +12,33 @@ asignación por rendimiento nunca sacan a un símbolo de su nivel ni le
 quitan presupuesto a otro nivel.
 
 Desde 2026-08-24, QQQ y SPY quedaron solos en su propia cuenta de
-Alpaca (antes QQQ compartía cuenta con QQQM/TQQQ). Todo lo demás —
-QQQM, TQQQ, ARKK y los recién integrados DIA/IWM/USMV — se movió a la
-otra cuenta, que ahora no tiene ni QQQ ni SPY. Los porcentajes de acá
-reflejan el mismo reparto que MAX_POSITION_PCT en cada repo (45%/45%
-de su cuenta para QQQ/SPY; 12%/12% para QQQM/TQQQ; 6% cada uno para
-ARKK/DIA/IWM/USMV de la suya), expresado como % del capital COMBINADO
-de ambas cuentas — por eso los números de acá son la mitad de esos.
+Alpaca (antes QQQ compartía cuenta con QQQM/TQQQ). Todo lo demás — los
+ETFs (QQQM/TQQQ/ARKK/DIA/IWM/USMV) y, desde 2026-08-25, tres acciones
+individuales (NVDA/AVGO/MU) — se movió a la otra cuenta, que ahora no
+tiene ni QQQ ni SPY. Los porcentajes de acá reflejan el mismo reparto
+que MAX_POSITION_PCT en cada repo (45%/45% de su cuenta para QQQ/SPY;
+12%/12% para QQQM/TQQQ; 6% cada uno para ARKK/DIA/IWM/USMV; 5% cada
+una para NVDA/AVGO/MU de la suya), expresado como % del capital
+COMBINADO de ambas cuentas — por eso los números de acá son la mitad
+de esos.
 
   - core (45%): QQQ, SPY — únicos en su cuenta, índices amplios sin
     apalancamiento.
   - satellite_proven (12%): QQQM, TQQQ — historial real ya acumulado
     en paper trading antes de esta migración.
-  - satellite_new (12%): ARKK, DIA, IWM, USMV — arrancan desde cero en
-    esta cuenta (DIA/IWM/USMV nunca operaron en vivo), presupuesto
-    chico a propósito hasta que acumulen historial propio.
+  - satellite_new (12%): ARKK, DIA, IWM, USMV — ETFs, arrancan desde
+    cero en esta cuenta, presupuesto chico a propósito hasta que
+    acumulen historial propio.
+  - satellite_stocks (7.5%): NVDA, AVGO, MU — acciones individuales,
+    presupuesto más chico que los ETFs a propósito: sin la
+    diversificación de un ETF, el riesgo idiosincrático de una sola
+    acción (gaps de resultados trimestrales, noticias específicas de
+    la empresa) es estructuralmente mayor.
 
-Con 4 niveles sumando 69% queda ~31% del capital combinado sin asignar
-a propósito, como colchón — coincide con el margen que cada bot deja
-dentro de su propia cuenta (MAX_POSITION_PCT no suma 100% en ninguna
-de las dos).
+Con 5 niveles sumando 76.5% queda ~23.5% del capital combinado sin
+asignar a propósito, como colchón — coincide con el margen que cada
+bot deja dentro de su propia cuenta (MAX_POSITION_PCT no suma 100% en
+ninguna de las dos).
 """
 
 import json
@@ -48,12 +55,16 @@ TIER_OF = {
     "DIA": "satellite_new",
     "IWM": "satellite_new",
     "USMV": "satellite_new",
+    "NVDA": "satellite_stocks",
+    "AVGO": "satellite_stocks",
+    "MU": "satellite_stocks",
 }
 
 TIER_BUDGET_PCT = {
     "core": 45.0,
     "satellite_proven": 12.0,
     "satellite_new": 12.0,
+    "satellite_stocks": 7.5,
 }
 
 # Dentro de un nivel, el de peor score no puede quedar por debajo de
