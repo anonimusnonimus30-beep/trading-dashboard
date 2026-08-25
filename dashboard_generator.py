@@ -7,6 +7,13 @@ import json
 from pathlib import Path
 
 
+def safe_float_fmt(value, decimals=2):
+    try:
+        return f"{float(value):.{decimals}f}"
+    except (TypeError, ValueError):
+        return "0.00"
+
+
 class DashboardGenerator:
     def __init__(
         self,
@@ -14,15 +21,18 @@ class DashboardGenerator:
         allocation_file="capital_allocation.json",
         positions_file="positions.json",
         analysis_progress_file="analysis_progress.json",
+        nyse_scanner_file="nyse_scanner.json",
     ):
         self.performance_file = performance_file
         self.allocation_file = allocation_file
         self.positions_file = positions_file
         self.analysis_progress_file = analysis_progress_file
+        self.nyse_scanner_file = nyse_scanner_file
         self.performance_data = self._load_json(performance_file)
         self.allocation_data = self._load_json(allocation_file)
         self.positions_data = self._load_json(positions_file)
         self.analysis_progress_data = self._load_json(analysis_progress_file)
+        self.nyse_scanner_data = self._load_json(nyse_scanner_file)
 
     def _load_json(self, filepath):
         if not Path(filepath).exists():
@@ -549,6 +559,95 @@ class DashboardGenerator:
                     </table>
                 </div>
             </div>
+"""
+
+        # NYSE Scanner: símbolo variable (uno a la vez), no encaja en el
+        # patrón de símbolo fijo del resto de la familia -- sección
+        # propia en vez de forzarlo en los loops de arriba.
+        ns = self.nyse_scanner_data
+        if ns:
+            status = ns.get("status", "flat")
+            status_color = {"in_position": "#00ff88", "pending_entry": "#ffcc00", "flat": "#999"}.get(status, "#999")
+
+            position_html = ""
+            pos = ns.get("position")
+            if pos:
+                pl_class = "positive" if pos.get("unrealized_pl", 0) >= 0 else "negative"
+                position_html = f"""
+                <div class="metric-card">
+                    <div class="metric-label">Valor de la posición</div>
+                    <div class="metric-value">${pos.get('market_value', 0):,.2f}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">P&L no realizado</div>
+                    <div class="metric-value {pl_class}">{pos.get('unrealized_plpc', 0):+.2f}% (${pos.get('unrealized_pl', 0):,.2f})</div>
+                </div>"""
+
+            html += f"""
+        <div class="performance-section">
+            <h2 class="section-title">🔎 NYSE Scanner</h2>
+            <div style="margin-bottom: 20px;">
+                <span style="color: {status_color}; font-weight: bold; font-size: 1.1em;">{ns.get('status_label', '')}</span>
+                <p style="color: #999; margin-top: 8px; font-size: 0.9em;">
+                    Última corrida: {ns.get('today_date', 'n/d')} — {ns.get('today_evaluated', 0)} tickers evaluados,
+                    {ns.get('today_signals_count', 0)} señal(es) con score ≥ 80
+                </p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
+                <div class="metric-card">
+                    <div class="metric-label">Operaciones Cerradas</div>
+                    <div class="metric-value">{ns.get('total_trades', 0)}</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Win Rate</div>
+                    <div class="metric-value">{ns.get('win_rate', 0):.1f}%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">P&L Realizado</div>
+                    <div class="metric-value {'negative' if ns.get('realized_pnl', 0) < 0 else ''}">${ns.get('realized_pnl', 0):,.2f}</div>
+                </div>{position_html}
+            </div>
+"""
+
+            trades = ns.get("trades", [])
+            if trades:
+                html += """
+            <div style="overflow-x: auto; background: rgba(255, 255, 255, 0.02); border-radius: 10px; padding: 10px;">
+                <table style="width: 100%;">
+                    <tr>
+                        <th>Símbolo</th>
+                        <th>Entrada</th>
+                        <th>Salida</th>
+                        <th>Precio Compra</th>
+                        <th>Precio Venta</th>
+                        <th>Motivo</th>
+                        <th>P&L</th>
+                        <th>Ganancia %</th>
+                    </tr>
+"""
+                for t in trades:
+                    pnl = t.get("pnl_usd", 0)
+                    pnl_class = "positive" if pnl > 0 else ("negative" if pnl < 0 else "")
+                    reason_label = {"stop": "Stop -8%", "target": "Target +20%", "horizonte": "Horizonte 15d"}.get(t.get("exit_reason"), t.get("exit_reason", ""))
+                    html += f"""
+                    <tr>
+                        <td>{t.get('symbol', 'N/A')}</td>
+                        <td>{t.get('entry_date', 'N/A')}</td>
+                        <td>{t.get('exit_date', 'N/A')}</td>
+                        <td>${safe_float_fmt(t.get('entry_price'))}</td>
+                        <td>${safe_float_fmt(t.get('exit_price'))}</td>
+                        <td>{reason_label}</td>
+                        <td class="{pnl_class}">${pnl:,.2f}</td>
+                        <td class="{pnl_class}">{t.get('pnl_pct', 0):+.2f}%</td>
+                    </tr>
+"""
+                html += """
+                </table>
+            </div>
+"""
+            html += """
+        </div>
 """
 
         html += """

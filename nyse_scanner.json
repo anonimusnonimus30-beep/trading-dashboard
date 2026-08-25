@@ -1,0 +1,18 @@
+{
+  "status": "pending_entry",
+  "symbol": "TGT",
+  "signal_date": "2026-08-24",
+  "score": 82.6,
+  "entry_date": null,
+  "entry_price": null,
+  "days_held": 0,
+  "position": null,
+  "today_evaluated": 296,
+  "today_signals_count": 3,
+  "today_date": "2026-08-24",
+  "status_label": "Se\u00f1al en cola: TGT (score 82.6) \u2014 entra al cierre de la pr\u00f3xima sesi\u00f3n",
+  "trades": [],
+  "total_trades": 0,
+  "win_rate": 0,
+  "realized_pnl": 0
+}

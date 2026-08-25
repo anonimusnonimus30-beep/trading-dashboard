@@ -232,6 +232,43 @@ def import_trades(conn, performance_data):
     print(f"✅ trades: {inserted} filas nuevas")
 
 
+def import_nyse_scanner_trades(conn):
+    """El NYSE Scanner opera un símbolo variable (no fijo), así que no
+    tiene una entrada en SIGNAL_LOGS/performance.json como el resto --
+    sus operaciones cerradas se leen directo de su propio
+    state/trade_log.csv (ver execute_position.py) y se insertan en la
+    misma tabla `trades`, reusando el esquema existente."""
+    cur = conn.cursor()
+    inserted = 0
+    rows = fetch_csv_rows("nyse_scanner_sentinel", "state/trade_log.csv")
+
+    for row in rows:
+        symbol = row.get("symbol")
+        if not symbol:
+            continue
+        order_id = f"nyse-{row.get('entry_date')}-{symbol}"
+        cur.execute(
+            """
+            INSERT OR IGNORE INTO trades
+                (symbol, order_id, trade_date, buy_price, sell_price, qty, pnl)
+            VALUES (?, ?, ?, ?, ?, ?, ?)
+            """,
+            (
+                symbol,
+                order_id,
+                row.get("exit_date"),
+                safe_float(row.get("entry_price")),
+                safe_float(row.get("exit_price")),
+                safe_float(row.get("qty")),
+                safe_float(row.get("pnl_usd")),
+            ),
+        )
+        inserted += cur.rowcount
+
+    conn.commit()
+    print(f"✅ trades (NYSE Scanner): {inserted} filas nuevas")
+
+
 def import_signal_history(conn):
     cur = conn.cursor()
     inserted = 0
@@ -446,6 +483,7 @@ def main():
     allocation_data = load_json("capital_allocation.json")
 
     import_trades(conn, performance_data)
+    import_nyse_scanner_trades(conn)
     import_signal_history(conn)
     import_snapshots(conn, positions_data, performance_data, allocation_data)
     update_analysis_progress(conn)
