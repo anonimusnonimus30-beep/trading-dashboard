@@ -611,5 +611,25 @@
     "win_rate": 0,
     "avg_pnl_per_trade": 0,
     "trades": []
+  },
+  "NVDA": {
+    "symbol": "NVDA",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  },
+  "MU": {
+    "symbol": "MU",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
   }
 }
