@@ -562,5 +562,45 @@
         "pnl": 1.76
       }
     ]
+  },
+  "ARKK": {
+    "symbol": "ARKK",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  },
+  "DIA": {
+    "symbol": "DIA",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  },
+  "IWM": {
+    "symbol": "IWM",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
+  },
+  "USMV": {
+    "symbol": "USMV",
+    "realized_pnl": 0.0,
+    "total_trades": 0,
+    "winning_trades": 0,
+    "losing_trades": 0,
+    "win_rate": 0,
+    "avg_pnl_per_trade": 0,
+    "trades": []
   }
 }
