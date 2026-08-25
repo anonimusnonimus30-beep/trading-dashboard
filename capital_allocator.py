@@ -13,14 +13,15 @@ quitan presupuesto a otro nivel.
 
 Desde 2026-08-24, QQQ y SPY quedaron solos en su propia cuenta de
 Alpaca (antes QQQ compartía cuenta con QQQM/TQQQ). Todo lo demás — los
-ETFs (QQQM/TQQQ/ARKK/DIA/IWM/USMV) y, desde 2026-08-25, tres acciones
-individuales (NVDA/AVGO/MU) — se movió a la otra cuenta, que ahora no
-tiene ni QQQ ni SPY. Los porcentajes de acá reflejan el mismo reparto
-que MAX_POSITION_PCT en cada repo (45%/45% de su cuenta para QQQ/SPY;
-12%/12% para QQQM/TQQQ; 6% cada uno para ARKK/DIA/IWM/USMV; 5% cada
-una para NVDA/AVGO/MU de la suya), expresado como % del capital
-COMBINADO de ambas cuentas — por eso los números de acá son la mitad
-de esos.
+ETFs de índice (QQQM/TQQQ/ARKK/DIA/IWM/USMV), tres acciones
+individuales (NVDA/AVGO/MU) y, desde 2026-08-26, tres ETFs temáticos
+que le ganan a QQQ en CAGR y retorno total (SMH/SOXX/QTUM) — se movió
+a la otra cuenta, que ahora no tiene ni QQQ ni SPY. Los porcentajes de
+acá reflejan el mismo reparto que MAX_POSITION_PCT en cada repo (45%/
+45% de su cuenta para QQQ/SPY; 12%/12% para QQQM/TQQQ; 6% cada uno
+para ARKK/DIA/IWM/USMV; 5% cada una para NVDA/AVGO/MU y para
+SMH/SOXX/QTUM), expresado como % del capital COMBINADO de ambas
+cuentas — por eso los números de acá son la mitad de esos.
 
   - core (45%): QQQ, SPY — únicos en su cuenta, índices amplios sin
     apalancamiento.
@@ -34,11 +35,16 @@ de esos.
     diversificación de un ETF, el riesgo idiosincrático de una sola
     acción (gaps de resultados trimestrales, noticias específicas de
     la empresa) es estructuralmente mayor.
+  - satellite_thematic (7.5%): SMH, SOXX, QTUM — ETFs sectoriales/
+    temáticos concentrados (semiconductores x2, IA/cuántica) que le
+    ganan a QQQ en CAGR y retorno total en todas las ventanas
+    probadas, pero con más drawdown por estar concentrados en un
+    sector en vez de diversificados como QQQ. SMH y SOXX son
+    esencialmente la misma apuesta (semis, distinto proveedor) --
+    presupuesto chico a propósito para no duplicar el mismo riesgo.
 
-Con 5 niveles sumando 76.5% queda ~23.5% del capital combinado sin
-asignar a propósito, como colchón — coincide con el margen que cada
-bot deja dentro de su propia cuenta (MAX_POSITION_PCT no suma 100% en
-ninguna de las dos).
+Con 6 niveles sumando 84% queda ~16% del capital combinado sin asignar
+a propósito, como colchón.
 """
 
 import json
@@ -58,6 +64,9 @@ TIER_OF = {
     "NVDA": "satellite_stocks",
     "AVGO": "satellite_stocks",
     "MU": "satellite_stocks",
+    "SMH": "satellite_thematic",
+    "SOXX": "satellite_thematic",
+    "QTUM": "satellite_thematic",
 }
 
 TIER_BUDGET_PCT = {
@@ -65,6 +74,7 @@ TIER_BUDGET_PCT = {
     "satellite_proven": 12.0,
     "satellite_new": 12.0,
     "satellite_stocks": 7.5,
+    "satellite_thematic": 7.5,
 }
 
 # Dentro de un nivel, el de peor score no puede quedar por debajo de

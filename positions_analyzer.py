@@ -92,6 +92,24 @@ BOTS = {
         "execution_file": "mu_execution_state.json",
         "account": "account1",
     },
+    "SMH": {
+        "repo": "smh_sentinel",
+        "state_file": "smh_sentinel_state.json",
+        "execution_file": "smh_execution_state.json",
+        "account": "account1",
+    },
+    "SOXX": {
+        "repo": "soxx_sentinel",
+        "state_file": "soxx_sentinel_state.json",
+        "execution_file": "soxx_execution_state.json",
+        "account": "account1",
+    },
+    "QTUM": {
+        "repo": "qtum_sentinel",
+        "state_file": "qtum_sentinel_state.json",
+        "execution_file": "qtum_execution_state.json",
+        "account": "account1",
+    },
 }
 
 

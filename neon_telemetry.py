@@ -45,6 +45,9 @@ BOTS_REGISTRY = {
     "NVDA": dict(repo="nvda_sentinel",  account="account1", tier="satellite_stocks",  asset_type="stock",   max_position_pct=5,  max_notional_usd=3000, stop_loss_pct=-45, risk_symbol="QQQ"),
     "AVGO": dict(repo="avgo_sentinel",  account="account1", tier="satellite_stocks",  asset_type="stock",   max_position_pct=5,  max_notional_usd=3000, stop_loss_pct=-35, risk_symbol="QQQ"),
     "MU":   dict(repo="mu_sentinel",    account="account1", tier="satellite_stocks",  asset_type="stock",   max_position_pct=5,  max_notional_usd=3000, stop_loss_pct=-40, risk_symbol="QQQ"),
+    "SMH":  dict(repo="smh_sentinel",   account="account1", tier="satellite_thematic", asset_type="etf",    max_position_pct=5,  max_notional_usd=3000, stop_loss_pct=-40, risk_symbol="QQQ"),
+    "SOXX": dict(repo="soxx_sentinel",  account="account1", tier="satellite_thematic", asset_type="etf",    max_position_pct=5,  max_notional_usd=3000, stop_loss_pct=-35, risk_symbol="QQQ"),
+    "QTUM": dict(repo="qtum_sentinel",  account="account1", tier="satellite_thematic", asset_type="etf",    max_position_pct=5,  max_notional_usd=3000, stop_loss_pct=-20, risk_symbol="QQQ"),
     "NYSE_SCANNER": dict(repo="nyse_scanner_sentinel", account="account1", tier="scanner", asset_type="scanner", max_position_pct=8, max_notional_usd=3000, stop_loss_pct=-8, risk_symbol=None),
 }
 

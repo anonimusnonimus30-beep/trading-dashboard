@@ -56,6 +56,9 @@ SIGNAL_LOGS = {
     "NVDA": {"repo": "nvda_sentinel", "file": "nvda_signal_log.csv", "format": "score"},
     "AVGO": {"repo": "avgo_sentinel", "file": "avgo_signal_log.csv", "format": "score"},
     "MU": {"repo": "mu_sentinel", "file": "mu_signal_log.csv", "format": "score"},
+    "SMH": {"repo": "smh_sentinel", "file": "smh_signal_log.csv", "format": "score"},
+    "SOXX": {"repo": "soxx_sentinel", "file": "soxx_signal_log.csv", "format": "score"},
+    "QTUM": {"repo": "qtum_sentinel", "file": "qtum_signal_log.csv", "format": "score"},
 }
 
 # Mismo criterio que capital_allocator.py — se repite acá (en vez de
@@ -72,6 +75,9 @@ TIER_OF = {
     "NVDA": "satellite_stocks",
     "AVGO": "satellite_stocks",
     "MU": "satellite_stocks",
+    "SMH": "satellite_thematic",
+    "SOXX": "satellite_thematic",
+    "QTUM": "satellite_thematic",
 }
 
 SCHEMA = """
