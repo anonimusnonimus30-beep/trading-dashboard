@@ -565,13 +565,22 @@
   },
   "ARKK": {
     "symbol": "ARKK",
-    "realized_pnl": 0.0,
-    "total_trades": 0,
-    "winning_trades": 0,
+    "realized_pnl": 0.38,
+    "total_trades": 1,
+    "winning_trades": 1,
     "losing_trades": 0,
-    "win_rate": 0,
-    "avg_pnl_per_trade": 0,
-    "trades": []
+    "win_rate": 100.0,
+    "avg_pnl_per_trade": 0.38,
+    "trades": [
+      {
+        "order_id": "430eea72",
+        "date": "2026-08-25",
+        "buy_price": 85.67,
+        "sell_price": 86.63,
+        "qty": 0.3919,
+        "pnl": 0.38
+      }
+    ]
   },
   "DIA": {
     "symbol": "DIA",
