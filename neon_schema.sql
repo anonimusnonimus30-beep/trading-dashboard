@@ -122,7 +122,12 @@ CREATE TABLE IF NOT EXISTS closed_trades (
     pnl_usd REAL,
     pnl_pct REAL,
     exit_reason TEXT,                  -- 'stop' | 'target' | 'horizonte' | null (resto de la familia)
-    UNIQUE(bot_symbol, traded_symbol, order_id, entry_date, buy_price, sell_price, qty)
+    -- NULLS NOT DISTINCT: entry_date es NULL para todos los bots de
+    -- símbolo fijo (solo el NYSE Scanner lo completa) -- sin esto,
+    -- Postgres trata cada NULL como distinto y el ON CONFLICT nunca
+    -- deduplica esas filas (bug real, encontrado y corregido el
+    -- 2026-08-25 tras ver filas duplicadas en la primera corrida real).
+    UNIQUE NULLS NOT DISTINCT (bot_symbol, traded_symbol, order_id, entry_date, buy_price, sell_price, qty)
 );
 
 CREATE TABLE IF NOT EXISTS capital_allocation_snapshots (
