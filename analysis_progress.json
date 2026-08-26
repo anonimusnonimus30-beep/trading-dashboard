@@ -11,6 +11,12 @@
     "analysis_due": false,
     "last_analysis_at": null
   },
+  "MU": {
+    "trades_since_analysis": 0,
+    "trades_target": 50,
+    "analysis_due": false,
+    "last_analysis_at": null
+  },
   "QQQ": {
     "trades_since_analysis": 5,
     "trades_target": 50,
