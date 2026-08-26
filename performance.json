@@ -157,12 +157,20 @@
   "SPY": {
     "symbol": "SPY",
     "realized_pnl": 27.96,
-    "total_trades": 15,
-    "winning_trades": 2,
+    "total_trades": 16,
+    "winning_trades": 3,
     "losing_trades": 13,
-    "win_rate": 13.33,
-    "avg_pnl_per_trade": 1.86,
+    "win_rate": 18.75,
+    "avg_pnl_per_trade": 1.75,
     "trades": [
+      {
+        "order_id": "f5a88077",
+        "date": "2026-08-26",
+        "buy_price": 765.56,
+        "sell_price": 765.81,
+        "qty": 0.0071,
+        "pnl": 0.0
+      },
       {
         "order_id": "e6c2304e",
         "date": "2026-08-21",
@@ -584,13 +592,22 @@
   },
   "DIA": {
     "symbol": "DIA",
-    "realized_pnl": 0.0,
-    "total_trades": 0,
-    "winning_trades": 0,
+    "realized_pnl": 0.01,
+    "total_trades": 1,
+    "winning_trades": 1,
     "losing_trades": 0,
-    "win_rate": 0,
-    "avg_pnl_per_trade": 0,
-    "trades": []
+    "win_rate": 100.0,
+    "avg_pnl_per_trade": 0.01,
+    "trades": [
+      {
+        "order_id": "52f82f04",
+        "date": "2026-08-26",
+        "buy_price": 534.15,
+        "sell_price": 535.26,
+        "qty": 0.0118,
+        "pnl": 0.01
+      }
+    ]
   },
   "IWM": {
     "symbol": "IWM",
@@ -644,13 +661,22 @@
   },
   "SOXX": {
     "symbol": "SOXX",
-    "realized_pnl": 0.0,
-    "total_trades": 0,
+    "realized_pnl": -2.02,
+    "total_trades": 1,
     "winning_trades": 0,
-    "losing_trades": 0,
-    "win_rate": 0,
-    "avg_pnl_per_trade": 0,
-    "trades": []
+    "losing_trades": 1,
+    "win_rate": 0.0,
+    "avg_pnl_per_trade": -2.02,
+    "trades": [
+      {
+        "order_id": "682c0c52",
+        "date": "2026-08-26",
+        "buy_price": 513.13,
+        "sell_price": 510.31,
+        "qty": 0.7178,
+        "pnl": -2.02
+      }
+    ]
   },
   "QTUM": {
     "symbol": "QTUM",
