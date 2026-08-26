@@ -13,20 +13,28 @@ quitan presupuesto a otro nivel.
 
 Desde 2026-08-24, QQQ y SPY quedaron solos en su propia cuenta de
 Alpaca (antes QQQ compartía cuenta con QQQM/TQQQ). Todo lo demás — los
-ETFs de índice (QQQM/TQQQ/ARKK/DIA/IWM/USMV), tres acciones
-individuales (NVDA/AVGO/MU) y, desde 2026-08-26, tres ETFs temáticos
-que le ganan a QQQ en CAGR y retorno total (SMH/SOXX/QTUM) — se movió
-a la otra cuenta, que ahora no tiene ni QQQ ni SPY. Los porcentajes de
-acá reflejan el mismo reparto que MAX_POSITION_PCT en cada repo (45%/
-45% de su cuenta para QQQ/SPY; 12%/12% para QQQM/TQQQ; 6% cada uno
-para ARKK/DIA/IWM/USMV; 5% cada una para NVDA/AVGO/MU y para
-SMH/SOXX/QTUM), expresado como % del capital COMBINADO de ambas
-cuentas — por eso los números de acá son la mitad de esos.
+ETFs de índice (TQQQ/ARKK/DIA/IWM/USMV), tres acciones individuales
+(NVDA/AVGO/MU) y, desde 2026-08-26, tres ETFs temáticos que le ganan a
+QQQ en CAGR y retorno total (SMH/SOXX/QTUM) — se movió a la otra
+cuenta, que ahora no tiene ni QQQ ni SPY. Los porcentajes de acá
+reflejan el mismo reparto que MAX_POSITION_PCT en cada repo (55%/45%
+de su cuenta para QQQ/SPY; 12% para TQQQ; 6% cada uno para
+ARKK/DIA/IWM/USMV; 5% cada una para NVDA/AVGO/MU y para SMH/SOXX/
+QTUM), expresado como % del capital COMBINADO de ambas cuentas — por
+eso los números de acá son la mitad de esos.
 
-  - core (45%): QQQ, SPY — únicos en su cuenta, índices amplios sin
+QQQM se retiró el 2026-08-26: su señal táctica nunca validó ventaja
+real (backtest con generalización mixta, peor Sharpe que buy&hold; en
+vivo, 50% de win rate y PnL negativo) sobre un símbolo que además
+trackea el mismo índice que QQQ con un motor peor. Se liquidó su
+posición y se apagó el bot; su cupo de capital se lo absorbió QQQ
+(MAX_POSITION_PCT 45%->55% en su propia cuenta, usando el buffer que
+ya estaba libre en N6ZG).
+
+  - core (50%): QQQ, SPY — únicos en su cuenta, índices amplios sin
     apalancamiento.
-  - satellite_proven (12%): QQQM, TQQQ — historial real ya acumulado
-    en paper trading antes de esta migración.
+  - satellite_proven (6%): TQQQ — historial real ya acumulado en paper
+    trading antes de la migración del 2026-08-24.
   - satellite_new (12%): ARKK, DIA, IWM, USMV — ETFs, arrancan desde
     cero en esta cuenta, presupuesto chico a propósito hasta que
     acumulen historial propio.
@@ -43,7 +51,7 @@ cuentas — por eso los números de acá son la mitad de esos.
     esencialmente la misma apuesta (semis, distinto proveedor) --
     presupuesto chico a propósito para no duplicar el mismo riesgo.
 
-Con 6 niveles sumando 84% queda ~16% del capital combinado sin asignar
+Con 5 niveles sumando 83% queda ~17% del capital combinado sin asignar
 a propósito, como colchón.
 """
 
@@ -55,7 +63,6 @@ import requests
 TIER_OF = {
     "QQQ": "core",
     "SPY": "core",
-    "QQQM": "satellite_proven",
     "TQQQ": "satellite_proven",
     "ARKK": "satellite_new",
     "DIA": "satellite_new",
@@ -70,8 +77,8 @@ TIER_OF = {
 }
 
 TIER_BUDGET_PCT = {
-    "core": 45.0,
-    "satellite_proven": 12.0,
+    "core": 50.0,
+    "satellite_proven": 6.0,
     "satellite_new": 12.0,
     "satellite_stocks": 7.5,
     "satellite_thematic": 7.5,

@@ -47,7 +47,6 @@ DB_FILE = "sentinels.db"
 SIGNAL_LOGS = {
     "QQQ": {"repo": "qqq-sentinel", "file": "qqq_sentinel_log.csv", "format": "v5"},
     "SPY": {"repo": "spy_sentinel", "file": "spy_signal_log.csv", "format": "score"},
-    "QQQM": {"repo": "qqqm_sentinel", "file": "qqqm_signal_log.csv", "format": "score"},
     "TQQQ": {"repo": "tqqq_sentinel", "file": "tqqq_signal_log.csv", "format": "score"},
     "ARKK": {"repo": "splg_sentinel", "file": "arkk_signal_log.csv", "format": "score"},
     "DIA": {"repo": "dia_sentinel", "file": "dia_signal_log.csv", "format": "score"},
@@ -66,7 +65,6 @@ SIGNAL_LOGS = {
 TIER_OF = {
     "QQQ": "core",
     "SPY": "core",
-    "QQQM": "satellite_proven",
     "TQQQ": "satellite_proven",
     "ARKK": "satellite_new",
     "DIA": "satellite_new",

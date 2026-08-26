@@ -38,12 +38,6 @@ BOTS = {
         "execution_file": "spy_execution_state.json",
         "account": "account2",
     },
-    "QQQM": {
-        "repo": "qqqm_sentinel",
-        "state_file": "qqqm_sentinel_state.json",
-        "execution_file": "qqqm_execution_state.json",
-        "account": "account1",
-    },
     "TQQQ": {
         "repo": "tqqq_sentinel",
         "state_file": "tqqq_sentinel_state.json",

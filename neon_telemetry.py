@@ -34,9 +34,8 @@ ACCOUNTS = {
 # porque no cambian seguido y evita 11 llamadas extra a la API de
 # GitHub solo para leer una constante.
 BOTS_REGISTRY = {
-    "QQQ":  dict(repo="qqq-sentinel",   account="account2", tier="core",              asset_type="etf",     max_position_pct=45, max_notional_usd=None, stop_loss_pct=-35, risk_symbol="QQQ"),
+    "QQQ":  dict(repo="qqq-sentinel",   account="account2", tier="core",              asset_type="etf",     max_position_pct=55, max_notional_usd=None, stop_loss_pct=-35, risk_symbol="QQQ"),
     "SPY":  dict(repo="spy_sentinel",   account="account2", tier="core",              asset_type="etf",     max_position_pct=45, max_notional_usd=None, stop_loss_pct=-30, risk_symbol="SPY"),
-    "QQQM": dict(repo="qqqm_sentinel",  account="account1", tier="satellite_proven",  asset_type="etf",     max_position_pct=12, max_notional_usd=None, stop_loss_pct=-25, risk_symbol="QQQ"),
     "TQQQ": dict(repo="tqqq_sentinel",  account="account1", tier="satellite_proven",  asset_type="etf",     max_position_pct=12, max_notional_usd=None, stop_loss_pct=-45, risk_symbol="QQQ"),
     "ARKK": dict(repo="splg_sentinel",  account="account1", tier="satellite_new",     asset_type="etf",     max_position_pct=6,  max_notional_usd=None, stop_loss_pct=-30, risk_symbol="QQQ"),
     "DIA":  dict(repo="dia_sentinel",   account="account1", tier="satellite_new",     asset_type="etf",     max_position_pct=6,  max_notional_usd=3000, stop_loss_pct=-35, risk_symbol="SPY"),
