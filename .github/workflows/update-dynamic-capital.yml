@@ -1,0 +1,60 @@
+name: Update Dynamic Capital (derivados)
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Lunes 12:00 UTC (~8am ET) -- antes de que abra el mercado en la
+    # semana, con el historial de la semana anterior ya cerrado.
+    - cron: "0 12 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  update-dynamic-capital:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    env:
+      # Cuenta de derivados (FOT6) -- la unica que necesita este calculo
+      APCA_API_KEY_ID: ${{ secrets.APCA_API_KEY_ID }}
+      APCA_API_SECRET_KEY: ${{ secrets.APCA_API_SECRET_KEY }}
+      APCA_BASE_URL: ${{ secrets.APCA_BASE_URL }}
+
+      # Cuenta core (N6ZG) -- solo para el total_capital combinado que
+      # usa el score de ROI, no se le calcula nada a QQQ/SPY aca
+      SPY_APCA_API_KEY: ${{ secrets.SPY_APCA_API_KEY }}
+      SPY_APCA_API_SECRET: ${{ secrets.SPY_APCA_API_SECRET }}
+      SPY_APCA_API_BASE_URL: ${{ secrets.SPY_APCA_API_BASE_URL }}
+
+      BOTS_READ_TOKEN: ${{ secrets.BOTS_READ_TOKEN }}
+      PYTHONUNBUFFERED: "1"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Refresh performance data
+        run: python3 performance_analyzer.py
+
+      - name: Calculate dynamic MAX_POSITION_PCT por rendimiento
+        run: python3 dynamic_capital_pct.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "Dynamic Capital Bot"
+          git config user.email "bot@trading-dashboard.local"
+          git add dynamic_position_pct.json
+          git commit -m "Recalcular MAX_POSITION_PCT dinamico por rendimiento: $(date -u +'%Y-%m-%d')" || echo "Sin cambios que commitear"
+          git push
