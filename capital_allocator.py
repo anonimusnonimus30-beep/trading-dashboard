@@ -16,43 +16,55 @@ Alpaca (antes QQQ compartía cuenta con QQQM/TQQQ). Todo lo demás — los
 ETFs de índice (TQQQ/ARKK/DIA/IWM/USMV), tres acciones individuales
 (NVDA/AVGO/MU) y, desde 2026-08-26, tres ETFs temáticos que le ganan a
 QQQ en CAGR y retorno total (SMH/SOXX/QTUM) — se movió a la otra
-cuenta, que ahora no tiene ni QQQ ni SPY. Los porcentajes de acá
-reflejan el mismo reparto que MAX_POSITION_PCT en cada repo (55%/45%
-de su cuenta para QQQ/SPY; 12% para TQQQ; 6% cada uno para
-ARKK/DIA/IWM/USMV; 5% cada una para NVDA/AVGO/MU y para SMH/SOXX/
-QTUM), expresado como % del capital COMBINADO de ambas cuentas — por
-eso los números de acá son la mitad de esos.
+cuenta, que ahora no tiene ni QQQ ni SPY.
 
 QQQM se retiró el 2026-08-26: su señal táctica nunca validó ventaja
 real (backtest con generalización mixta, peor Sharpe que buy&hold; en
 vivo, 50% de win rate y PnL negativo) sobre un símbolo que además
 trackea el mismo índice que QQQ con un motor peor. Se liquidó su
 posición y se apagó el bot; su cupo de capital se lo absorbió QQQ
-(MAX_POSITION_PCT 45%->55% en su propia cuenta, usando el buffer que
-ya estaba libre en N6ZG).
+(MAX_POSITION_PCT 45%->55% en su propia cuenta).
+
+BILLETERA DINÁMICA (2026-08-27)
+--------------------------------
+Hasta acá, cada repo tenía además un tope fijo en dólares
+(MAX_NOTIONAL_USD, ~$3000 la mayoría) que en la práctica era el
+verdadero límite de la posición — muy por debajo del % pensado sobre
+una cuenta que ya creció a ~$100k por cuenta. Subir MAX_POSITION_PCT
+(como se hizo con QQQ) no tenía ningún efecto real mientras ese techo
+siguiera ahí. Se sacó el tope fijo de los 13 repos: ahora el tamaño de
+cada posición es puramente % del equity REAL de su cuenta en ese
+momento (escala sola si la cuenta crece o se achica), y los satélites
+de la cuenta de derivados se re-calibraron para invertir entre 1% y
+3% de esa cuenta cada uno (antes 5-12%, con el mismo orden relativo:
+TQQQ el más grande por ser el de historial más probado, acciones
+individuales y temáticos los más chicos por concentrar más riesgo
+idiosincrático). Los porcentajes de acá siguen expresados como % del
+capital COMBINADO de ambas cuentas (la mitad del % real de cada
+repo), solo para que el reparto por nivel sea comparable entre sí.
 
   - core (50%): QQQ, SPY — únicos en su cuenta, índices amplios sin
-    apalancamiento.
-  - satellite_proven (6%): TQQQ — historial real ya acumulado en paper
-    trading antes de la migración del 2026-08-24.
-  - satellite_new (12%): ARKK, DIA, IWM, USMV — ETFs, arrancan desde
-    cero en esta cuenta, presupuesto chico a propósito hasta que
-    acumulen historial propio.
-  - satellite_stocks (7.5%): NVDA, AVGO, MU — acciones individuales,
+    apalancamiento. Repo: 55%/45% de su cuenta.
+  - satellite_proven (1.5%): TQQQ — historial real ya acumulado en
+    paper trading. Repo: 3% de su cuenta.
+  - satellite_new (3%): ARKK, DIA, IWM, USMV — ETFs, presupuesto chico
+    a propósito hasta que acumulen historial propio. Repo: 1.5% cada
+    uno.
+  - satellite_stocks (1.875%): NVDA, AVGO, MU — acciones individuales,
     presupuesto más chico que los ETFs a propósito: sin la
     diversificación de un ETF, el riesgo idiosincrático de una sola
     acción (gaps de resultados trimestrales, noticias específicas de
-    la empresa) es estructuralmente mayor.
-  - satellite_thematic (7.5%): SMH, SOXX, QTUM — ETFs sectoriales/
+    la empresa) es estructuralmente mayor. Repo: 1.25% cada una.
+  - satellite_thematic (1.875%): SMH, SOXX, QTUM — ETFs sectoriales/
     temáticos concentrados (semiconductores x2, IA/cuántica) que le
     ganan a QQQ en CAGR y retorno total en todas las ventanas
     probadas, pero con más drawdown por estar concentrados en un
-    sector en vez de diversificados como QQQ. SMH y SOXX son
-    esencialmente la misma apuesta (semis, distinto proveedor) --
-    presupuesto chico a propósito para no duplicar el mismo riesgo.
+    sector en vez de diversificados como QQQ. Repo: 1.25% cada uno.
 
-Con 5 niveles sumando 83% queda ~17% del capital combinado sin asignar
-a propósito, como colchón.
+Con 5 niveles sumando ~58.25% queda un colchón grande (~41.75%) a
+propósito: son 11 bots satélite corriendo en paralelo en la misma
+cuenta, así que cada uno se queda chico (1-3%) para que la cuenta
+nunca dependa de que todos acierten a la vez.
 """
 
 import json
@@ -78,10 +90,10 @@ TIER_OF = {
 
 TIER_BUDGET_PCT = {
     "core": 50.0,
-    "satellite_proven": 6.0,
-    "satellite_new": 12.0,
-    "satellite_stocks": 7.5,
-    "satellite_thematic": 7.5,
+    "satellite_proven": 1.5,
+    "satellite_new": 3.0,
+    "satellite_stocks": 1.875,
+    "satellite_thematic": 1.875,
 }
 
 # Dentro de un nivel, el de peor score no puede quedar por debajo de
