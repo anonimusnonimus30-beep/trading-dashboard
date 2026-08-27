@@ -4,11 +4,11 @@
       "has_position": true,
       "qty": 4.235598915,
       "avg_entry_price": 708.28,
-      "current_price": 713.924,
-      "market_value": 3023.89572,
+      "current_price": 716.59,
+      "market_value": 3035.187826,
       "cost_basis": 2999.99,
-      "unrealized_pl": 23.90572,
-      "unrealized_plpc": 0.7969999999999999
+      "unrealized_pl": 35.197826,
+      "unrealized_plpc": 1.173
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -25,11 +25,11 @@
       "has_position": true,
       "qty": 3.917419913,
       "avg_entry_price": 764.992496,
-      "current_price": 767.38,
-      "market_value": 3006.149693,
+      "current_price": 769.44,
+      "market_value": 3014.219578,
       "cost_basis": 2996.796837,
-      "unrealized_pl": 9.352856,
-      "unrealized_plpc": 0.312
+      "unrealized_pl": 17.422741,
+      "unrealized_plpc": 0.581
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -46,11 +46,11 @@
       "has_position": true,
       "qty": 42.640990856,
       "avg_entry_price": 71.721934,
-      "current_price": 71.2,
-      "market_value": 3036.038549,
+      "current_price": 71.96,
+      "market_value": 3068.445702,
       "cost_basis": 3058.294332,
-      "unrealized_pl": -22.255783,
-      "unrealized_plpc": -0.728
+      "unrealized_pl": 10.15137,
+      "unrealized_plpc": 0.332
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -67,11 +67,11 @@
       "has_position": true,
       "qty": 34.626038954,
       "avg_entry_price": 85.67,
-      "current_price": 85.1801,
-      "market_value": 2949.449461,
+      "current_price": 85.78,
+      "market_value": 2970.221621,
       "cost_basis": 2966.412757,
-      "unrealized_pl": -16.963296,
-      "unrealized_plpc": -0.5720000000000001
+      "unrealized_pl": 3.808864,
+      "unrealized_plpc": 0.128
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -88,11 +88,11 @@
       "has_position": true,
       "qty": 5.617532263,
       "avg_entry_price": 534.1672,
-      "current_price": 536.03,
-      "market_value": 3011.165819,
+      "current_price": 536.48,
+      "market_value": 3013.693708,
       "cost_basis": 3000.70148,
-      "unrealized_pl": 10.464339,
-      "unrealized_plpc": 0.349
+      "unrealized_pl": 12.992228,
+      "unrealized_plpc": 0.43299999999999994
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -109,11 +109,11 @@
       "has_position": true,
       "qty": 10.05075887,
       "avg_entry_price": 298.483929,
-      "current_price": 299.16,
-      "market_value": 3006.785024,
+      "current_price": 299.24,
+      "market_value": 3007.589084,
       "cost_basis": 2999.989997,
-      "unrealized_pl": 6.795027,
-      "unrealized_plpc": 0.22699999999999998
+      "unrealized_pl": 7.599087,
+      "unrealized_plpc": 0.253
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -151,11 +151,11 @@
       "has_position": true,
       "qty": 14.12800226,
       "avg_entry_price": 212.343539,
-      "current_price": 209.1119,
-      "market_value": 2954.333396,
+      "current_price": 219.06,
+      "market_value": 3094.880175,
       "cost_basis": 2999.989999,
-      "unrealized_pl": -45.656603,
-      "unrealized_plpc": -1.522
+      "unrealized_pl": 94.890176,
+      "unrealized_plpc": 3.163
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -193,11 +193,11 @@
       "has_position": true,
       "qty": 3.19274609,
       "avg_entry_price": 924.9,
-      "current_price": 950.95,
-      "market_value": 3036.141894,
+      "current_price": 962.5,
+      "market_value": 3073.018112,
       "cost_basis": 2952.970859,
-      "unrealized_pl": 83.171035,
-      "unrealized_plpc": 2.817
+      "unrealized_pl": 120.047253,
+      "unrealized_plpc": 4.0649999999999995
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -214,11 +214,11 @@
       "has_position": true,
       "qty": 3.384367111,
       "avg_entry_price": 554.597045,
-      "current_price": 556.97,
-      "market_value": 1884.99095,
+      "current_price": 566.34,
+      "market_value": 1916.70247,
       "cost_basis": 1876.959999,
-      "unrealized_pl": 8.030951,
-      "unrealized_plpc": 0.428
+      "unrealized_pl": 39.742471,
+      "unrealized_plpc": 2.117
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -235,11 +235,11 @@
       "has_position": true,
       "qty": 2.940079299,
       "avg_entry_price": 513.122734,
-      "current_price": 518.0,
-      "market_value": 1522.961077,
+      "current_price": 523.5,
+      "market_value": 1539.131513,
       "cost_basis": 1508.621528,
-      "unrealized_pl": 14.339549,
-      "unrealized_plpc": 0.951
+      "unrealized_pl": 30.509985,
+      "unrealized_plpc": 2.022
     },
     "signal": {
       "signal_date": "2026-08-26",
@@ -256,11 +256,11 @@
       "has_position": true,
       "qty": 8.424560694,
       "avg_entry_price": 148.53,
-      "current_price": 148.78,
-      "market_value": 1253.40614,
+      "current_price": 150.89,
+      "market_value": 1271.181963,
       "cost_basis": 1251.3,
-      "unrealized_pl": 2.10614,
-      "unrealized_plpc": 0.168
+      "unrealized_pl": 19.881963,
+      "unrealized_plpc": 1.5890000000000002
     },
     "signal": {
       "signal_date": "2026-08-26",
