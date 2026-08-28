@@ -4,6 +4,7 @@ Generador de dashboard HTML con operaciones, P&L y asignación de capital.
 """
 
 import json
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 
@@ -12,6 +13,27 @@ def safe_float_fmt(value, decimals=2):
         return f"{float(value):.{decimals}f}"
     except (TypeError, ValueError):
         return "0.00"
+
+
+ECUADOR_OFFSET = timedelta(hours=-5)  # America/Guayaquil, sin horario de verano
+
+
+def to_ecuador_time(iso_timestamp):
+    """Convierte un timestamp ISO en UTC (el que guardan los scripts,
+    ej. capital_allocation.json) a hora de Ecuador para mostrar en el
+    dashboard. Ecuador no tiene horario de verano, así que un offset
+    fijo de -5 alcanza -- no hace falta zoneinfo/tzdata."""
+    if not iso_timestamp or iso_timestamp == "N/A":
+        return "N/A"
+    try:
+        ts = iso_timestamp.replace("Z", "+00:00")
+        dt_utc = datetime.fromisoformat(ts)
+        if dt_utc.tzinfo is None:
+            dt_utc = dt_utc.replace(tzinfo=timezone.utc)
+        dt_ecuador = dt_utc.astimezone(timezone(ECUADOR_OFFSET))
+        return dt_ecuador.strftime("%Y-%m-%d %H:%M:%S") + " (hora de Ecuador)"
+    except (ValueError, TypeError):
+        return iso_timestamp
 
 
 class DashboardGenerator:
@@ -338,7 +360,7 @@ class DashboardGenerator:
     <div class="container">
         <header>
             <h1>📊 Trading Dashboard</h1>
-            <p class="last-update">Última actualización: {self.allocation_data.get("timestamp", "N/A")}</p>
+            <p class="last-update">Última actualización: {to_ecuador_time(self.allocation_data.get("timestamp"))}</p>
             <p style="margin-top: 10px; color: #00ff88; font-size: 1.2em;">
                 Capital Total: <strong>${total_capital:,.2f}</strong>
             </p>
