@@ -54,7 +54,16 @@ BOTS_REGISTRY = {
 def get_conn():
     if not DATABASE_URL:
         raise RuntimeError("Falta DATABASE_URL")
-    return psycopg2.connect(DATABASE_URL)
+    conn = psycopg2.connect(DATABASE_URL)
+    # Las columnas son TIMESTAMPTZ (guardan el instante correcto en UTC
+    # internamente, eso no cambia). Esto solo hace que CUALQUIER lectura
+    # en esta conexión se muestre en hora de Ecuador en vez de UTC/GMT.
+    # ALTER DATABASE/ROLE con el mismo timezone no alcanza acá porque el
+    # pooler de Neon no lo propaga a conexiones nuevas -- hay que
+    # setearlo explícito en cada sesión.
+    with conn.cursor() as cur:
+        cur.execute("SET TIME ZONE 'America/Guayaquil'")
+    return conn
 
 
 def seed_bots(conn):

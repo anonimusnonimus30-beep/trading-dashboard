@@ -30,10 +30,20 @@ import io
 import json
 import os
 import sqlite3
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
 import requests
+
+ECUADOR_TZ = timezone(timedelta(hours=-5))  # America/Guayaquil, sin horario de verano
+
+
+def ecuador_now_iso():
+    """SQLite guarda TEXT plano (sin tipo timestamptz como Postgres),
+    así que acá sí hay que escribir el valor ya convertido -- con el
+    offset -05:00 explícito para que no se confunda con UTC después."""
+    return datetime.now(ECUADOR_TZ).isoformat()
+
 
 GITHUB_OWNER = "anonimusnonimus30-beep"
 GITHUB_API = "https://api.github.com"
@@ -337,7 +347,7 @@ def import_signal_history(conn):
 
 
 def import_snapshots(conn, positions_data, performance_data, allocation_data):
-    now = datetime.now(timezone.utc).isoformat()
+    now = ecuador_now_iso()
     cur = conn.cursor()
 
     for symbol, entry in positions_data.items():
@@ -412,7 +422,7 @@ def mark_analysis_done(symbol, db_file=DB_FILE):
     cur = conn.cursor()
     cur.execute("SELECT COUNT(*) FROM trades WHERE symbol = ?", (symbol,))
     current_count = cur.fetchone()[0]
-    now = datetime.now(timezone.utc).isoformat()
+    now = ecuador_now_iso()
     cur.execute(
         """
         INSERT INTO analysis_checkpoints (symbol, baseline_trade_count, last_analysis_at)
