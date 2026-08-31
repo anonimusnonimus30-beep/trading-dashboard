@@ -8,13 +8,13 @@
   "days_held": 5,
   "position": {
     "qty": 18.372268135,
-    "market_value": 2949.300204,
-    "current_price": 160.53,
-    "unrealized_pl": -50.689804,
-    "unrealized_plpc": -1.69
+    "market_value": 2947.095532,
+    "current_price": 160.41,
+    "unrealized_pl": -52.894476,
+    "unrealized_plpc": -1.763
   },
   "today_evaluated": 295,
-  "today_signals_count": 1,
+  "today_signals_count": 2,
   "today_date": "2026-08-31",
   "status_label": "En posici\u00f3n: TGT desde 2026-08-26 (d\u00eda 5/15)",
   "trades": [],
