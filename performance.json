@@ -180,13 +180,21 @@
   },
   "SPY": {
     "symbol": "SPY",
-    "realized_pnl": -420.87,
-    "total_trades": 23,
+    "realized_pnl": -421.65,
+    "total_trades": 24,
     "winning_trades": 3,
-    "losing_trades": 20,
-    "win_rate": 13.04,
-    "avg_pnl_per_trade": -18.3,
+    "losing_trades": 21,
+    "win_rate": 12.5,
+    "avg_pnl_per_trade": -17.57,
     "trades": [
+      {
+        "order_id": "b3d60980",
+        "date": "2026-09-01",
+        "buy_price": 766.57,
+        "sell_price": 761.15,
+        "qty": 0.1442,
+        "pnl": -0.78
+      },
       {
         "order_id": "d4900722",
         "date": "2026-09-01",
