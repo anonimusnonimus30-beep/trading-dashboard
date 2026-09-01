@@ -180,13 +180,21 @@
   },
   "SPY": {
     "symbol": "SPY",
-    "realized_pnl": -418.31,
-    "total_trades": 22,
+    "realized_pnl": -420.87,
+    "total_trades": 23,
     "winning_trades": 3,
-    "losing_trades": 19,
-    "win_rate": 13.64,
-    "avg_pnl_per_trade": -19.01,
+    "losing_trades": 20,
+    "win_rate": 13.04,
+    "avg_pnl_per_trade": -18.3,
     "trades": [
+      {
+        "order_id": "d4900722",
+        "date": "2026-09-01",
+        "buy_price": 766.57,
+        "sell_price": 762.16,
+        "qty": 0.5815,
+        "pnl": -2.56
+      },
       {
         "order_id": "b7c036af",
         "date": "2026-09-01",
@@ -1004,13 +1012,21 @@
   },
   "SMH": {
     "symbol": "SMH",
-    "realized_pnl": 39.36,
-    "total_trades": 3,
+    "realized_pnl": 36.67,
+    "total_trades": 4,
     "winning_trades": 2,
-    "losing_trades": 1,
-    "win_rate": 66.67,
-    "avg_pnl_per_trade": 13.12,
+    "losing_trades": 2,
+    "win_rate": 50.0,
+    "avg_pnl_per_trade": 9.17,
     "trades": [
+      {
+        "order_id": "ee8e9f53",
+        "date": "2026-09-01",
+        "buy_price": 555.31,
+        "sell_price": 545.16,
+        "qty": 0.2649,
+        "pnl": -2.69
+      },
       {
         "order_id": "c3098879",
         "date": "2026-08-31",
@@ -1039,13 +1055,21 @@
   },
   "SOXX": {
     "symbol": "SOXX",
-    "realized_pnl": 18.25,
-    "total_trades": 6,
+    "realized_pnl": 17.14,
+    "total_trades": 7,
     "winning_trades": 4,
-    "losing_trades": 2,
-    "win_rate": 66.67,
-    "avg_pnl_per_trade": 3.04,
+    "losing_trades": 3,
+    "win_rate": 57.14,
+    "avg_pnl_per_trade": 2.45,
     "trades": [
+      {
+        "order_id": "97eb9c15",
+        "date": "2026-09-01",
+        "buy_price": 509.97,
+        "sell_price": 499.54,
+        "qty": 0.1067,
+        "pnl": -1.11
+      },
       {
         "order_id": "6f097528",
         "date": "2026-08-31",

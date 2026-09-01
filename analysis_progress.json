@@ -48,19 +48,19 @@
     "last_analysis_at": null
   },
   "SMH": {
-    "trades_since_analysis": 1,
+    "trades_since_analysis": 2,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "SOXX": {
-    "trades_since_analysis": 4,
+    "trades_since_analysis": 5,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "SPY": {
-    "trades_since_analysis": 14,
+    "trades_since_analysis": 15,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": "2026-08-18T21:09:36.751676+00:00"
