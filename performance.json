@@ -180,13 +180,29 @@
   },
   "SPY": {
     "symbol": "SPY",
-    "realized_pnl": -245.5,
-    "total_trades": 20,
+    "realized_pnl": -418.31,
+    "total_trades": 22,
     "winning_trades": 3,
-    "losing_trades": 17,
-    "win_rate": 15.0,
-    "avg_pnl_per_trade": -12.27,
+    "losing_trades": 19,
+    "win_rate": 13.64,
+    "avg_pnl_per_trade": -19.01,
     "trades": [
+      {
+        "order_id": "b7c036af",
+        "date": "2026-09-01",
+        "buy_price": 766.57,
+        "sell_price": 762.28,
+        "qty": 0.2824,
+        "pnl": -1.21
+      },
+      {
+        "order_id": "b7c036af",
+        "date": "2026-09-01",
+        "buy_price": 766.57,
+        "sell_price": 762.28,
+        "qty": 40.0,
+        "pnl": -171.6
+      },
       {
         "order_id": "bd6e7756",
         "date": "2026-08-31",
@@ -562,13 +578,29 @@
   },
   "ARKK": {
     "symbol": "ARKK",
-    "realized_pnl": 18.4,
-    "total_trades": 8,
+    "realized_pnl": 15.83,
+    "total_trades": 10,
     "winning_trades": 4,
-    "losing_trades": 4,
-    "win_rate": 50.0,
-    "avg_pnl_per_trade": 2.3,
+    "losing_trades": 6,
+    "win_rate": 40.0,
+    "avg_pnl_per_trade": 1.58,
     "trades": [
+      {
+        "order_id": "e78fdc8f",
+        "date": "2026-09-01",
+        "buy_price": 85.39,
+        "sell_price": 84.02,
+        "qty": 0.8779,
+        "pnl": -1.2
+      },
+      {
+        "order_id": "e78fdc8f",
+        "date": "2026-09-01",
+        "buy_price": 85.39,
+        "sell_price": 84.02,
+        "qty": 1.0,
+        "pnl": -1.37
+      },
       {
         "order_id": "d99bbc91",
         "date": "2026-08-31",
@@ -846,13 +878,29 @@
   },
   "NVDA": {
     "symbol": "NVDA",
-    "realized_pnl": 149.81,
-    "total_trades": 6,
+    "realized_pnl": 146.06,
+    "total_trades": 8,
     "winning_trades": 4,
-    "losing_trades": 2,
-    "win_rate": 66.67,
-    "avg_pnl_per_trade": 24.97,
+    "losing_trades": 4,
+    "win_rate": 50.0,
+    "avg_pnl_per_trade": 18.26,
     "trades": [
+      {
+        "order_id": "9c0d8532",
+        "date": "2026-09-01",
+        "buy_price": 219.69,
+        "sell_price": 216.37,
+        "qty": 0.1314,
+        "pnl": -0.44
+      },
+      {
+        "order_id": "9c0d8532",
+        "date": "2026-09-01",
+        "buy_price": 219.69,
+        "sell_price": 216.37,
+        "qty": 1.0,
+        "pnl": -3.32
+      },
       {
         "order_id": "bf20aa7f",
         "date": "2026-08-31",
