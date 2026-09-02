@@ -180,13 +180,21 @@
   },
   "SPY": {
     "symbol": "SPY",
-    "realized_pnl": -421.65,
-    "total_trades": 24,
+    "realized_pnl": -422.32,
+    "total_trades": 25,
     "winning_trades": 3,
-    "losing_trades": 21,
-    "win_rate": 12.5,
-    "avg_pnl_per_trade": -17.57,
+    "losing_trades": 22,
+    "win_rate": 12.0,
+    "avg_pnl_per_trade": -16.89,
     "trades": [
+      {
+        "order_id": "93f49461",
+        "date": "2026-09-02",
+        "buy_price": 766.57,
+        "sell_price": 762.13,
+        "qty": 0.1508,
+        "pnl": -0.67
+      },
       {
         "order_id": "b3d60980",
         "date": "2026-09-01",
@@ -752,13 +760,29 @@
   },
   "IWM": {
     "symbol": "IWM",
-    "realized_pnl": -20.69,
-    "total_trades": 5,
+    "realized_pnl": -22.36,
+    "total_trades": 7,
     "winning_trades": 2,
-    "losing_trades": 3,
-    "win_rate": 40.0,
-    "avg_pnl_per_trade": -4.14,
+    "losing_trades": 5,
+    "win_rate": 28.57,
+    "avg_pnl_per_trade": -3.19,
     "trades": [
+      {
+        "order_id": "fe3fd497",
+        "date": "2026-09-02",
+        "buy_price": 293.74,
+        "sell_price": 292.63,
+        "qty": 0.4998,
+        "pnl": -0.55
+      },
+      {
+        "order_id": "fe3fd497",
+        "date": "2026-09-02",
+        "buy_price": 293.74,
+        "sell_price": 292.63,
+        "qty": 1.0,
+        "pnl": -1.11
+      },
       {
         "order_id": "f9024ad5",
         "date": "2026-08-31",
