@@ -993,13 +993,21 @@
   },
   "MU": {
     "symbol": "MU",
-    "realized_pnl": -18.38,
-    "total_trades": 5,
-    "winning_trades": 2,
+    "realized_pnl": -18.23,
+    "total_trades": 6,
+    "winning_trades": 3,
     "losing_trades": 3,
-    "win_rate": 40.0,
-    "avg_pnl_per_trade": -3.68,
+    "win_rate": 50.0,
+    "avg_pnl_per_trade": -3.04,
     "trades": [
+      {
+        "order_id": "d7180b51",
+        "date": "2026-09-02",
+        "buy_price": 945.84,
+        "sell_price": 950.08,
+        "qty": 0.0339,
+        "pnl": 0.14
+      },
       {
         "order_id": "7931f408",
         "date": "2026-08-31",
