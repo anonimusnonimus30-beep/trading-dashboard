@@ -121,6 +121,11 @@ CREATE TABLE IF NOT EXISTS signal_history (
     roc20 REAL,
     roc60 REAL,
     drawdown REAL,
+    -- Sentimiento de noticias (2026-09-03). Lo escriben los bots en su
+    -- signal_log.csv desde el 2026-09-01; antes se quedaba ahi.
+    news_sentiment REAL,
+    news_multiplier REAL,
+    news_articles INTEGER,
     UNIQUE(symbol, signal_date)
 );
 
@@ -215,7 +220,22 @@ def fetch_csv_rows(repo, filename):
 
 def init_db(conn):
     conn.executescript(SCHEMA)
+    _migrar_columnas_noticias(conn)
     conn.commit()
+
+
+def _migrar_columnas_noticias(conn):
+    """CREATE TABLE IF NOT EXISTS no agrega columnas a una tabla que ya
+    existe, asi que las bases creadas antes del 2026-09-03 necesitan un
+    ALTER explicito. Las filas viejas quedan con NULL, que es correcto:
+    en ese momento el dato no se guardaba."""
+    cur = conn.cursor()
+    existentes = {r[1] for r in cur.execute("PRAGMA table_info(signal_history)")}
+    for col, tipo in (("news_sentiment", "REAL"),
+                      ("news_multiplier", "REAL"),
+                      ("news_articles", "INTEGER")):
+        if col not in existentes:
+            cur.execute(f"ALTER TABLE signal_history ADD COLUMN {col} {tipo}")
 
 
 def import_trades(conn, performance_data):
@@ -296,8 +316,9 @@ def import_signal_history(conn):
                     """
                     INSERT OR IGNORE INTO signal_history
                         (symbol, signal_date, price, target_exposure_pct,
-                         v5_active, bear_confirmed, changed)
-                    VALUES (?, ?, ?, ?, ?, ?, ?)
+                         v5_active, bear_confirmed, changed,
+                         news_sentiment, news_multiplier, news_articles)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         symbol,
@@ -307,6 +328,9 @@ def import_signal_history(conn):
                         row.get("v5_active") == "True",
                         row.get("bear_confirmed") == "True",
                         row.get("changed") == "True",
+                        safe_float(row.get("news_sentiment")),
+                        safe_float(row.get("news_multiplier")),
+                        safe_float(row.get("news_articles")),
                     ),
                 )
             else:
@@ -315,8 +339,9 @@ def import_signal_history(conn):
                     INSERT OR IGNORE INTO signal_history
                         (symbol, signal_date, price, target_exposure_pct, score, regime,
                          trend, momentum, volatility, volume, quality,
-                         rsi, adx, atr_pct, roc20, roc60, drawdown)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                         rsi, adx, atr_pct, roc20, roc60, drawdown,
+                         news_sentiment, news_multiplier, news_articles)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """,
                     (
                         symbol,
@@ -336,6 +361,9 @@ def import_signal_history(conn):
                         safe_float(row.get("roc20")),
                         safe_float(row.get("roc60")),
                         safe_float(row.get("drawdown")),
+                        safe_float(row.get("news_sentiment")),
+                        safe_float(row.get("news_multiplier")),
+                        safe_float(row.get("news_articles")),
                     ),
                 )
             inserted += cur.rowcount
