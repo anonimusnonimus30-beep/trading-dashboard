@@ -768,13 +768,21 @@
   },
   "IWM": {
     "symbol": "IWM",
-    "realized_pnl": -22.36,
-    "total_trades": 7,
-    "winning_trades": 2,
+    "realized_pnl": -22.21,
+    "total_trades": 8,
+    "winning_trades": 3,
     "losing_trades": 5,
-    "win_rate": 28.57,
-    "avg_pnl_per_trade": -3.19,
+    "win_rate": 37.5,
+    "avg_pnl_per_trade": -2.78,
     "trades": [
+      {
+        "order_id": "aa9771ca",
+        "date": "2026-09-03",
+        "buy_price": 293.74,
+        "sell_price": 295.36,
+        "qty": 0.0913,
+        "pnl": 0.15
+      },
       {
         "order_id": "fe3fd497",
         "date": "2026-09-02",
