@@ -1060,13 +1060,21 @@
   },
   "SMH": {
     "symbol": "SMH",
-    "realized_pnl": 36.67,
-    "total_trades": 4,
+    "realized_pnl": 36.47,
+    "total_trades": 5,
     "winning_trades": 2,
-    "losing_trades": 2,
-    "win_rate": 50.0,
-    "avg_pnl_per_trade": 9.17,
+    "losing_trades": 3,
+    "win_rate": 40.0,
+    "avg_pnl_per_trade": 7.29,
     "trades": [
+      {
+        "order_id": "4949b270",
+        "date": "2026-09-03",
+        "buy_price": 555.31,
+        "sell_price": 550.21,
+        "qty": 0.0382,
+        "pnl": -0.19
+      },
       {
         "order_id": "ee8e9f53",
         "date": "2026-09-01",
