@@ -196,13 +196,37 @@
   },
   "SPY": {
     "symbol": "SPY",
-    "realized_pnl": -399.99,
-    "total_trades": 29,
-    "winning_trades": 7,
+    "realized_pnl": -399.43,
+    "total_trades": 32,
+    "winning_trades": 10,
     "losing_trades": 22,
-    "win_rate": 24.14,
-    "avg_pnl_per_trade": -13.79,
+    "win_rate": 31.25,
+    "avg_pnl_per_trade": -12.48,
     "trades": [
+      {
+        "order_id": "71d33e36",
+        "date": "2026-09-04",
+        "buy_price": 769.01,
+        "sell_price": 769.28,
+        "qty": 0.1552,
+        "pnl": 0.04
+      },
+      {
+        "order_id": "71d33e36",
+        "date": "2026-09-04",
+        "buy_price": 769.01,
+        "sell_price": 769.28,
+        "qty": 1.0,
+        "pnl": 0.27
+      },
+      {
+        "order_id": "71d33e36",
+        "date": "2026-09-04",
+        "buy_price": 769.01,
+        "sell_price": 769.26,
+        "qty": 1.0,
+        "pnl": 0.25
+      },
       {
         "order_id": "3342790d",
         "date": "2026-09-04",
@@ -1097,13 +1121,21 @@
   },
   "MU": {
     "symbol": "MU",
-    "realized_pnl": -17.81,
-    "total_trades": 7,
-    "winning_trades": 4,
+    "realized_pnl": -15.84,
+    "total_trades": 8,
+    "winning_trades": 5,
     "losing_trades": 3,
-    "win_rate": 57.14,
-    "avg_pnl_per_trade": -2.54,
+    "win_rate": 62.5,
+    "avg_pnl_per_trade": -1.98,
     "trades": [
+      {
+        "order_id": "7f2bdc34",
+        "date": "2026-09-04",
+        "buy_price": 945.84,
+        "sell_price": 999.6,
+        "qty": 0.0365,
+        "pnl": 1.96
+      },
       {
         "order_id": "2a16a93c",
         "date": "2026-09-04",

@@ -18,7 +18,7 @@
     "last_analysis_at": null
   },
   "MU": {
-    "trades_since_analysis": 6,
+    "trades_since_analysis": 7,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
@@ -60,7 +60,7 @@
     "last_analysis_at": null
   },
   "SPY": {
-    "trades_since_analysis": 21,
+    "trades_since_analysis": 24,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": "2026-08-18T21:09:36.751676+00:00"
