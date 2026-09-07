@@ -134,7 +134,11 @@ def analyze():
     winning = sum(1 for t in trades if t["pnl_usd"] > 0)
     realized_pnl = round(sum(t["pnl_usd"] for t in trades), 2)
 
-    result["trades"] = trades[:20]  # más recientes primero
+    # Historial COMPLETO, no una ventana. El scanner mantiene 15 sesiones
+    # por operación, asi que cierra ~17 al anio: recortar a 20 borraba
+    # todo lo anterior a ~14 meses justo cuando empieza a haber historia
+    # con la que juzgar la estrategia. Ordenado de mas reciente a mas viejo.
+    result["trades"] = trades
     result["total_trades"] = total_trades
     result["win_rate"] = round(winning / total_trades * 100, 1) if total_trades else 0
     result["realized_pnl"] = realized_pnl
