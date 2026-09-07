@@ -21,6 +21,12 @@ def safe_float(value, default=0.0):
         return default
 
 
+# Umbral de "polvo": por debajo de esto una operacion no mueve la aguja
+# pero pesa lo mismo en el porcentaje de acierto. Sale de los datos, no de
+# una corazonada: es el corte donde el aporte al P&L se vuelve nulo.
+DUST_NOTIONAL_USD = 250.0
+
+
 class PerformanceAnalyzer:
     def __init__(self):
         self.account1_key = os.getenv("APCA_API_KEY_ID")
@@ -159,11 +165,26 @@ class PerformanceAnalyzer:
                 "buy_price": round(avg_buy, 2),
                 "sell_price": round(price, 2),
                 "qty": round(matched_qty, 4),
+                "notional": round(cost_basis, 2),
                 "pnl": round(pnl, 2),
             })
 
         total_trades = winning_trades + losing_trades
         win_rate = (winning_trades / total_trades * 100) if total_trades > 0 else 0
+
+        # El win rate sobre TODAS las operaciones engania. Los rebalanceos
+        # dejan un rastro de operaciones minusculas (el minimo del bot son
+        # $5) que mueven centavos: medidas sobre la flota entera, las que
+        # estan por debajo de $250 de nocional eran el 52% del recuento y
+        # aportaban +$5 de $324. Cuentan igual que una operacion de $3.000
+        # en el porcentaje de acierto y lo vuelven ilegible. Se reportan
+        # aparte en vez de filtrarlas: subir el minimo del bot se probo en
+        # backtest y no daba retorno (entre -0,013% y +0,015% segun el
+        # instrumento), asi que el problema es de medicion, no de trading.
+        signif = [t for t in trades if t["notional"] >= DUST_NOTIONAL_USD]
+        polvo = [t for t in trades if t["notional"] < DUST_NOTIONAL_USD]
+        s_gan = sum(1 for t in signif if t["pnl"] > 0)
+        s_tot = sum(1 for t in signif if t["pnl"] != 0)
 
         return {
             "symbol": symbol,
@@ -173,6 +194,11 @@ class PerformanceAnalyzer:
             "losing_trades": losing_trades,
             "win_rate": round(win_rate, 2),
             "avg_pnl_per_trade": round(realized_pnl / total_trades, 2) if total_trades > 0 else 0,
+            "significant_trades": len(signif),
+            "significant_win_rate": round(s_gan / s_tot * 100, 2) if s_tot else 0,
+            "significant_pnl": round(sum(t["pnl"] for t in signif), 2),
+            "dust_trades": len(polvo),
+            "dust_pnl": round(sum(t["pnl"] for t in polvo), 2),
             "trades": list(reversed(trades)),  # más recientes primero
         }
 
