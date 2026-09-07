@@ -632,12 +632,54 @@ class DashboardGenerator:
             </div>
 """
 
+            # La tabla incluye la posicion ABIERTA, no solo las cerradas. El
+            # scanner mantiene cada posicion 15 sesiones, asi que durante
+            # semanas enteras no tiene ninguna cerrada y la seccion quedaba
+            # en blanco aunque hubiera capital trabajando: se veia igual que
+            # un bot averiado. La fila abierta se marca como tal y su P&L es
+            # el no realizado de Alpaca.
             trades = ns.get("trades", [])
-            if trades:
+            filas = []
+            if status == "in_position" and ns.get("symbol"):
+                pos_abierta = ns.get("position") or {}
+                filas.append({
+                    "estado": "Abierta",
+                    "symbol": ns.get("symbol"),
+                    "entry_date": ns.get("entry_date"),
+                    "exit_date": f"en curso (dia {ns.get('days_held', 0)}/15)",
+                    "entry_price": ns.get("entry_price"),
+                    "exit_price": pos_abierta.get("current_price"),
+                    "motivo": "\u2014",
+                    "pnl_usd": pos_abierta.get("unrealized_pl"),
+                    "pnl_pct": pos_abierta.get("unrealized_plpc"),
+                })
+            for t in trades:
+                filas.append({
+                    "estado": "Cerrada",
+                    "symbol": t.get("symbol"),
+                    "entry_date": t.get("entry_date"),
+                    "exit_date": t.get("exit_date"),
+                    "entry_price": t.get("entry_price"),
+                    "exit_price": t.get("exit_price"),
+                    "motivo": {"stop": "Stop -8%", "target": "Target +20%",
+                               "horizonte": "Horizonte 15d"}.get(t.get("exit_reason"), t.get("exit_reason", "")),
+                    "pnl_usd": t.get("pnl_usd"),
+                    "pnl_pct": t.get("pnl_pct"),
+                })
+
+            if filas:
+                if not trades:
+                    html += """
+            <p style="color: #999; font-size: 0.9em; margin-bottom: 10px;">
+                Todavia no hay operaciones cerradas: esta es la primera del scanner y sigue abierta.
+                El historial se ira llenando a medida que cierre cada posicion.
+            </p>
+"""
                 html += """
             <div style="overflow-x: auto; background: rgba(255, 255, 255, 0.02); border-radius: 10px; padding: 10px;">
                 <table style="width: 100%;">
                     <tr>
+                        <th>Estado</th>
                         <th>Símbolo</th>
                         <th>Entrada</th>
                         <th>Salida</th>
@@ -648,20 +690,24 @@ class DashboardGenerator:
                         <th>Ganancia %</th>
                     </tr>
 """
-                for t in trades:
-                    pnl = t.get("pnl_usd", 0)
-                    pnl_class = "positive" if pnl > 0 else ("negative" if pnl < 0 else "")
-                    reason_label = {"stop": "Stop -8%", "target": "Target +20%", "horizonte": "Horizonte 15d"}.get(t.get("exit_reason"), t.get("exit_reason", ""))
+                for f in filas:
+                    pnl = f.get("pnl_usd")
+                    pnl_class = "positive" if (pnl or 0) > 0 else ("negative" if (pnl or 0) < 0 else "")
+                    pnl_txt = f"${pnl:,.2f}" if pnl is not None else "n/d"
+                    pct = f.get("pnl_pct")
+                    pct_txt = f"{pct:+.2f}%" if pct is not None else "n/d"
+                    marca = ("<span style=\"color:#ffcc00\">\u25cf</span> " if f["estado"] == "Abierta" else "")
                     html += f"""
                     <tr>
-                        <td>{t.get('symbol', 'N/A')}</td>
-                        <td>{t.get('entry_date', 'N/A')}</td>
-                        <td>{t.get('exit_date', 'N/A')}</td>
-                        <td>${safe_float_fmt(t.get('entry_price'))}</td>
-                        <td>${safe_float_fmt(t.get('exit_price'))}</td>
-                        <td>{reason_label}</td>
-                        <td class="{pnl_class}">${pnl:,.2f}</td>
-                        <td class="{pnl_class}">{t.get('pnl_pct', 0):+.2f}%</td>
+                        <td>{marca}{f['estado']}</td>
+                        <td>{f.get('symbol') or 'N/A'}</td>
+                        <td>{f.get('entry_date') or 'N/A'}</td>
+                        <td>{f.get('exit_date') or 'N/A'}</td>
+                        <td>${safe_float_fmt(f.get('entry_price'))}</td>
+                        <td>${safe_float_fmt(f.get('exit_price'))}</td>
+                        <td>{f.get('motivo') or ''}</td>
+                        <td class="{pnl_class}">{pnl_txt}</td>
+                        <td class="{pnl_class}">{pct_txt}</td>
                     </tr>
 """
                 html += """
