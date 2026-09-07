@@ -531,8 +531,12 @@ class DashboardGenerator:
                         </div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-label">Win Rate</div>
-                        <div class="metric-value">{perf.get('win_rate', 0):.1f}%</div>
+                        <div class="metric-label">Win Rate (operaciones reales)</div>
+                        <div class="metric-value">{perf.get('significant_win_rate', perf.get('win_rate', 0)):.1f}%</div>
+                        <div style="color:#777; font-size:0.75em; margin-top:4px;">
+                            sobre {perf.get('significant_trades', 0)} de ≥$250 &middot; el {perf.get('win_rate', 0):.1f}% total
+                            incluye {perf.get('dust_trades', 0)} rebalanceos minúsculos (${perf.get('dust_pnl', 0):,.2f})
+                        </div>
                     </div>
                     <div class="metric-card">
                         <div class="metric-label">P&L Promedio</div>
