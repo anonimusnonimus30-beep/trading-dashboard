@@ -16,7 +16,7 @@
       "last_executed_target_pct": 95.0,
       "last_action": "order_sent",
       "last_checked_at": "2026-09-04T13:35:33.205660",
-      "pending_rebalance": true
+      "pending_rebalance": false
     },
     "suspended": false
   },
@@ -37,7 +37,7 @@
       "last_executed_target_pct": 67.5,
       "last_action": "order_sent",
       "last_checked_at": "2026-09-04T15:35:31.157378",
-      "pending_rebalance": true
+      "pending_rebalance": false
     },
     "suspended": false
   },
@@ -100,7 +100,7 @@
       "last_executed_target_pct": 71.25,
       "last_action": "order_sent",
       "last_checked_at": "2026-09-04T13:35:30.946372",
-      "pending_rebalance": true
+      "pending_rebalance": false
     },
     "suspended": false
   },
@@ -247,7 +247,7 @@
       "last_executed_target_pct": 27.500000000000004,
       "last_action": "no_trade_small_difference",
       "last_checked_at": "2026-09-04T16:35:31.026713",
-      "pending_rebalance": true
+      "pending_rebalance": false
     },
     "suspended": false
   },
