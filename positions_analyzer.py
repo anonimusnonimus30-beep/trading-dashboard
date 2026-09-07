@@ -107,6 +107,25 @@ BOTS = {
 }
 
 
+# Multiplicadores que puede aplicar news_sentiment_adjuster. Se mantienen
+# aca duplicados a proposito: el dashboard no importa codigo de los bots.
+MULTIPLICADORES_NOTICIAS = (0.9, 0.95, 1.0, 1.05, 1.1)
+
+
+def _explicado_por_noticias(signal_target, executed_target):
+    """True si el objetivo ejecutado es el estrategico por alguno de los
+    multiplicadores de noticias (con el mismo recorte a 0-100 que aplica el
+    bot). Si encaja, no hay rebalanceo pendiente."""
+    crudo = safe_float(signal_target, None)
+    hecho = safe_float(executed_target, None)
+    if crudo is None or hecho is None:
+        return False
+    for m in MULTIPLICADORES_NOTICIAS:
+        if abs(min(max(crudo * m, 0), 100) - hecho) < 0.01:
+            return True
+    return False
+
+
 def safe_float(value, default=0.0):
     try:
         if value in (None, ""):
@@ -215,10 +234,17 @@ class PositionsAnalyzer:
             signal_target = sentinel_state.get("last_target_exposure")
             executed_target = execution_state.get("last_executed_target")
 
+            # signal_target es el objetivo ESTRATEGICO crudo (90/100/60) y
+            # executed_target es ese mismo objetivo YA multiplicado por el
+            # ajuste de noticias. Compararlos directo marcaba "rebalanceo
+            # pendiente" de forma permanente en todo bot cuyo multiplicador
+            # no fuera exactamente 1.0 -- es decir, casi siempre. Un desfase
+            # que el multiplicador explica no es nada pendiente: es el
+            # sistema funcionando.
             pending_rebalance = (
                 signal_target is not None
                 and executed_target is not None
-                and safe_float(signal_target) != safe_float(executed_target)
+                and not _explicado_por_noticias(signal_target, executed_target)
             )
 
             suspended = symbol in SUSPENDED_SYMBOLS
