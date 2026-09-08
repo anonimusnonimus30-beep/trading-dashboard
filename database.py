@@ -210,7 +210,15 @@ def fetch_csv_rows(repo, filename):
     try:
         response = requests.get(url, headers=headers, timeout=20)
         if response.status_code != 200:
-            print(f"⚠️ Error leyendo {repo}/{filename}: HTTP {response.status_code}")
+            if response.status_code == 404 and filename.endswith("trade_log.csv"):
+                # El scanner crea este archivo recien al cerrar su primera
+                # operacion (append_trade_log() en execute_position.py). Un
+                # 404 aca no es un fallo -- es "todavia no ha cerrado
+                # ninguna", que puede durar semanas mientras una posicion
+                # sigue abierta.
+                print(f"ℹ️ {repo}/{filename}: sin operaciones cerradas todavía")
+            else:
+                print(f"⚠️ Error leyendo {repo}/{filename}: HTTP {response.status_code}")
             return []
         return list(csv.DictReader(io.StringIO(response.text)))
     except Exception as e:
