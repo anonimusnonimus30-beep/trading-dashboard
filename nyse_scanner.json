@@ -8,10 +8,10 @@
   "days_held": 10,
   "position": {
     "qty": 18.372268135,
-    "market_value": 2947.462977,
-    "current_price": 160.43,
-    "unrealized_pl": -52.527031,
-    "unrealized_plpc": -1.7510000000000001
+    "market_value": 2956.097943,
+    "current_price": 160.9,
+    "unrealized_pl": -43.892065,
+    "unrealized_plpc": -1.463
   },
   "today_evaluated": 296,
   "today_signals_count": 4,
