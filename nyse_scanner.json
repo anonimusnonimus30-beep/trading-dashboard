@@ -5,7 +5,7 @@
   "score": null,
   "entry_date": "2026-08-26",
   "entry_price": 163.289038,
-  "days_held": 12,
+  "days_held": 13,
   "position": {
     "qty": 18.372268135,
     "market_value": 2871.952955,
@@ -14,9 +14,9 @@
     "unrealized_plpc": -4.268000000000001
   },
   "today_evaluated": 296,
-  "today_signals_count": 0,
-  "today_date": "2026-09-10",
-  "status_label": "En posici\u00f3n: TGT desde 2026-08-26 (d\u00eda 12/15)",
+  "today_signals_count": 3,
+  "today_date": "2026-09-11",
+  "status_label": "En posici\u00f3n: TGT desde 2026-08-26 (d\u00eda 13/15)",
   "trades": [],
   "total_trades": 0,
   "win_rate": 0,
