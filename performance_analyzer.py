@@ -169,20 +169,54 @@ class PerformanceAnalyzer:
                 "pnl": round(pnl, 2),
             })
 
+        # Una venta se empareja contra VARIOS lotes de compra (FIFO), y
+        # cada emparejamiento generaba una fila. Eso inflaba el recuento
+        # entre 1,1x y 5x segun el bot: ARKK figuraba con 18 operaciones
+        # siendo 8 ordenes, USMV con 10 siendo 2. Peor aun, partia una
+        # orden real de $1.300 en 4 pedazos de ~$325 y varios caian por
+        # debajo del umbral de "polvo", contaminando esa metrica tambien.
+        # Se agrupa por order_id: una orden = una decision = una fila.
+        ordenes = {}
+        for t in trades:
+            o = ordenes.setdefault(t["order_id"], {
+                "order_id": t["order_id"], "date": t["date"],
+                "qty": 0.0, "notional": 0.0, "pnl": 0.0,
+                "_proceeds": 0.0,
+            })
+            o["qty"] += t["qty"]
+            o["notional"] += t["notional"]
+            o["pnl"] += t["pnl"]
+            o["_proceeds"] += t["sell_price"] * t["qty"]
+
+        operaciones = []
+        for o in ordenes.values():
+            q = o["qty"]
+            operaciones.append({
+                "order_id": o["order_id"],
+                "date": o["date"],
+                # precio medio ponderado de los lotes que se cerraron
+                "buy_price": round(o["notional"] / q, 2) if q else 0,
+                "sell_price": round(o["_proceeds"] / q, 2) if q else 0,
+                "qty": round(q, 4),
+                "notional": round(o["notional"], 2),
+                "pnl": round(o["pnl"], 2),
+            })
+        operaciones.sort(key=lambda t: t["date"])
+
+        winning_trades = sum(1 for t in operaciones if t["pnl"] > 0)
+        losing_trades = sum(1 for t in operaciones if t["pnl"] < 0)
         total_trades = winning_trades + losing_trades
         win_rate = (winning_trades / total_trades * 100) if total_trades > 0 else 0
 
-        # El win rate sobre TODAS las operaciones engania. Los rebalanceos
-        # dejan un rastro de operaciones minusculas (el minimo del bot son
-        # $5) que mueven centavos: medidas sobre la flota entera, las que
-        # estan por debajo de $250 de nocional eran el 52% del recuento y
-        # aportaban +$5 de $324. Cuentan igual que una operacion de $3.000
-        # en el porcentaje de acierto y lo vuelven ilegible. Se reportan
-        # aparte en vez de filtrarlas: subir el minimo del bot se probo en
-        # backtest y no daba retorno (entre -0,013% y +0,015% segun el
-        # instrumento), asi que el problema es de medicion, no de trading.
-        signif = [t for t in trades if t["notional"] >= DUST_NOTIONAL_USD]
-        polvo = [t for t in trades if t["notional"] < DUST_NOTIONAL_USD]
+        # El win rate sobre TODAS las ordenes sigue enganiando un poco: los
+        # rebalanceos dejan ordenes minusculas (el minimo del bot son $5)
+        # que mueven centavos y pesan igual que una de $3.000 en el
+        # porcentaje. Se reportan aparte en vez de filtrarlas: subir el
+        # minimo del bot se probo en backtest y no daba retorno (entre
+        # -0,013% y +0,015% segun el instrumento), asi que el problema es
+        # de medicion, no de trading.
+        signif = [t for t in operaciones if t["notional"] >= DUST_NOTIONAL_USD]
+        polvo = [t for t in operaciones if t["notional"] < DUST_NOTIONAL_USD]
         s_gan = sum(1 for t in signif if t["pnl"] > 0)
         s_tot = sum(1 for t in signif if t["pnl"] != 0)
 
@@ -199,7 +233,7 @@ class PerformanceAnalyzer:
             "significant_pnl": round(sum(t["pnl"] for t in signif), 2),
             "dust_trades": len(polvo),
             "dust_pnl": round(sum(t["pnl"] for t in polvo), 2),
-            "trades": list(reversed(trades)),  # más recientes primero
+            "trades": list(reversed(operaciones)),  # más recientes primero
         }
 
     def run(self):
