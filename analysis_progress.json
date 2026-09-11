@@ -1,36 +1,36 @@
 {
   "ARKK": {
-    "trades_since_analysis": 18,
+    "trades_since_analysis": 26,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": "2026-08-18T21:09:36.756184+00:00"
   },
   "DIA": {
-    "trades_since_analysis": 6,
+    "trades_since_analysis": 10,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "IWM": {
-    "trades_since_analysis": 8,
+    "trades_since_analysis": 14,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "MU": {
-    "trades_since_analysis": 9,
+    "trades_since_analysis": 17,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "NVDA": {
-    "trades_since_analysis": 6,
+    "trades_since_analysis": 9,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "QQQ": {
-    "trades_since_analysis": 10,
+    "trades_since_analysis": 21,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": "2026-08-18T21:09:36.737907+00:00"
@@ -42,37 +42,37 @@
     "last_analysis_at": "2026-08-18T21:09:36.743004+00:00"
   },
   "QTUM": {
-    "trades_since_analysis": 3,
+    "trades_since_analysis": 5,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "SMH": {
-    "trades_since_analysis": 4,
+    "trades_since_analysis": 9,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "SOXX": {
-    "trades_since_analysis": 7,
+    "trades_since_analysis": 14,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null
   },
   "SPY": {
-    "trades_since_analysis": 27,
+    "trades_since_analysis": 45,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": "2026-08-18T21:09:36.751676+00:00"
   },
   "TQQQ": {
-    "trades_since_analysis": 24,
+    "trades_since_analysis": 33,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": "2026-08-18T21:09:36.747338+00:00"
   },
   "USMV": {
-    "trades_since_analysis": 4,
+    "trades_since_analysis": 6,
     "trades_target": 50,
     "analysis_due": false,
     "last_analysis_at": null

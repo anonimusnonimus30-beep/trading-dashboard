@@ -2,102 +2,48 @@
   "QQQ": {
     "symbol": "QQQ",
     "realized_pnl": -86.45,
-    "total_trades": 23,
-    "winning_trades": 19,
-    "losing_trades": 4,
-    "win_rate": 82.61,
-    "avg_pnl_per_trade": -3.76,
-    "significant_trades": 14,
-    "significant_win_rate": 78.57,
-    "significant_pnl": -94.72,
-    "dust_trades": 9,
-    "dust_pnl": 8.25,
+    "total_trades": 12,
+    "winning_trades": 11,
+    "losing_trades": 1,
+    "win_rate": 91.67,
+    "avg_pnl_per_trade": -7.2,
+    "significant_trades": 6,
+    "significant_win_rate": 83.33,
+    "significant_pnl": -95.08,
+    "dust_trades": 6,
+    "dust_pnl": 8.61,
     "trades": [
       {
         "order_id": "ba2db5ae",
         "date": "2026-09-04",
-        "buy_price": 715.41,
+        "buy_price": 715.4,
         "sell_price": 720.33,
-        "qty": 0.1366,
-        "notional": 97.69,
-        "pnl": 0.67
-      },
-      {
-        "order_id": "ba2db5ae",
-        "date": "2026-09-04",
-        "buy_price": 715.41,
-        "sell_price": 720.33,
-        "qty": 4.0,
-        "notional": 2861.64,
-        "pnl": 19.68
+        "qty": 4.1366,
+        "notional": 2959.33,
+        "pnl": 20.35
       },
       {
         "order_id": "f1ee2693",
         "date": "2026-08-31",
-        "buy_price": 719.03,
-        "sell_price": 715.08,
-        "qty": 0.5272,
-        "notional": 379.05,
-        "pnl": -2.08
-      },
-      {
-        "order_id": "f1ee2693",
-        "date": "2026-08-31",
-        "buy_price": 719.06,
-        "sell_price": 715.08,
-        "qty": 26.0,
-        "notional": 18695.58,
-        "pnl": -103.5
-      },
-      {
-        "order_id": "f1ee2693",
-        "date": "2026-08-31",
-        "buy_price": 718.14,
-        "sell_price": 715.06,
-        "qty": 50.0,
-        "notional": 35906.82,
-        "pnl": -153.82
+        "buy_price": 718.46,
+        "sell_price": 715.07,
+        "qty": 76.5272,
+        "notional": 54981.45,
+        "pnl": -259.4
       },
       {
         "order_id": "715176c4",
         "date": "2026-08-24",
-        "buy_price": 711.96,
-        "sell_price": 707.1,
-        "qty": 0.2137,
-        "notional": 152.13,
-        "pnl": -1.04
-      },
-      {
-        "order_id": "715176c4",
-        "date": "2026-08-24",
-        "buy_price": 704.77,
-        "sell_price": 707.1,
-        "qty": 1.0,
-        "notional": 704.77,
-        "pnl": 2.33
-      },
-      {
-        "order_id": "715176c4",
-        "date": "2026-08-24",
-        "buy_price": 688.9,
+        "buy_price": 693.83,
         "sell_price": 707.11,
-        "qty": 2.0,
-        "notional": 1377.8,
-        "pnl": 36.42
-      },
-      {
-        "order_id": "715176c4",
-        "date": "2026-08-24",
-        "buy_price": 688.91,
-        "sell_price": 707.11,
-        "qty": 1.0,
-        "notional": 688.91,
-        "pnl": 18.2
+        "qty": 4.2137,
+        "notional": 2923.61,
+        "pnl": 55.91
       },
       {
         "order_id": "bcd98aa6",
         "date": "2026-08-19",
-        "buy_price": 688.94,
+        "buy_price": 688.96,
         "sell_price": 714.73,
         "qty": 0.7974,
         "notional": 549.38,
@@ -106,7 +52,7 @@
       {
         "order_id": "fc75cc41",
         "date": "2026-08-07",
-        "buy_price": 688.94,
+        "buy_price": 688.05,
         "sell_price": 721.27,
         "qty": 0.0318,
         "notional": 21.88,
@@ -115,7 +61,7 @@
       {
         "order_id": "39c81461",
         "date": "2026-08-04",
-        "buy_price": 688.94,
+        "buy_price": 689.4,
         "sell_price": 722.74,
         "qty": 0.0217,
         "notional": 14.96,
@@ -124,7 +70,7 @@
       {
         "order_id": "e8befe8e",
         "date": "2026-08-04",
-        "buy_price": 688.94,
+        "buy_price": 689.24,
         "sell_price": 718.96,
         "qty": 0.1115,
         "notional": 76.85,
@@ -142,7 +88,7 @@
       {
         "order_id": "bd9680e2",
         "date": "2026-07-31",
-        "buy_price": 674.73,
+        "buy_price": 674.7,
         "sell_price": 687.96,
         "qty": 0.1482,
         "notional": 99.99,
@@ -151,7 +97,7 @@
       {
         "order_id": "8ef36769",
         "date": "2026-07-28",
-        "buy_price": 669.79,
+        "buy_price": 669.73,
         "sell_price": 674.76,
         "qty": 0.1493,
         "notional": 99.99,
@@ -160,176 +106,68 @@
       {
         "order_id": "3ccfee0b",
         "date": "2026-07-27",
-        "buy_price": 679.89,
-        "sell_price": 679.98,
-        "qty": 0.1649,
-        "notional": 112.08,
-        "pnl": 0.01
-      },
-      {
-        "order_id": "3ccfee0b",
-        "date": "2026-07-27",
-        "buy_price": 679.89,
-        "sell_price": 679.98,
-        "qty": 5.0,
-        "notional": 3399.45,
-        "pnl": 0.45
-      },
-      {
-        "order_id": "3ccfee0b",
-        "date": "2026-07-27",
-        "buy_price": 679.87,
-        "sell_price": 679.95,
-        "qty": 7.0,
-        "notional": 4759.11,
-        "pnl": 0.54
-      },
-      {
-        "order_id": "3ccfee0b",
-        "date": "2026-07-27",
         "buy_price": 679.87,
         "sell_price": 679.97,
-        "qty": 130.0,
-        "notional": 88383.1,
-        "pnl": 13.0
-      },
-      {
-        "order_id": "3ccfee0b",
-        "date": "2026-07-27",
-        "buy_price": 679.87,
-        "sell_price": 679.95,
-        "qty": 5.0,
-        "notional": 3399.35,
-        "pnl": 0.4
-      },
-      {
-        "order_id": "e4e0772b",
-        "date": "2026-07-27",
-        "buy_price": 678.24,
-        "sell_price": 678.61,
-        "qty": 0.4383,
-        "notional": 297.26,
-        "pnl": 0.16
+        "qty": 147.1649,
+        "notional": 100053.09,
+        "pnl": 14.4
       },
       {
         "order_id": "e4e0772b",
         "date": "2026-07-27",
         "buy_price": 678.25,
         "sell_price": 678.61,
-        "qty": 147.0,
-        "notional": 99702.73,
-        "pnl": 52.94
+        "qty": 147.4383,
+        "notional": 99999.99,
+        "pnl": 53.1
       }
     ]
   },
   "SPY": {
     "symbol": "SPY",
     "realized_pnl": -413.87,
-    "total_trades": 35,
-    "winning_trades": 10,
-    "losing_trades": 25,
-    "win_rate": 28.57,
-    "avg_pnl_per_trade": -11.82,
-    "significant_trades": 27,
-    "significant_win_rate": 25.93,
-    "significant_pnl": -411.55,
-    "dust_trades": 8,
-    "dust_pnl": -2.31,
+    "total_trades": 17,
+    "winning_trades": 3,
+    "losing_trades": 14,
+    "win_rate": 17.65,
+    "avg_pnl_per_trade": -24.35,
+    "significant_trades": 15,
+    "significant_win_rate": 20.0,
+    "significant_pnl": -412.41,
+    "dust_trades": 3,
+    "dust_pnl": -1.45,
     "trades": [
       {
         "order_id": "71ea7c56",
         "date": "2026-09-09",
-        "buy_price": 769.01,
+        "buy_price": 768.99,
         "sell_price": 762.05,
-        "qty": 0.0762,
-        "notional": 58.56,
-        "pnl": -0.53
-      },
-      {
-        "order_id": "71ea7c56",
-        "date": "2026-09-09",
-        "buy_price": 769.01,
-        "sell_price": 762.05,
-        "qty": 1.0,
-        "notional": 769.01,
-        "pnl": -6.96
-      },
-      {
-        "order_id": "71ea7c56",
-        "date": "2026-09-09",
-        "buy_price": 769.01,
-        "sell_price": 762.06,
-        "qty": 1.0,
-        "notional": 769.01,
-        "pnl": -6.95
+        "qty": 2.0762,
+        "notional": 1596.58,
+        "pnl": -14.44
       },
       {
         "order_id": "71d33e36",
         "date": "2026-09-04",
-        "buy_price": 769.01,
-        "sell_price": 769.28,
-        "qty": 0.1552,
-        "notional": 119.37,
-        "pnl": 0.04
-      },
-      {
-        "order_id": "71d33e36",
-        "date": "2026-09-04",
-        "buy_price": 769.01,
-        "sell_price": 769.28,
-        "qty": 1.0,
-        "notional": 769.01,
-        "pnl": 0.27
-      },
-      {
-        "order_id": "71d33e36",
-        "date": "2026-09-04",
-        "buy_price": 769.01,
-        "sell_price": 769.26,
-        "qty": 1.0,
-        "notional": 769.01,
-        "pnl": 0.25
+        "buy_price": 769.02,
+        "sell_price": 769.27,
+        "qty": 2.1552,
+        "notional": 1657.39,
+        "pnl": 0.56
       },
       {
         "order_id": "3342790d",
         "date": "2026-09-04",
-        "buy_price": 769.01,
-        "sell_price": 772.55,
-        "qty": 0.2386,
-        "notional": 183.5,
-        "pnl": 0.84
-      },
-      {
-        "order_id": "3342790d",
-        "date": "2026-09-04",
-        "buy_price": 767.99,
-        "sell_price": 772.55,
-        "qty": 2.0,
-        "notional": 1535.98,
-        "pnl": 9.12
-      },
-      {
-        "order_id": "3342790d",
-        "date": "2026-09-04",
-        "buy_price": 766.57,
-        "sell_price": 772.78,
-        "qty": 1.0,
-        "notional": 766.57,
-        "pnl": 6.21
-      },
-      {
-        "order_id": "3342790d",
-        "date": "2026-09-04",
-        "buy_price": 766.57,
-        "sell_price": 772.73,
-        "qty": 1.0,
-        "notional": 766.57,
-        "pnl": 6.16
+        "buy_price": 767.38,
+        "sell_price": 772.65,
+        "qty": 4.2386,
+        "notional": 3252.62,
+        "pnl": 22.33
       },
       {
         "order_id": "93f49461",
         "date": "2026-09-02",
-        "buy_price": 766.57,
+        "buy_price": 766.38,
         "sell_price": 762.13,
         "qty": 0.1508,
         "notional": 115.57,
@@ -338,7 +176,7 @@
       {
         "order_id": "b3d60980",
         "date": "2026-09-01",
-        "buy_price": 766.57,
+        "buy_price": 766.37,
         "sell_price": 761.15,
         "qty": 0.1442,
         "notional": 110.51,
@@ -347,7 +185,7 @@
       {
         "order_id": "d4900722",
         "date": "2026-09-01",
-        "buy_price": 766.57,
+        "buy_price": 766.62,
         "sell_price": 762.16,
         "qty": 0.5815,
         "notional": 445.79,
@@ -358,59 +196,23 @@
         "date": "2026-09-01",
         "buy_price": 766.57,
         "sell_price": 762.28,
-        "qty": 0.2824,
-        "notional": 216.48,
-        "pnl": -1.21
-      },
-      {
-        "order_id": "b7c036af",
-        "date": "2026-09-01",
-        "buy_price": 766.57,
-        "sell_price": 762.28,
-        "qty": 40.0,
-        "notional": 30662.8,
-        "pnl": -171.6
+        "qty": 40.2824,
+        "notional": 30879.28,
+        "pnl": -172.81
       },
       {
         "order_id": "bd6e7756",
         "date": "2026-08-31",
-        "buy_price": 771.05,
+        "buy_price": 770.6,
         "sell_price": 765.4,
-        "qty": 0.5525,
-        "notional": 426.0,
-        "pnl": -3.12
-      },
-      {
-        "order_id": "bd6e7756",
-        "date": "2026-08-31",
-        "buy_price": 771.05,
-        "sell_price": 765.4,
-        "qty": 17.0,
-        "notional": 13107.85,
-        "pnl": -96.05
-      },
-      {
-        "order_id": "bd6e7756",
-        "date": "2026-08-31",
-        "buy_price": 771.05,
-        "sell_price": 765.4,
-        "qty": 24.0,
-        "notional": 18505.32,
-        "pnl": -135.72
-      },
-      {
-        "order_id": "bd6e7756",
-        "date": "2026-08-31",
-        "buy_price": 768.89,
-        "sell_price": 765.38,
-        "qty": 11.0,
-        "notional": 8457.75,
-        "pnl": -38.57
+        "qty": 52.5525,
+        "notional": 40496.92,
+        "pnl": -273.46
       },
       {
         "order_id": "f5a88077",
         "date": "2026-08-26",
-        "buy_price": 765.56,
+        "buy_price": 760.56,
         "sell_price": 765.81,
         "qty": 0.0071,
         "notional": 5.4,
@@ -419,7 +221,7 @@
       {
         "order_id": "e6c2304e",
         "date": "2026-08-21",
-        "buy_price": 768.64,
+        "buy_price": 768.59,
         "sell_price": 766.99,
         "qty": 0.5928,
         "notional": 455.62,
@@ -428,7 +230,7 @@
       {
         "order_id": "521fe40a",
         "date": "2026-08-21",
-        "buy_price": 770.06,
+        "buy_price": 770.04,
         "sell_price": 765.31,
         "qty": 0.5914,
         "notional": 455.4,
@@ -437,7 +239,7 @@
       {
         "order_id": "371909dc",
         "date": "2026-08-20",
-        "buy_price": 769.65,
+        "buy_price": 769.7,
         "sell_price": 766.93,
         "qty": 0.5917,
         "notional": 455.43,
@@ -446,34 +248,16 @@
       {
         "order_id": "d92ce194",
         "date": "2026-08-19",
-        "buy_price": 769.65,
+        "buy_price": 778.5,
         "sell_price": 769.61,
-        "qty": 0.0422,
-        "notional": 32.44,
-        "pnl": -0.0
-      },
-      {
-        "order_id": "d92ce194",
-        "date": "2026-08-19",
-        "buy_price": 778.63,
-        "sell_price": 769.61,
-        "qty": 1.0,
-        "notional": 778.63,
-        "pnl": -9.02
-      },
-      {
-        "order_id": "d92ce194",
-        "date": "2026-08-19",
-        "buy_price": 778.79,
-        "sell_price": 769.61,
-        "qty": 1.0,
-        "notional": 778.79,
-        "pnl": -9.18
+        "qty": 2.0422,
+        "notional": 1589.86,
+        "pnl": -18.2
       },
       {
         "order_id": "adf65dfe",
         "date": "2026-08-19",
-        "buy_price": 772.56,
+        "buy_price": 772.5,
         "sell_price": 770.69,
         "qty": 0.3814,
         "notional": 294.63,
@@ -482,131 +266,68 @@
       {
         "order_id": "9de0956d",
         "date": "2026-08-18",
-        "buy_price": 772.56,
+        "buy_price": 772.55,
         "sell_price": 767.72,
-        "qty": 0.5241,
-        "notional": 404.87,
-        "pnl": -2.54
-      },
-      {
-        "order_id": "9de0956d",
-        "date": "2026-08-18",
-        "buy_price": 772.57,
-        "sell_price": 767.72,
-        "qty": 1.0,
-        "notional": 772.57,
-        "pnl": -4.85
+        "qty": 1.5241,
+        "notional": 1177.44,
+        "pnl": -7.39
       },
       {
         "order_id": "5ff602e6",
         "date": "2026-08-12",
-        "buy_price": 774.53,
+        "buy_price": 773.83,
         "sell_price": 772.88,
-        "qty": 0.9411,
-        "notional": 728.89,
-        "pnl": -1.55
-      },
-      {
-        "order_id": "5ff602e6",
-        "date": "2026-08-12",
-        "buy_price": 773.2,
-        "sell_price": 772.88,
-        "qty": 1.0,
-        "notional": 773.2,
-        "pnl": -0.32
+        "qty": 1.9411,
+        "notional": 1502.09,
+        "pnl": -1.87
       },
       {
         "order_id": "ed8c2823",
         "date": "2026-08-11",
-        "buy_price": 773.18,
+        "buy_price": 773.16,
         "sell_price": 770.8,
-        "qty": 0.9265,
-        "notional": 716.32,
-        "pnl": -2.2
-      },
-      {
-        "order_id": "ed8c2823",
-        "date": "2026-08-11",
-        "buy_price": 773.18,
-        "sell_price": 770.8,
-        "qty": 1.0,
-        "notional": 773.18,
-        "pnl": -2.38
+        "qty": 1.9265,
+        "notional": 1489.5,
+        "pnl": -4.58
       },
       {
         "order_id": "ed5a23f5",
         "date": "2026-08-07",
-        "buy_price": 757.27,
+        "buy_price": 756.3,
         "sell_price": 772.98,
-        "qty": 0.9616,
-        "notional": 728.21,
-        "pnl": 15.11
-      },
-      {
-        "order_id": "ed5a23f5",
-        "date": "2026-08-07",
-        "buy_price": 755.98,
-        "sell_price": 772.98,
-        "qty": 3.0,
-        "notional": 2267.95,
-        "pnl": 50.99
+        "qty": 3.9616,
+        "notional": 2996.16,
+        "pnl": 66.1
       }
     ]
   },
   "TQQQ": {
     "symbol": "TQQQ",
     "realized_pnl": -49.84,
-    "total_trades": 25,
-    "winning_trades": 17,
-    "losing_trades": 8,
-    "win_rate": 68.0,
-    "avg_pnl_per_trade": -1.99,
-    "significant_trades": 6,
-    "significant_win_rate": 66.67,
-    "significant_pnl": -40.39,
-    "dust_trades": 19,
-    "dust_pnl": -9.46,
+    "total_trades": 9,
+    "winning_trades": 5,
+    "losing_trades": 4,
+    "win_rate": 55.56,
+    "avg_pnl_per_trade": -5.54,
+    "significant_trades": 5,
+    "significant_win_rate": 60.0,
+    "significant_pnl": -53.61,
+    "dust_trades": 4,
+    "dust_pnl": 3.76,
     "trades": [
       {
         "order_id": "dd9b12b1",
         "date": "2026-08-31",
-        "buy_price": 71.82,
-        "sell_price": 71.31,
-        "qty": 0.3532,
-        "notional": 25.37,
-        "pnl": -0.18
-      },
-      {
-        "order_id": "dd9b12b1",
-        "date": "2026-08-31",
-        "buy_price": 70.35,
-        "sell_price": 71.31,
-        "qty": 1.0,
-        "notional": 70.35,
-        "pnl": 0.96
-      },
-      {
-        "order_id": "dd9b12b1",
-        "date": "2026-08-31",
-        "buy_price": 70.35,
-        "sell_price": 71.31,
-        "qty": 8.0,
-        "notional": 562.8,
-        "pnl": 7.68
-      },
-      {
-        "order_id": "dd9b12b1",
-        "date": "2026-08-31",
-        "buy_price": 71.94,
+        "buy_price": 71.6,
         "sell_price": 71.32,
-        "qty": 32.0,
-        "notional": 2302.17,
-        "pnl": -19.93
+        "qty": 41.3532,
+        "notional": 2960.69,
+        "pnl": -11.47
       },
       {
         "order_id": "5a7a1b9c",
         "date": "2026-08-27",
-        "buy_price": 74.7,
+        "buy_price": 74.67,
         "sell_price": 72.97,
         "qty": 0.1528,
         "notional": 11.41,
@@ -615,230 +336,95 @@
       {
         "order_id": "1d93e8d2",
         "date": "2026-08-27",
-        "buy_price": 74.83,
+        "buy_price": 75.0,
         "sell_price": 72.65,
-        "qty": 0.3556,
-        "notional": 26.61,
-        "pnl": -0.78
-      },
-      {
-        "order_id": "1d93e8d2",
-        "date": "2026-08-27",
-        "buy_price": 75.06,
-        "sell_price": 72.65,
-        "qty": 1.0,
-        "notional": 75.06,
-        "pnl": -2.41
+        "qty": 1.3556,
+        "notional": 101.67,
+        "pnl": -3.19
       },
       {
         "order_id": "bc432782",
         "date": "2026-08-24",
-        "buy_price": 75.06,
+        "buy_price": 74.95,
         "sell_price": 69.26,
-        "qty": 0.1479,
-        "notional": 11.1,
-        "pnl": -0.86
-      },
-      {
-        "order_id": "bc432782",
-        "date": "2026-08-24",
-        "buy_price": 75.07,
-        "sell_price": 69.26,
-        "qty": 7.0,
-        "notional": 525.47,
-        "pnl": -40.65
-      },
-      {
-        "order_id": "bc432782",
-        "date": "2026-08-24",
-        "buy_price": 74.67,
-        "sell_price": 69.26,
-        "qty": 3.0,
-        "notional": 224.0,
-        "pnl": -16.22
+        "qty": 10.1479,
+        "notional": 760.57,
+        "pnl": -57.73
       },
       {
         "order_id": "a7cf6aee",
         "date": "2026-08-17",
         "buy_price": 74.11,
-        "sell_price": 77.29,
-        "qty": 0.0426,
-        "notional": 3.16,
-        "pnl": 0.14
-      },
-      {
-        "order_id": "a7cf6aee",
-        "date": "2026-08-17",
-        "buy_price": 74.11,
-        "sell_price": 77.29,
-        "qty": 1.0,
-        "notional": 74.11,
-        "pnl": 3.18
-      },
-      {
-        "order_id": "a7cf6aee",
-        "date": "2026-08-17",
-        "buy_price": 74.11,
-        "sell_price": 77.27,
-        "qty": 1.0,
-        "notional": 74.11,
-        "pnl": 3.16
+        "sell_price": 77.28,
+        "qty": 2.0426,
+        "notional": 151.38,
+        "pnl": 6.48
       },
       {
         "order_id": "8b8093a2",
         "date": "2026-08-14",
         "buy_price": 74.11,
         "sell_price": 76.5,
-        "qty": 0.8592,
-        "notional": 63.68,
-        "pnl": 2.05
-      },
-      {
-        "order_id": "8b8093a2",
-        "date": "2026-08-14",
-        "buy_price": 74.11,
-        "sell_price": 76.5,
-        "qty": 4.0,
-        "notional": 296.44,
-        "pnl": 9.56
+        "qty": 4.8592,
+        "notional": 360.12,
+        "pnl": 11.61
       },
       {
         "order_id": "dd37becc",
         "date": "2026-08-12",
         "buy_price": 74.11,
         "sell_price": 74.48,
-        "qty": 0.9837,
-        "notional": 72.9,
-        "pnl": 0.36
-      },
-      {
-        "order_id": "dd37becc",
-        "date": "2026-08-12",
-        "buy_price": 74.11,
-        "sell_price": 74.48,
-        "qty": 1.0,
-        "notional": 74.11,
-        "pnl": 0.37
-      },
-      {
-        "order_id": "821abb5f",
-        "date": "2026-08-11",
-        "buy_price": 73.68,
-        "sell_price": 73.85,
-        "qty": 0.1422,
-        "notional": 10.48,
-        "pnl": 0.02
-      },
-      {
-        "order_id": "821abb5f",
-        "date": "2026-08-11",
-        "buy_price": 73.68,
-        "sell_price": 73.85,
-        "qty": 2.0,
-        "notional": 147.36,
-        "pnl": 0.34
-      },
-      {
-        "order_id": "821abb5f",
-        "date": "2026-08-11",
-        "buy_price": 73.68,
-        "sell_price": 73.85,
-        "qty": 1.0,
-        "notional": 73.68,
-        "pnl": 0.17
+        "qty": 1.9837,
+        "notional": 147.01,
+        "pnl": 0.73
       },
       {
         "order_id": "821abb5f",
         "date": "2026-08-11",
         "buy_price": 73.69,
         "sell_price": 73.86,
-        "qty": 7.0,
-        "notional": 515.83,
-        "pnl": 1.19
-      },
-      {
-        "order_id": "87a20af4",
-        "date": "2026-08-07",
-        "buy_price": 73.88,
-        "sell_price": 74.17,
-        "qty": 0.1984,
-        "notional": 14.66,
-        "pnl": 0.06
+        "qty": 10.1422,
+        "notional": 747.35,
+        "pnl": 1.72
       },
       {
         "order_id": "87a20af4",
         "date": "2026-08-07",
         "buy_price": 73.95,
         "sell_price": 74.17,
-        "qty": 1.0,
-        "notional": 73.95,
-        "pnl": 0.22
-      },
-      {
-        "order_id": "87a20af4",
-        "date": "2026-08-07",
-        "buy_price": 73.95,
-        "sell_price": 74.17,
-        "qty": 1.0,
-        "notional": 73.95,
-        "pnl": 0.22
-      },
-      {
-        "order_id": "87a20af4",
-        "date": "2026-08-07",
-        "buy_price": 73.95,
-        "sell_price": 74.17,
-        "qty": 8.0,
-        "notional": 591.6,
-        "pnl": 1.76
+        "qty": 10.1984,
+        "notional": 754.16,
+        "pnl": 2.26
       }
     ]
   },
   "ARKK": {
     "symbol": "ARKK",
     "realized_pnl": 10.52,
-    "total_trades": 18,
-    "winning_trades": 9,
-    "losing_trades": 9,
-    "win_rate": 50.0,
-    "avg_pnl_per_trade": 0.58,
+    "total_trades": 8,
+    "winning_trades": 5,
+    "losing_trades": 3,
+    "win_rate": 62.5,
+    "avg_pnl_per_trade": 1.32,
     "significant_trades": 4,
     "significant_win_rate": 50.0,
-    "significant_pnl": 19.67,
-    "dust_trades": 14,
-    "dust_pnl": -9.16,
+    "significant_pnl": 12.22,
+    "dust_trades": 4,
+    "dust_pnl": -1.71,
     "trades": [
       {
         "order_id": "9837dc14",
         "date": "2026-09-10",
         "buy_price": 85.39,
         "sell_price": 82.88,
-        "qty": 0.1617,
-        "notional": 13.81,
-        "pnl": -0.41
-      },
-      {
-        "order_id": "9837dc14",
-        "date": "2026-09-10",
-        "buy_price": 85.39,
-        "sell_price": 82.88,
-        "qty": 2.0,
-        "notional": 170.78,
-        "pnl": -5.02
-      },
-      {
-        "order_id": "9837dc14",
-        "date": "2026-09-10",
-        "buy_price": 85.39,
-        "sell_price": 82.88,
-        "qty": 1.0,
-        "notional": 85.39,
-        "pnl": -2.51
+        "qty": 3.1617,
+        "notional": 269.98,
+        "pnl": -7.94
       },
       {
         "order_id": "1fc2e9d9",
         "date": "2026-09-09",
-        "buy_price": 85.39,
+        "buy_price": 85.38,
         "sell_price": 85.98,
         "qty": 0.5984,
         "notional": 51.09,
@@ -848,33 +434,15 @@
         "order_id": "bb322647",
         "date": "2026-09-04",
         "buy_price": 85.39,
-        "sell_price": 86.17,
-        "qty": 0.2358,
-        "notional": 20.14,
-        "pnl": 0.18
-      },
-      {
-        "order_id": "bb322647",
-        "date": "2026-09-04",
-        "buy_price": 85.39,
-        "sell_price": 86.17,
-        "qty": 1.0,
-        "notional": 85.39,
-        "pnl": 0.78
-      },
-      {
-        "order_id": "bb322647",
-        "date": "2026-09-04",
-        "buy_price": 85.39,
-        "sell_price": 85.98,
-        "qty": 2.0,
-        "notional": 170.78,
-        "pnl": 1.18
+        "sell_price": 86.05,
+        "qty": 3.2358,
+        "notional": 276.31,
+        "pnl": 2.14
       },
       {
         "order_id": "cf9541c4",
         "date": "2026-09-03",
-        "buy_price": 85.39,
+        "buy_price": 85.4,
         "sell_price": 85.56,
         "qty": 0.7767,
         "notional": 66.33,
@@ -885,86 +453,32 @@
         "date": "2026-09-01",
         "buy_price": 85.39,
         "sell_price": 84.02,
-        "qty": 0.8779,
-        "notional": 74.97,
-        "pnl": -1.2
-      },
-      {
-        "order_id": "e78fdc8f",
-        "date": "2026-09-01",
-        "buy_price": 85.39,
-        "sell_price": 84.02,
-        "qty": 1.0,
-        "notional": 85.39,
-        "pnl": -1.37
-      },
-      {
-        "order_id": "d99bbc91",
-        "date": "2026-08-31",
-        "buy_price": 85.67,
-        "sell_price": 84.38,
-        "qty": 0.4939,
-        "notional": 42.31,
-        "pnl": -0.64
-      },
-      {
-        "order_id": "d99bbc91",
-        "date": "2026-08-31",
-        "buy_price": 85.67,
-        "sell_price": 84.38,
-        "qty": 3.0,
-        "notional": 257.01,
-        "pnl": -3.87
-      },
-      {
-        "order_id": "d99bbc91",
-        "date": "2026-08-31",
-        "buy_price": 85.67,
-        "sell_price": 84.4,
-        "qty": 1.0,
-        "notional": 85.67,
-        "pnl": -1.27
+        "qty": 1.8779,
+        "notional": 160.36,
+        "pnl": -2.57
       },
       {
         "order_id": "d99bbc91",
         "date": "2026-08-31",
         "buy_price": 85.67,
         "sell_price": 84.39,
-        "qty": 11.0,
-        "notional": 942.37,
-        "pnl": -14.08
+        "qty": 15.4939,
+        "notional": 1327.36,
+        "pnl": -19.86
       },
       {
         "order_id": "b6797083",
         "date": "2026-08-27",
         "buy_price": 85.67,
         "sell_price": 87.65,
-        "qty": 0.1322,
-        "notional": 11.32,
-        "pnl": 0.26
-      },
-      {
-        "order_id": "b6797083",
-        "date": "2026-08-27",
-        "buy_price": 85.67,
-        "sell_price": 87.65,
-        "qty": 4.0,
-        "notional": 342.68,
-        "pnl": 7.92
-      },
-      {
-        "order_id": "b6797083",
-        "date": "2026-08-27",
-        "buy_price": 85.67,
-        "sell_price": 87.65,
-        "qty": 15.0,
-        "notional": 1285.05,
-        "pnl": 29.7
+        "qty": 19.1322,
+        "notional": 1639.05,
+        "pnl": 37.88
       },
       {
         "order_id": "430eea72",
         "date": "2026-08-25",
-        "buy_price": 85.67,
+        "buy_price": 85.69,
         "sell_price": 86.63,
         "qty": 0.3919,
         "notional": 33.58,
@@ -975,21 +489,21 @@
   "DIA": {
     "symbol": "DIA",
     "realized_pnl": -0.23,
-    "total_trades": 8,
-    "winning_trades": 6,
-    "losing_trades": 2,
+    "total_trades": 4,
+    "winning_trades": 3,
+    "losing_trades": 1,
     "win_rate": 75.0,
-    "avg_pnl_per_trade": -0.03,
-    "significant_trades": 5,
-    "significant_win_rate": 60.0,
-    "significant_pnl": -0.86,
-    "dust_trades": 3,
-    "dust_pnl": 0.63,
+    "avg_pnl_per_trade": -0.06,
+    "significant_trades": 2,
+    "significant_win_rate": 50.0,
+    "significant_pnl": -0.71,
+    "dust_trades": 2,
+    "dust_pnl": 0.48,
     "trades": [
       {
         "order_id": "83b55a29",
         "date": "2026-09-04",
-        "buy_price": 531.75,
+        "buy_price": 531.91,
         "sell_price": 535.99,
         "qty": 0.1103,
         "notional": 58.67,
@@ -1000,59 +514,23 @@
         "date": "2026-08-31",
         "buy_price": 534.18,
         "sell_price": 531.67,
-        "qty": 0.5337,
-        "notional": 285.1,
-        "pnl": -1.34
-      },
-      {
-        "order_id": "f14139c4",
-        "date": "2026-08-31",
-        "buy_price": 534.18,
-        "sell_price": 531.67,
-        "qty": 2.0,
-        "notional": 1068.36,
-        "pnl": -5.02
+        "qty": 2.5337,
+        "notional": 1353.46,
+        "pnl": -6.36
       },
       {
         "order_id": "efcea782",
         "date": "2026-08-27",
-        "buy_price": 534.18,
+        "buy_price": 534.16,
         "sell_price": 535.99,
-        "qty": 0.0838,
-        "notional": 44.78,
-        "pnl": 0.15
-      },
-      {
-        "order_id": "efcea782",
-        "date": "2026-08-27",
-        "buy_price": 534.17,
-        "sell_price": 535.99,
-        "qty": 1.0,
-        "notional": 534.17,
-        "pnl": 1.82
-      },
-      {
-        "order_id": "efcea782",
-        "date": "2026-08-27",
-        "buy_price": 534.15,
-        "sell_price": 535.99,
-        "qty": 1.0,
-        "notional": 534.15,
-        "pnl": 1.84
-      },
-      {
-        "order_id": "efcea782",
-        "date": "2026-08-27",
-        "buy_price": 534.15,
-        "sell_price": 535.99,
-        "qty": 1.0,
-        "notional": 534.15,
-        "pnl": 1.84
+        "qty": 3.0838,
+        "notional": 1647.25,
+        "pnl": 5.65
       },
       {
         "order_id": "52f82f04",
         "date": "2026-08-26",
-        "buy_price": 534.15,
+        "buy_price": 534.75,
         "sell_price": 535.26,
         "qty": 0.0118,
         "notional": 6.31,
@@ -1063,21 +541,21 @@
   "IWM": {
     "symbol": "IWM",
     "realized_pnl": -22.34,
-    "total_trades": 10,
-    "winning_trades": 4,
-    "losing_trades": 6,
-    "win_rate": 40.0,
-    "avg_pnl_per_trade": -2.23,
-    "significant_trades": 4,
-    "significant_win_rate": 25.0,
-    "significant_pnl": -21.65,
-    "dust_trades": 6,
-    "dust_pnl": -0.68,
+    "total_trades": 6,
+    "winning_trades": 3,
+    "losing_trades": 3,
+    "win_rate": 50.0,
+    "avg_pnl_per_trade": -3.72,
+    "significant_trades": 3,
+    "significant_win_rate": 33.33,
+    "significant_pnl": -22.36,
+    "dust_trades": 3,
+    "dust_pnl": 0.03,
     "trades": [
       {
         "order_id": "48f10789",
         "date": "2026-09-11",
-        "buy_price": 293.74,
+        "buy_price": 293.78,
         "sell_price": 291.1,
         "qty": 0.0739,
         "notional": 21.71,
@@ -1086,7 +564,7 @@
       {
         "order_id": "a1bb6fe7",
         "date": "2026-09-04",
-        "buy_price": 293.74,
+        "buy_price": 293.65,
         "sell_price": 294.62,
         "qty": 0.0756,
         "notional": 22.2,
@@ -1095,7 +573,7 @@
       {
         "order_id": "aa9771ca",
         "date": "2026-09-03",
-        "buy_price": 293.74,
+        "buy_price": 293.87,
         "sell_price": 295.36,
         "qty": 0.0913,
         "notional": 26.83,
@@ -1104,272 +582,119 @@
       {
         "order_id": "fe3fd497",
         "date": "2026-09-02",
-        "buy_price": 293.74,
+        "buy_price": 293.73,
         "sell_price": 292.63,
-        "qty": 0.4998,
-        "notional": 146.8,
-        "pnl": -0.55
-      },
-      {
-        "order_id": "fe3fd497",
-        "date": "2026-09-02",
-        "buy_price": 293.74,
-        "sell_price": 292.63,
-        "qty": 1.0,
-        "notional": 293.74,
-        "pnl": -1.11
-      },
-      {
-        "order_id": "f9024ad5",
-        "date": "2026-08-31",
-        "buy_price": 298.47,
-        "sell_price": 293.05,
-        "qty": 0.033,
-        "notional": 9.85,
-        "pnl": -0.18
-      },
-      {
-        "order_id": "f9024ad5",
-        "date": "2026-08-31",
-        "buy_price": 298.47,
-        "sell_price": 293.05,
-        "qty": 1.0,
-        "notional": 298.47,
-        "pnl": -5.42
+        "qty": 1.4998,
+        "notional": 440.54,
+        "pnl": -1.66
       },
       {
         "order_id": "f9024ad5",
         "date": "2026-08-31",
         "buy_price": 298.48,
         "sell_price": 293.05,
-        "qty": 4.0,
-        "notional": 1193.92,
-        "pnl": -21.72
+        "qty": 5.033,
+        "notional": 1502.24,
+        "pnl": -27.32
       },
       {
         "order_id": "d037866e",
         "date": "2026-08-27",
         "buy_price": 298.49,
         "sell_price": 299.81,
-        "qty": 0.0178,
-        "notional": 5.3,
-        "pnl": 0.02
-      },
-      {
-        "order_id": "d037866e",
-        "date": "2026-08-27",
-        "buy_price": 298.49,
-        "sell_price": 299.81,
-        "qty": 5.0,
-        "notional": 1492.45,
-        "pnl": 6.6
+        "qty": 5.0178,
+        "notional": 1497.75,
+        "pnl": 6.62
       }
     ]
   },
   "USMV": {
     "symbol": "USMV",
     "realized_pnl": 8.12,
-    "total_trades": 10,
-    "winning_trades": 10,
+    "total_trades": 2,
+    "winning_trades": 2,
     "losing_trades": 0,
     "win_rate": 100.0,
-    "avg_pnl_per_trade": 0.81,
-    "significant_trades": 4,
+    "avg_pnl_per_trade": 4.06,
+    "significant_trades": 2,
     "significant_win_rate": 100.0,
-    "significant_pnl": 6.85,
-    "dust_trades": 6,
-    "dust_pnl": 1.27,
+    "significant_pnl": 8.12,
+    "dust_trades": 0,
+    "dust_pnl": 0,
     "trades": [
       {
         "order_id": "5f7c6cc1",
         "date": "2026-08-31",
         "buy_price": 101.49,
         "sell_price": 101.59,
-        "qty": 0.8023,
-        "notional": 81.43,
-        "pnl": 0.08
-      },
-      {
-        "order_id": "5f7c6cc1",
-        "date": "2026-08-31",
-        "buy_price": 101.49,
-        "sell_price": 101.59,
-        "qty": 1.0,
-        "notional": 101.49,
-        "pnl": 0.1
-      },
-      {
-        "order_id": "5f7c6cc1",
-        "date": "2026-08-31",
-        "buy_price": 101.49,
-        "sell_price": 101.59,
-        "qty": 1.0,
-        "notional": 101.49,
-        "pnl": 0.1
-      },
-      {
-        "order_id": "5f7c6cc1",
-        "date": "2026-08-31",
-        "buy_price": 101.49,
-        "sell_price": 101.59,
-        "qty": 5.0,
-        "notional": 507.45,
-        "pnl": 0.5
-      },
-      {
-        "order_id": "5f7c6cc1",
-        "date": "2026-08-31",
-        "buy_price": 101.49,
-        "sell_price": 101.59,
-        "qty": 2.0,
-        "notional": 202.98,
-        "pnl": 0.2
-      },
-      {
-        "order_id": "5f7c6cc1",
-        "date": "2026-08-31",
-        "buy_price": 101.49,
-        "sell_price": 101.59,
-        "qty": 5.0,
-        "notional": 507.45,
-        "pnl": 0.5
+        "qty": 14.8023,
+        "notional": 1502.29,
+        "pnl": 1.48
       },
       {
         "order_id": "4c08f495",
         "date": "2026-08-27",
         "buy_price": 101.49,
         "sell_price": 101.94,
-        "qty": 0.7572,
-        "notional": 76.84,
-        "pnl": 0.34
-      },
-      {
-        "order_id": "4c08f495",
-        "date": "2026-08-27",
-        "buy_price": 101.49,
-        "sell_price": 101.94,
-        "qty": 1.0,
-        "notional": 101.49,
-        "pnl": 0.45
-      },
-      {
-        "order_id": "4c08f495",
-        "date": "2026-08-27",
-        "buy_price": 101.49,
-        "sell_price": 101.94,
-        "qty": 4.0,
-        "notional": 405.96,
-        "pnl": 1.8
-      },
-      {
-        "order_id": "4c08f495",
-        "date": "2026-08-27",
-        "buy_price": 101.49,
-        "sell_price": 101.94,
-        "qty": 9.0,
-        "notional": 913.41,
-        "pnl": 4.05
+        "qty": 14.7572,
+        "notional": 1497.7,
+        "pnl": 6.64
       }
     ]
   },
   "NVDA": {
     "symbol": "NVDA",
     "realized_pnl": 146.06,
-    "total_trades": 8,
-    "winning_trades": 4,
-    "losing_trades": 4,
-    "win_rate": 50.0,
-    "avg_pnl_per_trade": 18.26,
-    "significant_trades": 3,
-    "significant_win_rate": 66.67,
-    "significant_pnl": 139.36,
-    "dust_trades": 5,
-    "dust_pnl": 6.69,
+    "total_trades": 3,
+    "winning_trades": 2,
+    "losing_trades": 1,
+    "win_rate": 66.67,
+    "avg_pnl_per_trade": 48.69,
+    "significant_trades": 2,
+    "significant_win_rate": 100.0,
+    "significant_pnl": 149.81,
+    "dust_trades": 1,
+    "dust_pnl": -3.76,
     "trades": [
       {
         "order_id": "9c0d8532",
         "date": "2026-09-01",
         "buy_price": 219.69,
         "sell_price": 216.37,
-        "qty": 0.1314,
-        "notional": 28.87,
-        "pnl": -0.44
-      },
-      {
-        "order_id": "9c0d8532",
-        "date": "2026-09-01",
-        "buy_price": 219.69,
-        "sell_price": 216.37,
-        "qty": 1.0,
-        "notional": 219.69,
-        "pnl": -3.32
+        "qty": 1.1314,
+        "notional": 248.56,
+        "pnl": -3.76
       },
       {
         "order_id": "bf20aa7f",
         "date": "2026-08-31",
-        "buy_price": 229.38,
-        "sell_price": 218.21,
-        "qty": 0.4965,
-        "notional": 113.89,
-        "pnl": -5.55
-      },
-      {
-        "order_id": "bf20aa7f",
-        "date": "2026-08-31",
-        "buy_price": 218.72,
-        "sell_price": 218.21,
-        "qty": 4.0,
-        "notional": 874.89,
-        "pnl": -2.05
-      },
-      {
-        "order_id": "bf20aa7f",
-        "date": "2026-08-31",
-        "buy_price": 212.34,
-        "sell_price": 218.19,
-        "qty": 2.0,
-        "notional": 424.68,
-        "pnl": 11.7
-      },
-      {
-        "order_id": "bf20aa7f",
-        "date": "2026-08-31",
-        "buy_price": 212.34,
-        "sell_price": 218.19,
-        "qty": 1.0,
-        "notional": 212.34,
-        "pnl": 5.85
-      },
-      {
-        "order_id": "6c7f2b91",
-        "date": "2026-08-27",
-        "buy_price": 212.34,
-        "sell_price": 228.56,
-        "qty": 0.6256,
-        "notional": 132.84,
-        "pnl": 10.15
+        "buy_price": 216.87,
+        "sell_price": 218.2,
+        "qty": 7.4965,
+        "notional": 1625.8,
+        "pnl": 9.95
       },
       {
         "order_id": "6c7f2b91",
         "date": "2026-08-27",
         "buy_price": 212.35,
         "sell_price": 228.56,
-        "qty": 8.0,
-        "notional": 1698.77,
-        "pnl": 129.71
+        "qty": 8.6256,
+        "notional": 1831.61,
+        "pnl": 139.86
       }
     ]
   },
   "MU": {
     "symbol": "MU",
     "realized_pnl": -11.68,
-    "total_trades": 10,
+    "total_trades": 9,
     "winning_trades": 7,
-    "losing_trades": 3,
-    "win_rate": 70.0,
-    "avg_pnl_per_trade": -1.17,
-    "significant_trades": 4,
-    "significant_win_rate": 25.0,
+    "losing_trades": 2,
+    "win_rate": 77.78,
+    "avg_pnl_per_trade": -1.3,
+    "significant_trades": 3,
+    "significant_win_rate": 33.33,
     "significant_pnl": -19.12,
     "dust_trades": 6,
     "dust_pnl": 7.44,
@@ -1377,7 +702,7 @@
       {
         "order_id": "e8d8dfed",
         "date": "2026-09-10",
-        "buy_price": 945.84,
+        "buy_price": 942.86,
         "sell_price": 987.6,
         "qty": 0.0168,
         "notional": 15.84,
@@ -1386,7 +711,7 @@
       {
         "order_id": "620e53e2",
         "date": "2026-09-09",
-        "buy_price": 945.84,
+        "buy_price": 946.07,
         "sell_price": 1021.32,
         "qty": 0.0458,
         "notional": 43.33,
@@ -1395,7 +720,7 @@
       {
         "order_id": "7f2bdc34",
         "date": "2026-09-04",
-        "buy_price": 945.84,
+        "buy_price": 946.58,
         "sell_price": 999.6,
         "qty": 0.0365,
         "notional": 34.55,
@@ -1404,7 +729,7 @@
       {
         "order_id": "2a16a93c",
         "date": "2026-09-04",
-        "buy_price": 945.84,
+        "buy_price": 943.43,
         "sell_price": 989.25,
         "qty": 0.0099,
         "notional": 9.34,
@@ -1413,7 +738,7 @@
       {
         "order_id": "d7180b51",
         "date": "2026-09-02",
-        "buy_price": 945.84,
+        "buy_price": 945.13,
         "sell_price": 950.08,
         "qty": 0.0339,
         "notional": 32.04,
@@ -1431,7 +756,7 @@
       {
         "order_id": "7855f48f",
         "date": "2026-08-27",
-        "buy_price": 924.9,
+        "buy_price": 924.95,
         "sell_price": 915.32,
         "qty": 0.6997,
         "notional": 647.19,
@@ -1440,25 +765,16 @@
       {
         "order_id": "87954157",
         "date": "2026-08-27",
-        "buy_price": 924.9,
+        "buy_price": 924.91,
         "sell_price": 912.38,
-        "qty": 0.8148,
-        "notional": 753.62,
-        "pnl": -10.2
-      },
-      {
-        "order_id": "87954157",
-        "date": "2026-08-27",
-        "buy_price": 924.9,
-        "sell_price": 912.38,
-        "qty": 1.0,
-        "notional": 924.9,
-        "pnl": -12.52
+        "qty": 1.8148,
+        "notional": 1678.52,
+        "pnl": -22.72
       },
       {
         "order_id": "7bc5daa4",
         "date": "2026-08-26",
-        "buy_price": 924.9,
+        "buy_price": 925.59,
         "sell_price": 939.56,
         "qty": 0.0508,
         "notional": 47.02,
@@ -1469,13 +785,13 @@
   "SMH": {
     "symbol": "SMH",
     "realized_pnl": 36.87,
-    "total_trades": 6,
-    "winning_trades": 3,
+    "total_trades": 5,
+    "winning_trades": 2,
     "losing_trades": 3,
-    "win_rate": 50.0,
-    "avg_pnl_per_trade": 6.15,
-    "significant_trades": 3,
-    "significant_win_rate": 66.67,
+    "win_rate": 40.0,
+    "avg_pnl_per_trade": 7.37,
+    "significant_trades": 2,
+    "significant_win_rate": 50.0,
     "significant_pnl": 39.35,
     "dust_trades": 3,
     "dust_pnl": -2.48,
@@ -1483,7 +799,7 @@
       {
         "order_id": "9bb76b7d",
         "date": "2026-09-04",
-        "buy_price": 555.31,
+        "buy_price": 554.85,
         "sell_price": 563.55,
         "qty": 0.0485,
         "notional": 26.91,
@@ -1492,7 +808,7 @@
       {
         "order_id": "4949b270",
         "date": "2026-09-03",
-        "buy_price": 555.31,
+        "buy_price": 555.76,
         "sell_price": 550.21,
         "qty": 0.0382,
         "notional": 21.23,
@@ -1501,7 +817,7 @@
       {
         "order_id": "ee8e9f53",
         "date": "2026-09-01",
-        "buy_price": 555.31,
+        "buy_price": 555.3,
         "sell_price": 545.16,
         "qty": 0.2649,
         "notional": 147.1,
@@ -1510,7 +826,7 @@
       {
         "order_id": "c3098879",
         "date": "2026-08-31",
-        "buy_price": 556.02,
+        "buy_price": 555.99,
         "sell_price": 554.35,
         "qty": 0.8998,
         "notional": 500.28,
@@ -1519,41 +835,32 @@
       {
         "order_id": "358e6f9c",
         "date": "2026-08-27",
-        "buy_price": 554.6,
+        "buy_price": 554.59,
         "sell_price": 570.57,
-        "qty": 0.5581,
-        "notional": 309.51,
-        "pnl": 8.91
-      },
-      {
-        "order_id": "358e6f9c",
-        "date": "2026-08-27",
-        "buy_price": 554.6,
-        "sell_price": 570.57,
-        "qty": 2.0,
-        "notional": 1109.19,
-        "pnl": 31.95
+        "qty": 2.5581,
+        "notional": 1418.7,
+        "pnl": 40.86
       }
     ]
   },
   "SOXX": {
     "symbol": "SOXX",
     "realized_pnl": 18.92,
-    "total_trades": 9,
-    "winning_trades": 6,
+    "total_trades": 7,
+    "winning_trades": 4,
     "losing_trades": 3,
-    "win_rate": 66.67,
-    "avg_pnl_per_trade": 2.1,
-    "significant_trades": 4,
-    "significant_win_rate": 50.0,
-    "significant_pnl": 14.76,
-    "dust_trades": 5,
-    "dust_pnl": 4.18,
+    "win_rate": 57.14,
+    "avg_pnl_per_trade": 2.7,
+    "significant_trades": 3,
+    "significant_win_rate": 33.33,
+    "significant_pnl": 16.84,
+    "dust_trades": 4,
+    "dust_pnl": 2.1,
     "trades": [
       {
         "order_id": "646f0d19",
         "date": "2026-09-11",
-        "buy_price": 509.97,
+        "buy_price": 509.91,
         "sell_price": 523.89,
         "qty": 0.0777,
         "notional": 39.62,
@@ -1562,7 +869,7 @@
       {
         "order_id": "9c5b17e9",
         "date": "2026-09-08",
-        "buy_price": 509.97,
+        "buy_price": 509.55,
         "sell_price": 529.86,
         "qty": 0.0356,
         "notional": 18.14,
@@ -1571,7 +878,7 @@
       {
         "order_id": "97eb9c15",
         "date": "2026-09-01",
-        "buy_price": 509.97,
+        "buy_price": 509.93,
         "sell_price": 499.54,
         "qty": 0.1067,
         "notional": 54.41,
@@ -1580,7 +887,7 @@
       {
         "order_id": "6f097528",
         "date": "2026-08-31",
-        "buy_price": 513.12,
+        "buy_price": 513.11,
         "sell_price": 509.32,
         "qty": 0.5895,
         "notional": 302.48,
@@ -1589,7 +896,7 @@
       {
         "order_id": "93dcbaf4",
         "date": "2026-08-27",
-        "buy_price": 513.12,
+        "buy_price": 513.08,
         "sell_price": 523.84,
         "qty": 0.1323,
         "notional": 67.88,
@@ -1600,32 +907,14 @@
         "date": "2026-08-27",
         "buy_price": 513.12,
         "sell_price": 522.63,
-        "qty": 0.2183,
-        "notional": 112.02,
-        "pnl": 2.08
-      },
-      {
-        "order_id": "500dd33f",
-        "date": "2026-08-27",
-        "buy_price": 513.12,
-        "sell_price": 522.63,
-        "qty": 1.0,
-        "notional": 513.12,
-        "pnl": 9.51
-      },
-      {
-        "order_id": "500dd33f",
-        "date": "2026-08-27",
-        "buy_price": 513.12,
-        "sell_price": 522.63,
-        "qty": 1.0,
-        "notional": 513.12,
-        "pnl": 9.51
+        "qty": 2.2183,
+        "notional": 1138.26,
+        "pnl": 21.1
       },
       {
         "order_id": "682c0c52",
         "date": "2026-08-26",
-        "buy_price": 513.13,
+        "buy_price": 513.12,
         "sell_price": 510.31,
         "qty": 0.7178,
         "notional": 368.32,
@@ -1636,61 +925,34 @@
   "QTUM": {
     "symbol": "QTUM",
     "realized_pnl": 10.77,
-    "total_trades": 5,
-    "winning_trades": 2,
-    "losing_trades": 3,
-    "win_rate": 40.0,
-    "avg_pnl_per_trade": 2.15,
-    "significant_trades": 1,
-    "significant_win_rate": 100.0,
-    "significant_pnl": 12.48,
-    "dust_trades": 4,
-    "dust_pnl": -1.72,
+    "total_trades": 2,
+    "winning_trades": 1,
+    "losing_trades": 1,
+    "win_rate": 50.0,
+    "avg_pnl_per_trade": 5.38,
+    "significant_trades": 2,
+    "significant_win_rate": 50.0,
+    "significant_pnl": 10.76,
+    "dust_trades": 0,
+    "dust_pnl": 0,
     "trades": [
       {
         "order_id": "b1bf8a43",
         "date": "2026-08-31",
-        "buy_price": 150.24,
-        "sell_price": 147.68,
-        "qty": 0.272,
-        "notional": 40.87,
-        "pnl": -0.7
-      },
-      {
-        "order_id": "b1bf8a43",
-        "date": "2026-08-31",
-        "buy_price": 148.53,
-        "sell_price": 147.68,
-        "qty": 1.0,
-        "notional": 148.53,
-        "pnl": -0.85
-      },
-      {
-        "order_id": "b1bf8a43",
-        "date": "2026-08-31",
-        "buy_price": 148.53,
-        "sell_price": 147.66,
-        "qty": 1.0,
-        "notional": 148.53,
-        "pnl": -0.87
+        "buy_price": 148.74,
+        "sell_price": 147.67,
+        "qty": 2.272,
+        "notional": 337.93,
+        "pnl": -2.42
       },
       {
         "order_id": "6a636a0f",
         "date": "2026-08-27",
         "buy_price": 148.53,
         "sell_price": 150.61,
-        "qty": 0.3374,
-        "notional": 50.12,
-        "pnl": 0.7
-      },
-      {
-        "order_id": "6a636a0f",
-        "date": "2026-08-27",
-        "buy_price": 148.53,
-        "sell_price": 150.61,
-        "qty": 6.0,
-        "notional": 891.18,
-        "pnl": 12.48
+        "qty": 6.3374,
+        "notional": 941.3,
+        "pnl": 13.18
       }
     ]
   }
